@@ -4,16 +4,25 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Filament\Models\Contracts\FilamentUser;
+use Filament\Models\Contracts\HasAvatar;
+use Filament\Models\Contracts\HasName;
 use Filament\Panel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
-    implements FilamentUser
+    implements FilamentUser,
+    HasAvatar,
+    HasName
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens,
+        HasFactory,
+        Notifiable,
+        HasRoles;
 
     protected $hidden = [
         'password',
@@ -38,5 +47,21 @@ class User extends Authenticatable
     {
 //        todo
         return true;
+    }
+
+    public function getFilamentAvatarUrl(): ?string
+    {
+//        todo
+        return null;
+    }
+
+    public function getFilamentName(): string
+    {
+        return $this->name;
+    }
+
+    public function CafeRestaurant(): BelongsTo
+    {
+        return $this->belongsTo(CafeRestaurant::class);
     }
 }

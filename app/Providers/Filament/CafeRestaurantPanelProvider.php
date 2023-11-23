@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\CafeRestaurant\Pages\Authentication\Login;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
@@ -25,9 +26,11 @@ class CafeRestaurantPanelProvider extends PanelProvider
         return $panel
             ->id('cafeRestaurant')
             ->path('panel')
+//            ->login(Login::class)
             ->login()
             ->colors([
-                'primary' => Color::Amber,
+//                'primary' => Color::Amber,
+                'primary' => Color::Blue,
             ])
             ->discoverResources(in: app_path('Filament/CafeRestaurant/Resources'), for: 'App\\Filament\\CafeRestaurant\\Resources')
             ->discoverPages(in: app_path('Filament/CafeRestaurant/Pages'), for: 'App\\Filament\\CafeRestaurant\\Pages')
@@ -37,7 +40,7 @@ class CafeRestaurantPanelProvider extends PanelProvider
             ->discoverWidgets(in: app_path('Filament/CafeRestaurant/Widgets'), for: 'App\\Filament\\CafeRestaurant\\Widgets')
             ->widgets([
                 Widgets\AccountWidget::class,
-                Widgets\FilamentInfoWidget::class,
+//                Widgets\FilamentInfoWidget::class,
             ])
             ->middleware([
                 EncryptCookies::class,
