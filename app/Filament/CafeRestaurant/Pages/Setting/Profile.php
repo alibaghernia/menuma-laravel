@@ -21,6 +21,7 @@ class Profile extends Page
         WithRateLimiting;
 
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
+    protected static ?string $navigationGroup = 'تنظیمات';
     protected static ?string $navigationLabel = 'پروفایل کافه';
     protected ?string $heading = 'پروفایل کافه';
     protected static string $view = 'filament.cafe-restaurant.pages.setting.profile';
@@ -99,7 +100,7 @@ class Profile extends Page
             'twitter' => $this->data['twitter'],
             'description' => $this->data['description'],
         ]);
-         $this->redirect('/profile');
+        $this->redirect('/profile');
     }
 
     public function form(Form $form): Form
