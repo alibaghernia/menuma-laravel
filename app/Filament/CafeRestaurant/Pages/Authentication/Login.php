@@ -17,7 +17,6 @@ use Filament\Pages\SimplePage;
 use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Validation\ValidationException;
 
-//
 
 
 class Login extends SimplePage
@@ -26,7 +25,6 @@ class Login extends SimplePage
     use InteractsWithFormActions;
     use WithRateLimiting;
 
-    protected static ?string $navigationIcon = 'heroicon-o-document-text';
 
     protected static string $view = 'filament.cafe-restaurant.pages.authentication.login';
     /**
@@ -40,11 +38,17 @@ class Login extends SimplePage
 //            redirect()->intended(Filament::getUrl());
 //            redirect()->intended(route('clinic.welcome'));
 //        }
+        if (Filament::auth()->check()) {
+            redirect()->intended(Filament::getUrl());
+        }
 
         $this->form->fill();
     }
 
-    public function authenticate()
+    /**
+     * @throws ValidationException
+     */
+    public function authenticate(): ?LoginResponse
     {
         try {
             $this->rateLimit(5);
@@ -70,7 +74,7 @@ class Login extends SimplePage
 
         if (!Filament::auth()->attempt($this->getCredentialsFromFormData($data), $data['remember'] ?? false)) {
             throw ValidationException::withMessages([
-                'data.username' => __('filament-panels::pages/auth/login.messages.failed'),
+                'data.mobile_number' => __('filament-panels::pages/auth/login.messages.failed'),
             ]);
         }
 

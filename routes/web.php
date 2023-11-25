@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/t', function () {
     return view('welcome');
 });
+Route::get('/l', function () {
+    return redirect()->to('/login');
+})->name('login');

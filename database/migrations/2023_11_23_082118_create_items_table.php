@@ -18,7 +18,7 @@ return new class extends Migration {
             $table->string('image_path')->nullable();
             $table->json('tags')->nullable();
             $table->json('prices')->nullable();
-            $table->foreignId('category_id')->nullable();
+            $table->foreignId('category_id')->constrained()->cascadeOnDelete();
             $table->foreignId('cafe_restaurant_id');
         });
     }

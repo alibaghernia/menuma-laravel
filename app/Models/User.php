@@ -60,7 +60,7 @@ class User extends Authenticatable
         return $this->name;
     }
 
-    public function CafeRestaurant(): BelongsTo
+    public function cafeRestaurant(): BelongsTo
     {
         return $this->belongsTo(CafeRestaurant::class);
     }

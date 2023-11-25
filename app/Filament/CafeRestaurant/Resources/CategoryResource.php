@@ -10,6 +10,7 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
 
 class CategoryResource extends Resource
 {
@@ -37,7 +38,7 @@ class CategoryResource extends Resource
                         null,
                         '1:1',
                     ])
-                ->columnSpanFull(),
+                    ->columnSpanFull(),
 //                Forms\Components\Select::make('cafe_restaurant_id')
 //                    ->relationship('cafeRestaurant', 'name')
 //                    ->required(),
@@ -48,13 +49,12 @@ class CategoryResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name')
-                    ->searchable(),
                 Tables\Columns\ImageColumn::make('background_path')
+                    ->label('عکس')
                     ->toggleable(isToggledHiddenByDefault: true),
-//                Tables\Columns\TextColumn::make('cafeRestaurant.name')
-//                    ->numeric()
-//                    ->sortable(),
+                Tables\Columns\TextColumn::make('name')
+                    ->label('نام')
+                    ->searchable(),
             ])
             ->filters([
                 //
@@ -86,5 +86,22 @@ class CategoryResource extends Resource
             'create' => Pages\CreateCategory::route('/create'),
             'edit' => Pages\EditCategory::route('/{record}/edit'),
         ];
+    }
+
+//    public static function getEloquentQuery(): Builder
+//    {
+//        $query = static::getModel()::query();
+//        $user = auth()->user();
+//
+//
+//         $query->where('cafe_restaurant_id', $user->cafe_restaurant_id);
+//         return $query;
+////         dd($query->toRawSql());
+//    }
+
+    public static function getEloquentQuery(): Builder
+    {
+        return parent::getEloquentQuery()
+            ->where('cafe_restaurant_id', auth()->user()->cafe_restaurant_id);
     }
 }

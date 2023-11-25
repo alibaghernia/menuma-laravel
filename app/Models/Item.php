@@ -9,6 +9,12 @@ class Item extends Model
 {
     use HasFactory;
 
+//prices
+//tags
+    protected $casts = [
+        'prices' => 'array',
+        'tags' => 'array',
+    ];
     public function category()
     {
         return $this->belongsTo(Category::class);

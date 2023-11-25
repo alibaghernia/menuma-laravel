@@ -25,9 +25,8 @@ class CafeRestaurantPanelProvider extends PanelProvider
     {
         return $panel
             ->id('cafeRestaurant')
-            ->path('panel')
-//            ->login(Login::class)
-            ->login()
+            ->path('/')
+            ->login(Login::class)
             ->colors([
 //                'primary' => Color::Amber,
                 'primary' => Color::Blue,
