@@ -36,7 +36,7 @@ class Profile extends Page
         $cafe = auth()->user()->cafeRestaurant;
         $this->form->fill([
             'name' => $cafe->name,
-            'url' => 'menuma.online/@' . $cafe->slug,
+            'url' => 'menuma.online/' . $cafe->slug,
             'logo_path' => $cafe->logo_path,
             'banner_path' => $cafe->banner_path,
             'address' => $cafe->address,
