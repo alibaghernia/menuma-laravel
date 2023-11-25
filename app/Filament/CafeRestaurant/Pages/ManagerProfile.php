@@ -21,7 +21,7 @@ class ManagerProfile extends Page
     use InteractsWithFormActions,
         WithRateLimiting;
 
-    protected static ?string $navigationIcon = 'heroicon-o-document-text';
+    protected static ?string $navigationIcon = 'heroicon-o-user-circle';
 
     protected static string $view = 'filament.cafe-restaurant.pages.manager-profile';
     protected static ?string $navigationLabel = 'پروفایل  من';
