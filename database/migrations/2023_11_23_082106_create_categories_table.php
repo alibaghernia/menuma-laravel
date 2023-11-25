@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->timestamps();
             $table->string('name');
-            $table->string('background_path')->nullable();
+            $table->text('background_path')->nullable();
             $table->foreignId('cafe_restaurant_id');
         });
     }

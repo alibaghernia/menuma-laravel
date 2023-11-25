@@ -15,7 +15,7 @@ return new class extends Migration {
             $table->timestamps();
             $table->string('name');
             $table->text('description')->nullable();
-            $table->string('image_path')->nullable();
+            $table->text('image_path')->nullable();
             $table->json('tags')->nullable();
             $table->json('prices')->nullable();
             $table->foreignId('category_id')->constrained()->cascadeOnDelete();

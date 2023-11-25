@@ -14,8 +14,8 @@ return new class extends Migration {
             $table->id();
             $table->timestamps();
             $table->string('name');
-            $table->string('logo_path')->nullable();
-            $table->string('banner_path')->nullable();
+            $table->text('logo_path')->nullable();
+            $table->text('banner_path')->nullable();
             $table->string('slug')->unique();
             $table->string('status');
             $table->json('social_media')->nullable();
