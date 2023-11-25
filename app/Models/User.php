@@ -57,7 +57,7 @@ class User extends Authenticatable
 
     public function getFilamentName(): string
     {
-        return $this->name;
+        return $this->full_name;
     }
 
     public function cafeRestaurant(): BelongsTo
