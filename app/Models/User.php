@@ -51,7 +51,13 @@ class User extends Authenticatable
 
     public function getFilamentAvatarUrl(): ?string
     {
-//        todo
+
+        if ($cafe = auth()->user()->cafeRestaurant) {
+            if ($logoPath = $cafe->logo_path) {
+                return '/storage/' . $logoPath;
+            }
+        }
+//        todo show menuma logo
         return null;
     }
 
