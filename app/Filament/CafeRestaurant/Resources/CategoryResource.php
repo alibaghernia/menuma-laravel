@@ -38,6 +38,8 @@ class CategoryResource extends Resource
                         null,
                         '1:1',
                     ])
+                    ->maxSize(2024)
+                    ->helperText('امکان آپلود عکس تا حجم 2 مگابایت وجود دارد ولی برای سریع تر بودن لود اطلاعات کافه عکس با حجم بیش از 500 کیلو بایت آپلود نکنید.')
                     ->columnSpanFull(),
 //                Forms\Components\Select::make('cafe_restaurant_id')
 //                    ->relationship('cafeRestaurant', 'name')

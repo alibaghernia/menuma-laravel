@@ -41,7 +41,8 @@ class ItemResource extends Resource
                         null,
                         '1:1',
                     ])
-                    ->helperText('داخل ویرایشگر عکس میتوانید نسبت را تنظیم کنید')
+                    ->maxSize(2024)
+                    ->helperText('امکان آپلود عکس تا حجم 2 مگابایت وجود دارد ولی برای سریع تر بودن لود اطلاعات کافه عکس با حجم بیش از 500 کیلو بایت آپلود نکنید.')
                     ->hint('برای نمایش بهتر، عکس با نسبت 1:1 بازگذاری کنید'),
                 Forms\Components\Textarea::make('description')
                     ->label('توضیحات')
