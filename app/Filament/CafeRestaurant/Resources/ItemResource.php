@@ -52,6 +52,7 @@ class ItemResource extends Resource
 //                    todo
 //                    ->searchable()
                     ->label('دسته بندی')
+                    ->required()
                     ->relationship('category', 'name'),
 //                Forms\Components\TextInput::make('prices1')
 //                    ->default(0)
