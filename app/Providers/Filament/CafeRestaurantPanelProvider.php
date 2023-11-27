@@ -31,6 +31,7 @@ class CafeRestaurantPanelProvider extends PanelProvider
 //                'primary' => Color::Amber,
                 'primary' => Color::Blue,
             ])
+            ->darkMode(false)
             ->discoverResources(in: app_path('Filament/CafeRestaurant/Resources'), for: 'App\\Filament\\CafeRestaurant\\Resources')
             ->discoverPages(in: app_path('Filament/CafeRestaurant/Pages'), for: 'App\\Filament\\CafeRestaurant\\Pages')
             ->pages([
