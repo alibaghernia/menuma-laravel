@@ -10,8 +10,6 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class UserResource extends Resource
 {
@@ -70,6 +68,20 @@ class UserResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\Action::make('login_as')
+                    ->action(function (User $user) {
+//                        dump(
+//                            session()->all(),
+//                            auth()->user(),
+//                            auth()->loginUsingId(2),
+//                            session()->all(),
+//                            session()->regenerate(),
+//                            session()->all(),
+//                            auth()->user(),
+//
+//                        );
+                        return redirect()->to('/superadmin/login-as/' . $user->id);
+                    }),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
