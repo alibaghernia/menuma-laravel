@@ -2,53 +2,22 @@
 
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-
-use App\Models\CafeRestaurant;
-use App\Models\Category;
+use App\Http\Controllers\Api\CafeRestaurant;
 use App\Models\Item;
-use App\Models\Role;
-use App\Models\User;
 use Illuminate\Database\Seeder;
 
-class DatabaseSeeder extends Seeder
+class MockSeeder extends Seeder
 {
     /**
-     * Seed the application's database.
+     * Run the database seeds.
      */
     public function run(): void
     {
-        $this->call([
-            FirstInstallSeeder::class,
-        ]);
-
-        $userSuperadmin->assignRole($roleSuperadmin);
-//
-
-        $c = CafeRestaurant::create([
-
-            'name' => 'کافه دایا',
-            'logo_path' => 'tgjGf2Mq01oZvcWhH2UlxKeMrhJGyu-metaaW1hZ2VfQXRuWXl1ajdfMTcwMDY4MDU0MzcxN19yYXcuanBn-.jpg',
-            'banner_path' => '',
-            'slug' => 'cafedaya',
-            'status' => 'active',
-//            'social_media' => [],
-//            'working_hour1' => '',
-//            'working_hour2' => '',
-            'address' => 'آدرس',
-            'location_lat' => '31.829780',
-            'location_long' => '54.372306',
-            'description' => 'نسخه طلایی خودت باش',
-            'instagram' => 'https://instagram.com/cafe.daya',
-            'telegram' => '',
-            'twitter' => '',
-        ]);
-        $userCafeOwner = User::create([
-            'name' => 'کیان ضرابی',
-            'mobile_number' => '09910985900',
-            'password' => '$2y$12$2WNefdG.2a5wSPc5SGtPLOlzxIqXe6DNuUxsI4Dp3POtyhNAKQdey', // password
-            'cafe_restaurant_id' => $c->id,
-        ]);
+        $c = CafeRestaurant::fist();
+        if (!$c){
+            dd('err: cafe does not exist!');
+            return;
+        }
         for ($i = 0; $i < 10; $i++) {
             Category::create([
                 'name' => 'c' . $i,
