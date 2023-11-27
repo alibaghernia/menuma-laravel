@@ -30,7 +30,7 @@ class UserResource extends Resource
                     ->maxLength(191),
                 Forms\Components\TextInput::make('mobile_number')
                     ->required()
-                    ->maxLength(191),
+                    ->length(11),
 //                Forms\Components\TextInput::make('password')
 //                    ->password()
 //                    ->required()
@@ -38,6 +38,8 @@ class UserResource extends Resource
                 Forms\Components\Select::make('cafe_restaurant_id')
 //                    ->searchable()
                     ->relationship('cafeRestaurant', 'name'),
+                Forms\Components\TextInput::make('password')
+                    ->password(),
             ]);
     }
 

@@ -83,6 +83,19 @@ class CafeRestaurantResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make('name')
+                    ->searchable(),
+                Tables\Columns\ImageColumn::make('logo_path')
+                    ->circular()
+                    ->toggleable(),
+                Tables\Columns\ImageColumn::make('banner_path')
+                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('slug')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('status')
+                    ->searchable(),
+//                Tables\Columns\TextColumn::make('location_lat'),
+//                Tables\Columns\TextColumn::make('location_long'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -91,26 +104,16 @@ class CafeRestaurantResource extends Resource
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('name')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('logo_path')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('banner_path')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('slug')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('status')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('location_lat')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('location_long')
-                    ->searchable(),
             ])
             ->filters([
                 //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+
+//                Action::make('delete')
+//                    ->requiresConfirmation()
+//                    ->action(fn() => dd('ssss'))
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
