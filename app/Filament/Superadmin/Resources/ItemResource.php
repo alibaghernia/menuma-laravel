@@ -57,9 +57,10 @@ class ItemResource extends Resource
                             ->label('تگ ها')
                             ->options([
                                 'new' => 'جدید',
-                                'special' => 'ویژه',
-                                'sold_out' => 'اتمام موجوددی',
-                            ])->columns(3)
+                                'day_offer' => 'پیشنهاد روز',
+                                'sold_out' => 'اتمام موجودی',
+                            ])
+                            ->columns(3)
                             ->columnSpan('full'),
                     ]),
             ]);
