@@ -49,7 +49,8 @@ class ItemResource extends Resource
                     ->maxLength(500)
                     ->columnSpanFull(),
                 Forms\Components\Select::make('category_id')
-                    ->searchable()
+//                    todo
+//                    ->searchable()
                     ->label('دسته بندی')
                     ->relationship('category', 'name'),
 //                Forms\Components\TextInput::make('prices1')
