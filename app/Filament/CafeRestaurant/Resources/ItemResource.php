@@ -74,11 +74,11 @@ class ItemResource extends Resource
                     ->schema([
                         Forms\Components\CheckboxList::make('tags')
 //                            ->searchable()
-                            ->label('تگ ها')
+                            ->label('برچسب ها')
                             ->options([
-//                                'new' => 'جدید',
-                                'special' => 'ویژه',
-//                                'sold_out' => 'اتمام موجوددی',
+                                'new' => 'جدید',
+                                'day_offer' => 'پیشنهاد روز',
+                                'sold_out' => 'اتمام موجودی',
                             ])->columns(3)
                             ->columnSpan('full'),
                     ]),
