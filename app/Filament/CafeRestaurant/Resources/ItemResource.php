@@ -54,13 +54,6 @@ class ItemResource extends Resource
                     ->label('دسته بندی')
                     ->required()
                     ->relationship('category', 'name'),
-//                Forms\Components\TextInput::make('prices1')
-//                    ->default(0)
-//                    ->label('قیمت')
-//                    ->hint('تومان')
-//                    ->minValue(0)
-//                    ->numeric()
-//                    ->suffixIcon('heroicon-m-check-circle'),
                 Forms\Components\Repeater::make('prices')
                     ->label('قیمت ها')
                     ->minItems(1)
