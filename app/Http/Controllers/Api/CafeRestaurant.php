@@ -51,11 +51,11 @@ class CafeRestaurant extends Controller
     public function item(string $slug, int $itemId)
     {
 //        dd('asdsa');
-        $cafe = $this->findBySlug($slug);
-        $item = Item::findOrFail($itemId);
-        if ($item->cafe_restaurant_id !== $cafe->id) {
-            abort(404);
-        }
-        return $item;
+//        $cafe = $this->findBySlug($slug);
+        return Item::findOrFail($itemId);
+//        if ($item->cafe_restaurant_id !== $cafe->cafe_restaurant_id) {
+//            abort(404);
+//        }
+//        return $item;
     }
 }
