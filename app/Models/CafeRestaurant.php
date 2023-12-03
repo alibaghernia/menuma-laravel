@@ -26,4 +26,9 @@ class CafeRestaurant extends Model
     {
         return $this->hasManyThrough(Item::class, Category::class);
     }
+
+    public function workingHours()
+    {
+        return $this->hasMany(WorkingHour::class);
+    }
 }

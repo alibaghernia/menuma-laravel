@@ -58,6 +58,7 @@ class CategoryResource extends Resource
                     ->label('نام')
                     ->searchable(),
             ])
+            ->reorderable('order_column')
             ->filters([
                 //
             ])
@@ -77,7 +78,7 @@ class CategoryResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            RelationManagers\ItemsRelationManager::class
         ];
     }
 
@@ -104,6 +105,7 @@ class CategoryResource extends Resource
     public static function getEloquentQuery(): Builder
     {
         return parent::getEloquentQuery()
-            ->where('cafe_restaurant_id', auth()->user()->cafe_restaurant_id);
+            ->where('cafe_restaurant_id', auth()->user()->cafe_restaurant_id)
+            ->orderBy('order_column');
     }
 }

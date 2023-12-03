@@ -2,13 +2,16 @@
 
 namespace App\Filament\CafeRestaurant\Pages\Setting;
 
+use App\Enums\WeekdayEnum;
+use App\Filament\CafeRestaurant\Pages\Setting\Components\RepeaterOfFromToTime;
+use App\Filament\CafeRestaurant\Pages\Setting\Components\SocialNetwork;
+use App\Models\WorkingHour;
 use DanHarrin\LivewireRateLimiting\WithRateLimiting;
 use Filament\Actions\Action;
 use Filament\Actions\ActionGroup;
 use Filament\Forms;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Grid;
-use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Pages\Concerns\InteractsWithFormActions;
 use Filament\Pages\Page;
@@ -33,9 +36,19 @@ class Profile extends Page
 
     public function mount(): void
     {
+        $data = [];
+        $workingHours = WorkingHour::select('from', 'to', 'weekday')->get();
+        foreach ($workingHours as $time) {
+            $data[$time['weekday']][] = [
+                'from' => $time->from,
+                'to' => $time->to,
+                'cafe_restaurant_id' => auth()->user()->cafe_restaurant_id,
+            ];
+        }
+//        return $data;
 
         $cafe = auth()->user()->cafeRestaurant;
-        $this->form->fill([
+        $this->form->fill(array_merge([
             'name' => $cafe->name,
             'url' => 'menuma.online/' . $cafe->slug,
             'logo_path' => $cafe->logo_path,
@@ -45,9 +58,12 @@ class Profile extends Page
             'instagram' => $cafe->instagram,
             'telegram' => $cafe->telegram,
             'twitter' => $cafe->twitter,
+            'whatsapp' => $cafe->whatsapp,
             'description' => $cafe->description,
+            'phone_number' => $cafe->phone_number,
+            'email' => $cafe->email,
 
-        ]);
+        ], $data));
     }
 
     /**
@@ -91,6 +107,7 @@ class Profile extends Page
         } else {
             $imagesData['banner_path'] = null;
         }
+//
         $cafe->update([
             'logo_path' => $imagesData['logo_path'],
             'banner_path' => $imagesData['banner_path'],
@@ -98,8 +115,25 @@ class Profile extends Page
             'instagram' => $this->data['instagram'],
             'telegram' => $this->data['telegram'],
             'twitter' => $this->data['twitter'],
+            'whatsapp' => $this->data['whatsapp'],
             'description' => $this->data['description'],
+            'phone_number' => $this->data['phone_number'],
+            'email' => $this->data['email'],
         ]);
+//
+        WorkingHour::where('cafe_restaurant_id', auth()->user()->cafe_restaurant_id)->truncate();
+        $times = [];
+        foreach (WeekdayEnum::arrayKeyValue('name', 'value') as $name => $weekday) {
+            foreach ($this->data[$weekday] as $time) {
+                $times[] = [
+                    'from' => $time['from'],
+                    'to' => $time['to'],
+                    'weekday' => $weekday,
+                    'cafe_restaurant_id' => auth()->user()->cafe_restaurant_id,
+                ];
+            }
+        }
+        WorkingHour::insert($times);
         $this->redirect('/profile');
     }
 
@@ -138,29 +172,53 @@ class Profile extends Page
                                     ]),
                             ]),
 
-                        Forms\Components\TextInput::make('address')
-                            ->label('آدرس کافه')
+                        Forms\Components\TextInput::make('description')
+                            ->label('شعار')
+                            ->maxLength(99)
+                            ->columnSpanFull(),
+
+                        Forms\Components\Textarea::make('address')
+                            ->label('آدرس ')
                             ->maxLength(191)
                             ->columnSpanFull(),
-                        Forms\Components\Textarea::make('description')
-                            ->label('معرفی کافه')
-                            ->maxLength(250)
-                            ->columnSpanFull(),
+
+                        Forms\Components\TextInput::make('phone_number')
+                            ->label('شماره تماس')
+                            ->tel()
+                            ->numeric()
+                            ->maxLength(99),
+
+                        Forms\Components\TextInput::make('email')
+                            ->label('ایمیل')
+                            ->maxLength(99)
+                            ->email(),
 
 
                         Forms\Components\Section::make('شبکه های اجتماعی')
                             ->collapsible()
+                            ->collapsed()
                             ->columns(3)
                             ->label('شبکه های اجتماعی')
                             ->schema([
-                                TextInput::make('instagram')
-                                    ->label('اینستاگرام'),
-                                TextInput::make('telegram')
-                                    ->label('تلگرام'),
-                                TextInput::make('twitter')
-                                    ->label('توییتر X'),
+                                SocialNetwork::make('instagram', 'اینستاگرام'),
+                                SocialNetwork::make('telegram', 'تلگرام'),
+                                SocialNetwork::make('twitter', 'توییتر X'),
+                                SocialNetwork::make('whatsapp', 'واتساپ'),
                             ]),
 
+                        Forms\Components\Section::make('ساعات کاری')
+                            ->collapsible()
+                            ->collapsed()
+                            ->label('ساعات کاری')
+                            ->schema([
+                                RepeaterOfFromToTime::make('saturday', 'شنبه'),
+                                RepeaterOfFromToTime::make('sunday', 'یکشنبه'),
+                                RepeaterOfFromToTime::make('monday', 'دوشنبه'),
+                                RepeaterOfFromToTime::make('tuesday', 'سه‌شنبه'),
+                                RepeaterOfFromToTime::make('wednesday', 'چهارشنبه'),
+                                RepeaterOfFromToTime::make('thursday', 'پنجشنبه'),
+                                RepeaterOfFromToTime::make('friday', 'جمعه'),
+                            ]),
 
                     ]),
 

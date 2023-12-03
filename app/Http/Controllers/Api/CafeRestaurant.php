@@ -21,6 +21,7 @@ class CafeRestaurant extends Controller
     public function profile(string $slug)
     {
         $cafe = $this->findBySlug($slug);
+        $cafe->load('workingHours');
         return $cafe;
     }
 
@@ -57,5 +58,14 @@ class CafeRestaurant extends Controller
 //            abort(404);
 //        }
 //        return $item;
+    }
+
+    public function dayOffers(string $slug)
+    {
+        $cafe = $this->findBySlug($slug);
+
+        return Item::where('cafe_restaurant_id', $cafe->id)
+            ->whereJsonContains('tags', 'day_offer')
+            ->get();
     }
 }

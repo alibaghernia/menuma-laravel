@@ -14,6 +14,13 @@ class FirstInstallSeeder extends Seeder
      */
     public function run(): void
     {
+        $demoCafe = CafeRestaurant::create([
+            'name' => 'کافه دمو',
+            'slug' => 'demo',
+            'status' => 'active',
+            'has_pager' => true,
+        ]);
+
         $roleSuperadmin = Role::create([
             'name' => Role::SUPERADMIN,
         ]);
@@ -21,15 +28,10 @@ class FirstInstallSeeder extends Seeder
             'name' => 'superadmin',
             'mobile_number' => '64357693390',
             'password' => '$2y$12$2WNefdG.2a5wSPc5SGtPLOlzxIqXe6DNuUxsI4Dp3POtyhNAKQdey', // password
-//            'cafe_restaurant_id' => ,
+            'cafe_restaurant_id' => $demoCafe->id,
         ]);
 
         $userSuperadmin->assignRole($roleSuperadmin);
-        $demoCafe = CafeRestaurant::create([
-            'name' => 'کافه دمو',
-            'slug' => 'demo',
-            'status' => 'active',
-            'has_pager' => true,
-        ]);
+
     }
 }

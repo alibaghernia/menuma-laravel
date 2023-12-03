@@ -1,32 +1,29 @@
 <?php
 
-namespace App\Filament\CafeRestaurant\Resources;
+namespace App\Filament\CafeRestaurant\Resources\CategoryResource\RelationManagers;
 
-use App\Filament\CafeRestaurant\Resources\ItemResource\Pages;
-use App\Filament\CafeRestaurant\Resources\ItemResource\RelationManagers;
-use App\Models\Category;
-use App\Models\Item;
 use Filament\Forms;
 use Filament\Forms\Form;
-use Filament\Resources\Resource;
+use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class ItemResource extends Resource
+class ItemsRelationManager extends RelationManager
 {
-    protected static ?string $model = Item::class;
+    protected static string $relationship = 'items';
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-    protected static ?string $navigationGroup = 'منو';
-
-    protected static ?string $label = 'آیتم';
-    protected static ?string $pluralLabel = 'آیتم ها';
-
-
-    public static function form(Form $form): Form
+//    create
+    public function form(Form $form): Form
     {
         return $form
+//            ->schema([
+//                Forms\Components\TextInput::make('name')
+//                    ->required()
+//                    ->maxLength(255),
+//            ]);
+
             ->schema([
 
                 Forms\Components\TextInput::make('name')
@@ -54,10 +51,7 @@ class ItemResource extends Resource
 //                    ->searchable()
                     ->label('دسته بندی')
                     ->required()
-//                    ->relationship('category', 'name')
-                    ->searchable()
-                    ->options(Category::where('cafe_restaurant_id', auth()->user()->cafe_restaurant_id)
-                        ->pluck('name', 'id')),
+                    ->relationship('category', 'name'),
                 Forms\Components\Repeater::make('prices')
                     ->label('قیمت ها')
                     ->minItems(1)
@@ -96,28 +90,23 @@ class ItemResource extends Resource
             ]);
     }
 
-    public static function table(Table $table): Table
+    public function table(Table $table): Table
     {
         return $table
+            ->recordTitleAttribute('name')
             ->columns([
-
-                Tables\Columns\ImageColumn::make('image_path')
-                    ->label('عکس')
-                    ->toggleable()
-                    ->circular(),
-                Tables\Columns\TextColumn::make('name')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('category.name')
-                    ->label('دسته بندی'),
-//                Tables\Columns\TextColumn::make('cafe_restaurant_id')
-//                    ->numeric()
-//                    ->sortable(),
+                Tables\Columns\TextColumn::make('name'),
             ])
+            ->reorderable('order_column')
             ->filters([
                 //
             ])
+            ->headerActions([
+                Tables\Actions\CreateAction::make(),
+            ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -127,28 +116,5 @@ class ItemResource extends Resource
             ->emptyStateActions([
                 Tables\Actions\CreateAction::make(),
             ]);
-    }
-
-    public static function getRelations(): array
-    {
-        return [
-            //
-        ];
-    }
-
-    public static function getPages(): array
-    {
-        return [
-            'index' => Pages\ListItems::route('/'),
-            'create' => Pages\CreateItem::route('/create'),
-            'edit' => Pages\EditItem::route('/{record}/edit'),
-        ];
-    }
-
-    public static function getEloquentQuery(): Builder
-    {
-
-        return parent::getEloquentQuery()
-            ->where('cafe_restaurant_id', auth()->user()->cafe_restaurant_id);
     }
 }

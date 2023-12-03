@@ -58,6 +58,9 @@ class CafeRestaurantResource extends Resource
                         Forms\Components\TextInput::make('twitter')
                             ->label('توییتر X')
                             ->url(),
+                        Forms\Components\TextInput::make('whatsapp')
+                            ->label('واتساپ')
+                            ->url(),
 
                     ]),
 //todo

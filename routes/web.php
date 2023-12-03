@@ -28,5 +28,9 @@ Route::get('/superadmin/login-as/{user}', function (\App\Models\User $user) {
 
 });
 Route::get('/l', function () {
+//    getimagesize();
+//    imagejpeg();
+//    Imagick::
+//    Intervention\Image\ImageServiceProvider::class
     return redirect()->to('/login');
 })->name('login');

@@ -27,9 +27,11 @@ Route::prefix('/cafe-restaurants')->group(function () {
         [\App\Http\Controllers\Api\CafeRestaurant::class, 'category']);
     Route::get('/{slug}/menu/items/{itemid}',
         [\App\Http\Controllers\Api\CafeRestaurant::class, 'item']);
+    Route::get('/{slug}/menu/day-offers',
+        [\App\Http\Controllers\Api\CafeRestaurant::class, 'dayOffers']);
 //
-    Route::get('/{slug}/menu/specials',
-        [\App\Http\Controllers\Api\CafeRestaurant::class, 'item']);
+//    Route::get('/{slug}/menu/specials',
+//        [\App\Http\Controllers\Api\CafeRestaurant::class, 'item']);
 
 });
 //Route::get('/cafe-restaurants/{slug}', [\App\Http\Controllers\Api\CafeRestaurant::class, 'profile']);
