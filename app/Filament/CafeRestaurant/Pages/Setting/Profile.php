@@ -121,7 +121,10 @@ class Profile extends Page
             'email' => $this->data['email'],
         ]);
 //
-        WorkingHour::where('cafe_restaurant_id', auth()->user()->cafe_restaurant_id)->truncate();
+//        todo:H
+        WorkingHour::where('cafe_restaurant_id', auth()->user()->cafe_restaurant_id)
+            ->get()
+            ->delete();
         $times = [];
         foreach (WeekdayEnum::arrayKeyValue('name', 'value') as $name => $weekday) {
             foreach ($this->data[$weekday] as $time) {

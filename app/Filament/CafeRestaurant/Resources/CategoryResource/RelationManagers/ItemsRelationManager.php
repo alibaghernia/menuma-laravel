@@ -2,17 +2,19 @@
 
 namespace App\Filament\CafeRestaurant\Resources\CategoryResource\RelationManagers;
 
+use Filament\Actions\EditAction;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class ItemsRelationManager extends RelationManager
 {
     protected static string $relationship = 'items';
+    protected static ?string $label='آیتم';
+    protected static ?string $pluralLabel='آیتم ها';
+    protected static ?string $title = 'آیتم ها';
 
 //    create
     public function form(Form $form): Form
@@ -95,26 +97,32 @@ class ItemsRelationManager extends RelationManager
         return $table
             ->recordTitleAttribute('name')
             ->columns([
-                Tables\Columns\TextColumn::make('name'),
+
+                Tables\Columns\TextColumn::make('name')
+                    ->label('نام'),
+                Tables\Columns\ImageColumn::make('image_path')
+                    ->label('عکس')
+                    ->toggleable()
+                    ->circular(),
             ])
             ->reorderable('order_column')
             ->filters([
                 //
             ])
             ->headerActions([
-                Tables\Actions\CreateAction::make(),
+//                Tables\Actions\CreateAction::make(),
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
+//                Tables\Actions\EditAction::make(),
+//                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+//                    Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ])
             ->emptyStateActions([
-                Tables\Actions\CreateAction::make(),
+//                Tables\Actions\CreateAction::make(),
             ]);
     }
 }

@@ -33,6 +33,12 @@ class ItemResource extends Resource
                     ->label('نام')
                     ->required()
                     ->maxLength(191),
+                Forms\Components\Select::make('category_id')
+                    ->label('دسته بندی')
+                    ->required()
+                    ->searchable()
+                    ->options(Category::where('cafe_restaurant_id', auth()->user()->cafe_restaurant_id)
+                        ->pluck('name', 'id')),
                 Forms\Components\FileUpload::make('image_path')
                     ->image()
                     ->label('عکس')
@@ -49,15 +55,7 @@ class ItemResource extends Resource
                     ->label('توضیحات')
                     ->maxLength(500)
                     ->columnSpanFull(),
-                Forms\Components\Select::make('category_id')
-//                    todo
-//                    ->searchable()
-                    ->label('دسته بندی')
-                    ->required()
-//                    ->relationship('category', 'name')
-                    ->searchable()
-                    ->options(Category::where('cafe_restaurant_id', auth()->user()->cafe_restaurant_id)
-                        ->pluck('name', 'id')),
+
                 Forms\Components\Repeater::make('prices')
                     ->label('قیمت ها')
                     ->minItems(1)
