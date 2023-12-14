@@ -7,10 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Notifications\Notifiable;
 
 class CafeRestaurant extends Model
 {
-    use HasFactory;
+    use HasFactory,
+        Notifiable;
+
 
     public function manager(): HasOne
     {
@@ -30,5 +33,10 @@ class CafeRestaurant extends Model
     public function workingHours()
     {
         return $this->hasMany(WorkingHour::class);
+    }
+
+    public function tables()
+    {
+        return $this->hasMany(Table::class);
     }
 }

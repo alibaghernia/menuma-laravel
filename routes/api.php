@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Api\Business\TableController;
+use App\Http\Controllers\Api\Business\WaiterPagerController;
+use App\Http\Controllers\Api\CafeRestaurant;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,17 +21,30 @@ use Illuminate\Support\Facades\Route;
 //});
 Route::prefix('/cafe-restaurants')->group(function () {
     Route::get('/{slug}',
-        [\App\Http\Controllers\Api\CafeRestaurant::class, 'profile']);
+        [CafeRestaurant::class, 'profile']);
     Route::get('/{slug}/menu',
-        [\App\Http\Controllers\Api\CafeRestaurant::class, 'menu']);
+        [CafeRestaurant::class, 'menu']);
     Route::get('/{slug}/menu/categories',
-        [\App\Http\Controllers\Api\CafeRestaurant::class, 'categories']);
+        [CafeRestaurant::class, 'categories']);
     Route::get('/{slug}/menu/categories/{categoryId}',
-        [\App\Http\Controllers\Api\CafeRestaurant::class, 'category']);
+        [CafeRestaurant::class, 'category']);
     Route::get('/{slug}/menu/items/{itemid}',
-        [\App\Http\Controllers\Api\CafeRestaurant::class, 'item']);
+        [CafeRestaurant::class, 'item']);
     Route::get('/{slug}/menu/day-offers',
-        [\App\Http\Controllers\Api\CafeRestaurant::class, 'dayOffers']);
+        [CafeRestaurant::class, 'dayOffers']);
+//
+    Route::get('/{slug}/tables',
+        [TableController::class, 'index']);
+
+    Route::get('/{slug}/tables/{table_id}',
+        [TableController::class, 'show']);
+//
+
+    Route::post('/{slug}/waiter_pager/{table_id}/call',
+        [WaiterPagerController::class, 'call']);
+    Route::post('/{slug}/waiter_pager/{table_id}/cancel',
+        [WaiterPagerController::class, 'cancel']);
+
 //
 //    Route::get('/{slug}/menu/specials',
 //        [\App\Http\Controllers\Api\CafeRestaurant::class, 'item']);

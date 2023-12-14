@@ -4,8 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-use App\Models\CafeRestaurant;
-use App\Models\User;
+use App\Models\Table;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -18,7 +17,11 @@ class DatabaseSeeder extends Seeder
         $this->call([
             FirstInstallSeeder::class,
         ]);
-
+        Table::create([
+            'code' => 'asd',
+            'cafe_restaurant_id' => 1,
+            'qr_link'=>'https://menuma.online/demo'
+        ]);
 
     }
 }

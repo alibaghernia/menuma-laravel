@@ -37,7 +37,9 @@ class Profile extends Page
     public function mount(): void
     {
         $data = [];
-        $workingHours = WorkingHour::select('from', 'to', 'weekday')->get();
+        $workingHours = WorkingHour::select('from', 'to', 'weekday')
+            ->where('cafe_restaurant_id', auth()->user()->cafe_restaurant_id)
+            ->get();
         foreach ($workingHours as $time) {
             $data[$time['weekday']][] = [
                 'from' => $time->from,
@@ -122,8 +124,11 @@ class Profile extends Page
         ]);
 //
 //        todo:H
-        WorkingHour::where('cafe_restaurant_id', auth()->user()->cafe_restaurant_id)
-            ->get()
+        WorkingHour::where(
+            'cafe_restaurant_id', auth()
+            ->user()
+            ->cafe_restaurant_id
+        )
             ->delete();
         $times = [];
         foreach (WeekdayEnum::arrayKeyValue('name', 'value') as $name => $weekday) {

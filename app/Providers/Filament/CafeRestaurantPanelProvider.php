@@ -18,7 +18,6 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
-use phpDocumentor\Reflection\Types\False_;
 
 class CafeRestaurantPanelProvider extends PanelProvider
 {
@@ -28,11 +27,15 @@ class CafeRestaurantPanelProvider extends PanelProvider
             ->id('cafeRestaurant')
             ->path('/')
             ->login(Login::class)
+            ->default()
+            ->sidebarCollapsibleOnDesktop()
+            ->databaseNotifications()
+            ->databaseNotificationsPolling('5s')
             ->colors([
 //                'primary' => Color::Amber,
                 'primary' => Color::Blue,
             ])
-            ->darkMode(false)
+//            ->darkMode(false)
             ->discoverResources(in: app_path('Filament/CafeRestaurant/Resources'), for: 'App\\Filament\\CafeRestaurant\\Resources')
             ->discoverPages(in: app_path('Filament/CafeRestaurant/Pages'), for: 'App\\Filament\\CafeRestaurant\\Pages')
             ->pages([

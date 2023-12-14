@@ -68,4 +68,8 @@ class CafeRestaurant extends Controller
             ->whereJsonContains('tags', 'day_offer')
             ->get();
     }
+
+
+
+
 }
