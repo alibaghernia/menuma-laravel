@@ -10,6 +10,7 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
 
 class TableResource extends Resource
 {
@@ -70,5 +71,11 @@ class TableResource extends Resource
             'create' => Pages\CreateTable::route('/create'),
             'edit' => Pages\EditTable::route('/{record}/edit'),
         ];
+    }
+    public static function getEloquentQuery(): Builder
+    {
+
+        return parent::getEloquentQuery()
+            ->where('cafe_restaurant_id', auth()->user()->cafe_restaurant_id);
     }
 }
