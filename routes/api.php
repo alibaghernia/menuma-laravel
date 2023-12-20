@@ -45,12 +45,8 @@ Route::prefix('/cafe-restaurants')->group(function () {
     Route::post('/{slug}/waiter_pager/{table_id}/cancel',
         [WaiterPagerController::class, 'cancel']);
 
-//
-//    Route::get('/{slug}/menu/specials',
-//        [\App\Http\Controllers\Api\CafeRestaurant::class, 'item']);
-
 });
-//Route::get('/cafe-restaurants/{slug}', [\App\Http\Controllers\Api\CafeRestaurant::class, 'profile']);
-//Route::get('/cafe-restaurants/{slug}/menu', [\App\Http\Controllers\Api\CafeRestaurant::class, 'menu']);
-//Route::get('/cafe-restaurants/{slug}/menu/categories', [\App\Http\Controllers\Api\CafeRestaurant::class, 'categories']);
-//Route::get('/cafe-restaurants/{slug}/menu/categories/{categoryId}', [\App\Http\Controllers\Api\CafeRestaurant::class, 'categories']);
+Route::post('/menu-request', [
+    \App\Http\Controllers\Api\RequestForMenu::class,
+    'store',
+]);
