@@ -70,6 +70,8 @@ class ItemResource extends Resource
                             ->label('قیمت')
                             ->required()
                             ->numeric()
+                            ->integer()
+                            ->regex('/^[0-9]*$/')
                             ->minValue(0),
                     ]),
                 Forms\Components\Section::make('تگ ها')
