@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\Business\TableController;
 use App\Http\Controllers\Api\Business\WaiterPagerController;
 use App\Http\Controllers\Api\CafeRestaurant;
+use App\Http\Controllers\Api\QrCodeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -50,3 +51,6 @@ Route::post('/menu-request', [
     \App\Http\Controllers\Api\RequestForMenu::class,
     'store',
 ]);
+
+Route::get('/go/{slug}',
+    [QrCodeController::class, 'getDestination']);

@@ -6,14 +6,35 @@ use App\Filament\CafeRestaurant\Resources\TableResource;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 
+//use Filament\Pages\Actions\Action;
+use Filament\Actions\Action;
+
 class EditTable extends EditRecord
 {
     protected static string $resource = TableResource::class;
 
+    protected function getActions(): array
+    {
+        return [
+
+//            Action::make('manage_qr_code')
+//                ->label('Manage QR code')
+//                ->url(fn($record): string => "route('units.qr-codes.show', $this->record->id)")
+//                ->openUrlInNewTab(),
+
+        ];
+    }
+
     protected function getHeaderActions(): array
     {
         return [
-            Actions\DeleteAction::make(),
+            Action::make('manage_qr_code')
+                ->label('دریافت QR code')
+                ->url(fn($record): string => route('tables.qr_code', $this->record->id)),
+//                ->openUrlInNewTab(),
+            Actions\ActionGroup::make([
+                Actions\DeleteAction::make(),
+            ]),
         ];
     }
 }
