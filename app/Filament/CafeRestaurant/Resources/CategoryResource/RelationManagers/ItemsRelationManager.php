@@ -2,18 +2,22 @@
 
 namespace App\Filament\CafeRestaurant\Resources\CategoryResource\RelationManagers;
 
+use App\Filament\CafeRestaurant\Resources\ItemResource;
+use Filament\Actions\Action;
 use Filament\Actions\EditAction;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Filament\Actions;
+use Illuminate\Database\Eloquent\Model;
 
 class ItemsRelationManager extends RelationManager
 {
     protected static string $relationship = 'items';
-    protected static ?string $label='آیتم';
-    protected static ?string $pluralLabel='آیتم ها';
+    protected static ?string $label = 'آیتم';
+    protected static ?string $pluralLabel = 'آیتم ها';
     protected static ?string $title = 'آیتم ها';
 
 //    create
@@ -43,7 +47,7 @@ class ItemsRelationManager extends RelationManager
                     ])
                     ->maxSize(2024)
                     ->helperText('امکان آپلود عکس تا حجم 2 مگابایت وجود دارد ولی برای سریع تر بودن لود اطلاعات کافه عکس با حجم بیش از 500 کیلو بایت آپلود نکنید.')
-                    ->hint('برای نمایش بهتر، عکس با نسبت 1:1 بازگذاری کنید'),
+                    ->hint('برای نمایش بهتر، عکس با نسبت 1:1 بارگذاری کنید'),
                 Forms\Components\Textarea::make('description')
                     ->label('توضیحات')
                     ->maxLength(500)
@@ -111,8 +115,21 @@ class ItemsRelationManager extends RelationManager
             ])
             ->headerActions([
 //                Tables\Actions\CreateAction::make(),
+                Tables\Actions\Action::make('add_item')
+                    ->label('ایجاد آیتم')
+                    ->url(fn($record): string => ItemResource::getUrl('create'))
+//                Action::make('manage_qr_code')
+//                    ->label('دریافت QR code')
+//                    ->url(fn($record): string => route('tables.qr_code', $this->record->id)),
             ])
             ->actions([
+
+                Tables\Actions\Action::make('edit')
+                    ->label('ویرایش')
+                    ->url(fn(Model $record): string => ItemResource::getUrl('edit', [
+                        'record' => $record
+                    ])),
+
 //                Tables\Actions\EditAction::make(),
 //                Tables\Actions\DeleteAction::make(),
             ])

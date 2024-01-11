@@ -10,17 +10,13 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('cafe_restaurant_customers', function (Blueprint $table) {
+        Schema::create('conditional_discounts', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('name')->nullable();
-            $table->string('family')->nullable();
-            $table->string('mobile')->nullable();
-            $table->date('birth_date')->nullable();
-            $table->string('gender')->nullable();
+            $table->string('title');
             $table->text('description')->nullable();
-            $table->foreignId('cafe_restaurant_id')
-                ->comment('belong-to');
+            $table->foreignId('cafe_restaurant_id');
+//            $table->foreignId('discount_condition_id')->nullable();
             $this->seed();
         });
     }
@@ -30,7 +26,7 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('cafe_restaurant_customers');
+        Schema::dropIfExists('conditional_discounts');
     }
 
     public function seed(): void

@@ -10,17 +10,18 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('cafe_restaurant_customers', function (Blueprint $table) {
+        Schema::create('halls', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('name')->nullable();
-            $table->string('family')->nullable();
-            $table->string('mobile')->nullable();
-            $table->date('birth_date')->nullable();
-            $table->string('gender')->nullable();
-            $table->text('description')->nullable();
-            $table->foreignId('cafe_restaurant_id')
-                ->comment('belong-to');
+
+            $table->string('code');
+            $table->unsignedInteger('normal_capacity')->nullable();
+            $table->unsignedInteger('max_capacity')->nullable();
+            $table->text('banner_image')->nullable();
+            $table->json('images')->nullable();
+
+            $table->foreignId('cafe_restaurant_id');
+
             $this->seed();
         });
     }
@@ -30,7 +31,7 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('cafe_restaurant_customers');
+        Schema::dropIfExists('halls');
     }
 
     public function seed(): void

@@ -28,6 +28,8 @@ class Profile extends Page
     protected static ?string $navigationLabel = 'پروفایل کافه';
     protected ?string $heading = 'پروفایل کافه';
     protected static string $view = 'filament.cafe-restaurant.pages.setting.profile';
+    protected static ?int $navigationSort = 2;
+
 
     /**
      * @var array<string, mixed> | null

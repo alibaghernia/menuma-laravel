@@ -18,9 +18,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 //Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//    return $request->user();
+//    return $request->user();qqq
 //});
+Route::get('x', function () {
+    dd('x');
+});
 Route::prefix('/cafe-restaurants')->group(function () {
+    Route::get('/',
+        [CafeRestaurant::class, 'search']);
+
     Route::get('/{slug}',
         [CafeRestaurant::class, 'profile']);
     Route::get('/{slug}/menu',
@@ -51,6 +57,11 @@ Route::post('/menu-request', [
     \App\Http\Controllers\Api\RequestForMenu::class,
     'store',
 ]);
+//Route::get('/go/_A1', function () {
+//    return [
+//        'destination' => 'https://kamakancafe.ir/menu',
+//    ];
+//});
 
 Route::get('/go/{slug}',
     [QrCodeController::class, 'getDestination']);

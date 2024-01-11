@@ -2,27 +2,28 @@
 
 namespace App\Filament\CafeRestaurant\Resources;
 
-use App\Filament\CafeRestaurant\Resources\TableResource\Pages;
-use App\Filament\CafeRestaurant\Resources\TableResource\RelationManagers;
+use App\Filament\CafeRestaurant\Resources\HallResource\Pages;
+use App\Filament\CafeRestaurant\Resources\HallResource\RelationManagers;
 use App\Models\Hall;
-use App\Models\Table as TableModel;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class TableResource extends Resource
+class HallResource extends Resource
 {
-    protected static ?string $model = TableModel::class;
+    protected static ?string $model = Hall::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     protected static ?string $navigationGroup = 'فضا ها';
 
-    protected static ?string $label = 'میز';
-    protected static ?string $pluralLabel = 'میز ها';
+    protected static ?string $label = 'سالن';
+    protected static ?string $pluralLabel = 'سالن ها';
+
 
     public static function form(Form $form): Form
     {
@@ -33,21 +34,14 @@ class TableResource extends Resource
                     ->label('کد')
                     ->hint('کد میز میتواند یک شماره یا یک نام باشد')
                     ->maxLength(191),
-                Forms\Components\Select::make('hall_id')
-                    ->label('سالن')
-                    ->searchable()
-                    ->options(
-                        Hall::where('cafe_restaurant_id', auth()->user()->cafe_restaurant_id)
-                            ->pluck('code', 'id')
-                    ),
                 Forms\Components\FileUpload::make('banner_image')
                     ->label('عکس')
                     ->maxSize(2024)
                     ->image()
-                    ->imageEditor()
-                    ->columnSpanFull(),
+                    ->imageEditor(),
                 Forms\Components\Section::make('ظرفیت')
                     ->collapsible()
+//                    ->collapsed()
                     ->columns(2)
                     ->label('ظرفیت سالن')
                     ->schema([
@@ -60,6 +54,33 @@ class TableResource extends Resource
                             ->integer()
                             ->minValue(1),
                     ]),
+//                Forms\Components\Section::make('عکس ها')
+//                    ->collapsible()
+//                    ->collapsed()
+//                    ->columns(3)
+//                    ->label('عکس ها')
+//                    ->schema([
+//                        Forms\Components\FileUpload::make('banner_image')
+//                            ->label('عکس اصلی')
+//                            ->image()
+//                            ->imageEditor()
+//                            ->columnSpanFull(),
+//                        Forms\Components\FileUpload::make('images')
+//                            ->label('دیگر عکس ها')
+//                            ->image()
+//                            ->maxFiles(5)
+//                            ->multiple()
+//                            ->imageEditor()
+//                            ->imageEditorAspectRatios([
+//                                null,
+//                                '1:1',
+//                                '16:9',
+//                            ])
+//                            ->columnSpanFull(),
+//
+//                    ]),
+
+//                Forms\Components\TextInput::make('cafe_restaurant_id'),
             ]);
     }
 
@@ -85,7 +106,6 @@ class TableResource extends Resource
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
 
-
             ])
             ->filters([
                 //
@@ -110,9 +130,9 @@ class TableResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListTables::route('/'),
-            'create' => Pages\CreateTable::route('/create'),
-            'edit' => Pages\EditTable::route('/{record}/edit'),
+            'index' => Pages\ListHalls::route('/'),
+            'create' => Pages\CreateHall::route('/create'),
+            'edit' => Pages\EditHall::route('/{record}/edit'),
         ];
     }
 

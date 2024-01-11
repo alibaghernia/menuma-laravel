@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\CafeRestaurant as CafeModel;
 use App\Models\Category;
 use App\Models\Item;
+use App\Models\SearchLog;
+use Illuminate\Http\Request;
 
 class CafeRestaurant extends Controller
 {
@@ -70,6 +72,42 @@ class CafeRestaurant extends Controller
     }
 
 
+    public function search(Request $request)
+    {
+        SearchLog::create(['request'=>$request->all()]);
+        $cafeQuery = CafeModel::query()
+            ->where('is_hidden', 0);
+//        dd(isset($request->all_fields));
+        if (isset($request->all_fields)) {
+            $allFields = $request->all_fields;
+
+            $cafeQuery->where(function ($q) use ($request, $allFields) {
+                $q->where('slug', 'like', '%' . $allFields . '%')
+                    ->orWhere('name', 'like', '%' . $allFields . '%');
+//                    ->orWhere('domain_address', 'like', '%' . $allFields . '%');
+            });
+        }
+
+        if (isset($request->pin)) {
+            $cafeQuery->where('is_pinned', $request->pin);
+        }
+
+
+        if (isset($request->distance)) {
+            $distance = intval($request->distance);
+            $userLat = floatval($request->lat);
+            $userLong = floatval($request->long);
+            return $cafeQuery
+                ->selectRaw('*, (6371000 * ACOS(COS(RADIANS(?)) * COS(RADIANS(location_lat)) * COS(RADIANS(location_long - ?)) + SIN(RADIANS(?)) * SIN(RADIANS(location_lat)))) AS distance')
+                ->having('distance', '<', $distance)
+                ->addBinding($userLat, 'select')
+                ->addBinding($userLong, 'select')
+                ->addBinding($userLat, 'select')
+                ->get();
+        }
+        return $cafeQuery->get();
+
+    }
 
 
 }
