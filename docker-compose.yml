@@ -26,7 +26,7 @@ services:
 
   menuma-laravel-back-stage:
     container_name: menuma-laravel-back-stage
-    image: menuma/menuma-laravel-back-stage
+    image: registry.menuma.online/menuma/backend-laravel-stage:latest
     build: .
     ports:
         - "2001:80"
@@ -42,6 +42,8 @@ services:
         DB_PASSWORD: dont_expose_port
     volumes:
       - my-storage:/app/storage
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
     network_mode: webproxy
     restart: unless-stopped
 #    read_only: true
