@@ -36,7 +36,7 @@
             QR code
         </button>
 
-        <a dir="rtl" href="{{route('filament.cafeRestaurant.resources.tables.edit',1)}}"
+        <a dir="rtl" href="{{route('filament.cafeRestaurant.resources.tables.edit',$table->id)}}"
            class="border p-2 rounded-md mt-2
             mx-auto text-blue-500 bg-white
             inline-block
