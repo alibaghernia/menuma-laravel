@@ -57,11 +57,12 @@ Route::post('/menu-request', [
     \App\Http\Controllers\Api\RequestForMenu::class,
     'store',
 ]);
-//Route::get('/go/_A1', function () {
-//    return [
-//        'destination' => 'https://kamakancafe.ir/menu',
-//    ];
-//});
+
+Route::get('/go/_A1', function () {
+    return [
+        'destination' => 'https://kamakancafe.ir/menu',
+    ];
+});
 
 Route::get('/go/{slug}',
     [QrCodeController::class, 'getDestination']);
