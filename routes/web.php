@@ -32,9 +32,6 @@ Route::get('/l', function () {
     return redirect()->to('/login');
 })->name('login');
 
-Route::any('/t', function () {
-    return (\App\Models\Notification::all());
-});
 Route::middleware(['auth'])->group(function () {
     Route::get('tables/{table_id}/qr-code', QrCodePage::class)
         ->name('tables.qr_code');
