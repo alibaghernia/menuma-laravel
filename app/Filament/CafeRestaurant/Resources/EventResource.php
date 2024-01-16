@@ -8,6 +8,7 @@ use App\Models\Event;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
+use Filament\Support\Colors\Color;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
@@ -132,7 +133,12 @@ class EventResource extends Resource
 
     public static function getNavigationBadge(): ?string
     {
-        return 'در حال توسعه';
+        return 'جدید';
+    }
+
+    public static function getNavigationBadgeColor(): string|array|null
+    {
+        return Color::Green;
     }
 
     public static function getEloquentQuery(): Builder

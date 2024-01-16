@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\Business\EventController;
 use App\Http\Controllers\Api\Business\TableController;
 use App\Http\Controllers\Api\Business\WaiterPagerController;
 use App\Http\Controllers\Api\CafeRestaurant;
+use App\Http\Controllers\Api\CatalogController;
 use App\Http\Controllers\Api\QrCodeController;
 use Illuminate\Support\Facades\Route;
 
@@ -72,9 +73,21 @@ Route::get('/go/_A1', function () {
 
 Route::get('/go/{slug}',
     [QrCodeController::class, 'getDestination']);
+
 // events
 Route::prefix('/events')->group(function () {
     Route::get('/',
         [EventController::class, 'index']);
+    Route::get('/{id}',
+        [EventController::class, 'show']);
+});
+
+
+// catalogs
+Route::prefix('/catalogs')->group(function () {
+    Route::get('/',
+        [CatalogController::class, 'index']);
+    Route::get('/{id}',
+        [CatalogController::class, 'show']);
 });
 

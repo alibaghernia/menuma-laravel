@@ -15,8 +15,19 @@ class EventController extends Controller
 //        todo : implement is_pinned
 
         return Event::with('cafeRestaurant')
+            ->where('date', '>', now())
             ->orderBy('date')
             ->limit($limit)
             ->get();
+    }
+
+    public function show(int $id)
+    {
+        $event = Event::where('id', $id)
+            ->with('cafeRestaurant')
+            ->first();
+
+        abort_if(!$event, 404);
+        return $event;
     }
 }
