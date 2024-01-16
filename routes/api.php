@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Api\Business\CustomerClubController;
+use App\Http\Controllers\Api\Business\EventController;
 use App\Http\Controllers\Api\Business\TableController;
 use App\Http\Controllers\Api\Business\WaiterPagerController;
 use App\Http\Controllers\Api\CafeRestaurant;
@@ -51,6 +53,10 @@ Route::prefix('/cafe-restaurants')->group(function () {
         [WaiterPagerController::class, 'call']);
     Route::post('/{slug}/waiter_pager/{table_id}/cancel',
         [WaiterPagerController::class, 'cancel']);
+//
+
+    Route::post('/{slug}/customer-club/register',
+        [CustomerClubController::class, 'register']);
 
 });
 Route::post('/menu-request', [
@@ -66,3 +72,9 @@ Route::get('/go/_A1', function () {
 
 Route::get('/go/{slug}',
     [QrCodeController::class, 'getDestination']);
+// events
+Route::prefix('/events')->group(function () {
+    Route::get('/',
+        [EventController::class, 'index']);
+});
+

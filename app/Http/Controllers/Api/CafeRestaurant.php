@@ -74,7 +74,8 @@ class CafeRestaurant extends Controller
 
     public function search(Request $request)
     {
-        SearchLog::create(['request'=>$request->all()]);
+//        todo : do not use request date without validation
+        SearchLog::create(['request' => $request->all()]);
         $cafeQuery = CafeModel::query()
             ->where('is_hidden', 0);
 //        dd(isset($request->all_fields));
@@ -103,7 +104,8 @@ class CafeRestaurant extends Controller
                 ->addBinding($userLat, 'select')
                 ->addBinding($userLong, 'select')
                 ->addBinding($userLat, 'select')
-                ->get();
+                ->orderBy('distance');
+//                ->get();
         }
         return $cafeQuery->get();
 
