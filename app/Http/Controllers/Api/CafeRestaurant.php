@@ -98,7 +98,7 @@ class CafeRestaurant extends Controller
             $distance = intval($request->distance);
             $userLat = floatval($request->lat);
             $userLong = floatval($request->long);
-            return $cafeQuery
+            $cafeQuery
                 ->selectRaw('*, (6371000 * ACOS(COS(RADIANS(?)) * COS(RADIANS(location_lat)) * COS(RADIANS(location_long - ?)) + SIN(RADIANS(?)) * SIN(RADIANS(location_lat)))) AS distance')
                 ->having('distance', '<', $distance)
                 ->addBinding($userLat, 'select')
