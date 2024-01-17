@@ -78,7 +78,7 @@ class CafeRestaurant extends Controller
         SearchLog::create(['request' => $request->all()]);
         $cafeQuery = CafeModel::query()
             ->where('is_hidden', 0);
-//        dd(isset($request->all_fields));
+
         if (isset($request->all_fields)) {
             $allFields = $request->all_fields;
 
@@ -105,7 +105,6 @@ class CafeRestaurant extends Controller
                 ->addBinding($userLong, 'select')
                 ->addBinding($userLat, 'select')
                 ->orderBy('distance');
-//                ->get();
         }
         return $cafeQuery->get();
 
