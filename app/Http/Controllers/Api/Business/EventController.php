@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Api\Business;
 
 use App\Http\Controllers\Controller;
 use App\Models\Event;
+use Illuminate\Database\Query\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 
 class EventController extends Controller
 {
@@ -13,11 +15,20 @@ class EventController extends Controller
         $limit = $request->has('limit') ? intval($request->limit) : null;
 
 //        todo : implement is_pinned
-
-        return Event::with('cafeRestaurant')
-            ->where('date', '>', now())
+        $query = Event::query()
+            ->with('cafeRestaurant')
+            ->when($request->has('from') || $request->has('to'), function (Builder $q) use ($request) {
+                if ($request->has('from')) {
+                    $q->where('date', '>', Carbon::parse($request->from));
+                }
+                if ($request->has('to')) {
+                    $q->where('date', '<', Carbon::parse($request->to));
+                }
+                return $q;
+            })
             ->orderBy('date')
-            ->limit($limit)
+            ->limit($limit);
+        return $query
             ->get();
     }
 
@@ -28,6 +39,8 @@ class EventController extends Controller
             ->first();
 
         abort_if(!$event, 404);
+//Carbon::parse()
         return $event;
     }
+
 }
