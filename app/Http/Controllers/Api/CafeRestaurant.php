@@ -106,6 +106,10 @@ class CafeRestaurant extends Controller
                 ->addBinding($userLat, 'select')
                 ->orderBy('distance');
         }
+
+        if (isset($request->discounts)) {
+            $cafeQuery->withWhereHas('conditionalDiscounts');
+        }
         return $cafeQuery->get();
 
     }
