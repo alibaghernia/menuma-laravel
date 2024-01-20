@@ -39,4 +39,9 @@ class CafeRestaurant extends Model
     {
         return $this->hasMany(Table::class);
     }
+
+    public function conditionalDiscounts()
+    {
+        return $this->hasMany(ConditionalDiscount::class);
+    }
 }
