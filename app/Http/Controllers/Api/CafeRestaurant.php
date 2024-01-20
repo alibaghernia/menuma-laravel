@@ -110,6 +110,10 @@ class CafeRestaurant extends Controller
         if (isset($request->discounts)) {
             $cafeQuery->withWhereHas('conditionalDiscounts');
         }
+
+        if (isset($request->has_event)) {
+            $cafeQuery->withWhereHas('events');
+        }
         return $cafeQuery->get();
 
     }
