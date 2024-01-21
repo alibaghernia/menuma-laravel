@@ -23,9 +23,7 @@ use Illuminate\Support\Facades\Route;
 //Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //    return $request->user();qqq
 //});
-Route::get('x', function () {
-    dd('x');
-});
+
 Route::prefix('/cafe-restaurants')->group(function () {
     Route::get('/',
         [CafeRestaurant::class, 'search']);
@@ -36,16 +34,16 @@ Route::prefix('/cafe-restaurants')->group(function () {
         [CafeRestaurant::class, 'menu']);
     Route::get('/{slug}/menu/categories',
         [CafeRestaurant::class, 'categories']);
-    Route::get('/{slug}/discounts',
-        [CafeRestaurant::class, 'discounts']);
-    Route::get('/{slug}/events',
-        [CafeRestaurant::class, 'events']);
     Route::get('/{slug}/menu/categories/{categoryId}',
         [CafeRestaurant::class, 'category']);
     Route::get('/{slug}/menu/items/{itemid}',
         [CafeRestaurant::class, 'item']);
     Route::get('/{slug}/menu/day-offers',
         [CafeRestaurant::class, 'dayOffers']);
+    Route::get('/{slug}/discounts',
+        [CafeRestaurant::class, 'discounts']);
+    Route::get('/{slug}/events',
+        [CafeRestaurant::class, 'events']);
 //
     Route::get('/{slug}/tables',
         [TableController::class, 'index']);
@@ -69,6 +67,7 @@ Route::post('/menu-request', [
     'store',
 ]);
 
+// todo
 Route::get('/go/_A1', function () {
     return [
         'destination' => 'https://kamakancafe.ir/menu',

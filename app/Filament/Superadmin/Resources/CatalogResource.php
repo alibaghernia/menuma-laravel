@@ -37,7 +37,7 @@ class CatalogResource extends Resource
                 Forms\Components\TextInput::make('label')
                     ->maxLength(191),
                 Forms\Components\Checkbox::make('coming_soon')
-                ->default(0)
+                    ->default(0),
             ]);
     }
 
