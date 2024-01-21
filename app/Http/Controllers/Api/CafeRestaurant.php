@@ -40,6 +40,12 @@ class CafeRestaurant extends Controller
 //        dd($cafe);
         return $cafe->conditionalDiscounts;
     }
+    public function events(string $slug)
+    {
+        $cafe = $this->findBySlug($slug);
+//        dd($cafe);
+        return $cafe->events;
+    }
 
     public function categories(string $slug)
     {
