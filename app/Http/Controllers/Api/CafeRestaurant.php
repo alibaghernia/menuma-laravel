@@ -44,7 +44,7 @@ class CafeRestaurant extends Controller
     {
         $cafe = $this->findBySlug($slug);
 //        dd($cafe);
-        return $cafe->events;
+        return $cafe->events->load('cafeRestaurant');
     }
 
     public function categories(string $slug)
