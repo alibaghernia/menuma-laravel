@@ -36,6 +36,8 @@ Route::prefix('/cafe-restaurants')->group(function () {
         [CafeRestaurant::class, 'menu']);
     Route::get('/{slug}/menu/categories',
         [CafeRestaurant::class, 'categories']);
+    Route::get('/{slug}/discounts',
+        [CafeRestaurant::class, 'discounts']);
     Route::get('/{slug}/menu/categories/{categoryId}',
         [CafeRestaurant::class, 'category']);
     Route::get('/{slug}/menu/items/{itemid}',
