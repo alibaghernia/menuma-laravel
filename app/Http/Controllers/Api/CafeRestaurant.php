@@ -13,7 +13,7 @@ class CafeRestaurant extends Controller
 {
     private function findBySlug(string $slug)
     {
-        $cafe = CafeModel::where('slug', $slug)->first();
+        $cafe = CafeModel::query()->where('slug', $slug)->first();
         if (!$cafe) {
             abort(404);
         }
@@ -24,6 +24,7 @@ class CafeRestaurant extends Controller
     {
         $cafe = $this->findBySlug($slug);
         $cafe->load('workingHours');
+        $cafe->loadExists(['conditionalDiscounts', 'events']);
         return $cafe;
     }
 
