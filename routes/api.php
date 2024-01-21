@@ -38,6 +38,8 @@ Route::prefix('/cafe-restaurants')->group(function () {
         [CafeRestaurant::class, 'categories']);
     Route::get('/{slug}/discounts',
         [CafeRestaurant::class, 'discounts']);
+    Route::get('/{slug}/manifest.json',
+        [CafeRestaurant::class, 'manifest']);
     Route::get('/{slug}/events',
         [CafeRestaurant::class, 'events']);
     Route::get('/{slug}/menu/categories/{categoryId}',
