@@ -52,20 +52,22 @@ class CafeRestaurant extends Controller
     public function manifest(string $slug)
     {
         $cafe = $this->findBySlug($slug);
-//        dd($cafe);
+
         $logoExplode = str($cafe->logo_path)->explode('.');
-        if (count($logoExplode) == 1) abort(404);
+        if (count($logoExplode) != 2) {
+            abort(404);
+        }
         $logoMemeType = $logoExplode[1];
-//        dd($logoMemeType);
+
         return response()->json([
             "id" => $cafe->slug,
             "name" => $cafe->name,
             "icons" => [
                 [
                     "src" => config('app.url') . "/storage/{$cafe->logo_path}",
-                        "sizes" => "192x192",
+                    "sizes" => "192x192",
                     "type" => "image/$logoMemeType"
-                ]
+                ],
             ],
             "theme_color" => "#FFFFFF",
             "background_color" => "#FFFFFF",

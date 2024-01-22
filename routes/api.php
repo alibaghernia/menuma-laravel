@@ -38,8 +38,6 @@ Route::prefix('/cafe-restaurants')->group(function () {
         [CafeRestaurant::class, 'categories']);
     Route::get('/{slug}/discounts',
         [CafeRestaurant::class, 'discounts']);
-    Route::get('/{slug}/manifest.json',
-        [CafeRestaurant::class, 'manifest']);
     Route::get('/{slug}/events',
         [CafeRestaurant::class, 'events']);
     Route::get('/{slug}/menu/categories/{categoryId}',
@@ -48,6 +46,9 @@ Route::prefix('/cafe-restaurants')->group(function () {
         [CafeRestaurant::class, 'item']);
     Route::get('/{slug}/menu/day-offers',
         [CafeRestaurant::class, 'dayOffers']);
+    Route::get('/{slug}/manifest.json',
+        [CafeRestaurant::class, 'manifest']);
+
 //
     Route::get('/{slug}/tables',
         [TableController::class, 'index']);
