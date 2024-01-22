@@ -28,6 +28,9 @@ class EventController extends Controller
             })
             ->orderBy('date')
             ->limit($limit);
+        if (isset($request->is_pinned)) {
+            $query->where('is_pinned', '=', '1');
+        }
         return $query
             ->get();
     }
