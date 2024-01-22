@@ -134,7 +134,7 @@ class CafeRestaurant extends Controller
         }
 
         if (isset($request->pin)) {
-            $cafeQuery->where('is_pinned', $request->pin);
+            $cafeQuery->where('is_pinned', '1');
         }
 
 
