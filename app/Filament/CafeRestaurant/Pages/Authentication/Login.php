@@ -18,7 +18,6 @@ use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Validation\ValidationException;
 
 
-
 class Login extends SimplePage
 {
 
@@ -34,10 +33,6 @@ class Login extends SimplePage
 
     public function mount(): void
     {
-//        if (Filament::auth()->check()) {
-//            redirect()->intended(Filament::getUrl());
-//            redirect()->intended(route('clinic.welcome'));
-//        }
         if (Filament::auth()->check()) {
             redirect()->intended(Filament::getUrl());
         }
@@ -106,6 +101,7 @@ class Login extends SimplePage
                     ->label(__('filament-panels::pages/auth/login.form.password.label'))
 //                    ->hint(filament()->hasPasswordReset() ? new HtmlString(Blade::render('<x-filament::link :href="filament()->getRequestPasswordResetUrl()"> {{ __(\'filament-panels::pages/auth/login.actions.request_password_reset.label\') }}</x-filament::link>')) : null)
                     ->password()
+                    ->revealable()
                     ->required(),
                 Checkbox::make('remember')
                     ->label(__('filament-panels::pages/auth/login.form.remember.label'))

@@ -34,17 +34,48 @@ class CafeRestaurant extends Controller
 //        dd($cafe);
         return $cafe->categories->load('items');
     }
+
     public function discounts(string $slug)
     {
         $cafe = $this->findBySlug($slug);
 //        dd($cafe);
         return $cafe->conditionalDiscounts;
     }
+
     public function events(string $slug)
     {
         $cafe = $this->findBySlug($slug);
 //        dd($cafe);
         return $cafe->events->load('cafeRestaurant');
+    }
+
+    public function manifest(string $slug)
+    {
+        $cafe = $this->findBySlug($slug);
+
+        $logoExplode = str($cafe->logo_path)->explode('.');
+        if (count($logoExplode) != 2) {
+            abort(404);
+        }
+        $logoMemeType = $logoExplode[1];
+
+        return response()->json([
+            "id" => $cafe->slug,
+            "name" => $cafe->name,
+            "icons" => [
+                [
+                    "src" => config('app.url') . "/storage/{$cafe->logo_path}",
+                    "sizes" => "192x192",
+                    "type" => "image/$logoMemeType"
+                ],
+            ],
+            "theme_color" => "#FFFFFF",
+            "background_color" => "#FFFFFF",
+            "start_url" => sprintf("https://%s", $cafe->domain_address),
+            "scope" => sprintf("https://%s", $cafe->domain_address),
+            "display" => "standalone",
+            "orientation" => "portrait"
+        ])->header("Content-Type", "application/json");
     }
 
     public function categories(string $slug)
@@ -103,7 +134,7 @@ class CafeRestaurant extends Controller
         }
 
         if (isset($request->pin)) {
-            $cafeQuery->where('is_pinned', $request->pin);
+            $cafeQuery->where('is_pinned', '1');
         }
 
 
