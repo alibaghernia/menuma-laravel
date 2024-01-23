@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api\Business;
 
 use App\Http\Controllers\Controller;
 use App\Models\Event;
-use Illuminate\Database\Query\Builder;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 
@@ -17,20 +17,17 @@ class EventController extends Controller
 //        todo : implement is_pinned
         $query = Event::query()
             ->with('cafeRestaurant')
-            ->when($request->has('from') || $request->has('to'), function (Builder $q) use ($request) {
-                if ($request->has('from')) {
-                    $q->where('date', '>', Carbon::parse($request->from));
-                }
-                if ($request->has('to')) {
-                    $q->where('date', '<', Carbon::parse($request->to));
-                }
-                return $q;
+            ->when($request->has('from'), function (Builder $q) use ($request) {
+                return $q->where('date', '>', Carbon::parse($request->from));
+            })
+            ->when($request->has('to'), function (Builder $q) use ($request) {
+                return $q->where('date', '<', Carbon::parse($request->to));
+            })
+            ->when($request->has('is_pinned'), function (Builder $q) {
+                return $q->where('is_pinned', '1');
             })
             ->orderBy('date')
             ->limit($limit);
-        if (isset($request->is_pinned)) {
-            $query->where('is_pinned', '=', '1');
-        }
         return $query
             ->get();
     }
