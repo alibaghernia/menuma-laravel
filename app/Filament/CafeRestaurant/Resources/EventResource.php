@@ -131,15 +131,15 @@ class EventResource extends Resource
         ];
     }
 
-    public static function getNavigationBadge(): ?string
-    {
-        return 'جدید';
-    }
-
-    public static function getNavigationBadgeColor(): string|array|null
-    {
-        return Color::Green;
-    }
+//    public static function getNavigationBadge(): ?string
+//    {
+//        return 'جدید';
+//    }
+//
+//    public static function getNavigationBadgeColor(): string|array|null
+//    {
+//        return Color::Green;
+//    }
 
     public static function getEloquentQuery(): Builder
     {

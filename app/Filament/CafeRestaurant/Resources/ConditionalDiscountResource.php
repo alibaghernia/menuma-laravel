@@ -93,11 +93,6 @@ class ConditionalDiscountResource extends Resource
         ];
     }
 
-    public static function getNavigationBadge(): ?string
-    {
-        return 'در حال توسعه';
-    }
-
     public static function getEloquentQuery(): Builder
     {
         return parent::getEloquentQuery()
