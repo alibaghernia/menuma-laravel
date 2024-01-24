@@ -26,8 +26,13 @@ class EventResource extends Resource
                     ->maxLength(191),
                 Forms\Components\TextInput::make('capacity')
                     ->numeric(),
-                Forms\Components\Textarea::make('banner_path')
-                    ->maxLength(65535)
+                Forms\Components\FileUpload::make('banner_path')
+                    ->image()
+                    ->imageEditor()
+                    ->imageEditorAspectRatios([
+                        null,
+                        '1:1',
+                    ])
                     ->columnSpanFull(),
                 Forms\Components\Textarea::make('short_description')
                     ->maxLength(65535)

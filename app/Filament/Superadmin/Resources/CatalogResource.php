@@ -28,7 +28,7 @@ class CatalogResource extends Resource
                 Forms\Components\Textarea::make('short_description')
                     ->maxLength(65535)
                     ->columnSpanFull(),
-                Forms\Components\Textarea::make('long_description')
+                Forms\Components\RichEditor::make('long_description')
                     ->maxLength(65535)
                     ->columnSpanFull(),
                 Forms\Components\FileUpload::make('image')
