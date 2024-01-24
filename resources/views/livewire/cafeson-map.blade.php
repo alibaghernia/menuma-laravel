@@ -28,9 +28,10 @@
         //     .openPopup();
 
         @foreach($cafes as $cafe)
+
         L.marker([{{$cafe->location_lat}}, {{$cafe->location_long}}]).addTo(map)
             .bindPopup(`
-                <a href='http://menuma.online/{{$cafe->slug}}' target='_blank'>
+                <a href='http://menuma.online/{{$cafe->slug}}' target="_blank" >
                 {{$cafe->name}}
             </a>
         `);
