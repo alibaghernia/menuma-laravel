@@ -25,7 +25,7 @@ class CafeRestaurantResource extends Resource
                     ->required()
                     ->maxLength(191),
                 Forms\Components\FileUpload::make('logo_path')
-                    ->required()
+//                    ->required()
                     ->image()
                     ->imageEditor()
                     ->imageEditorAspectRatios([
