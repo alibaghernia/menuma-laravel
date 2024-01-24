@@ -38,3 +38,5 @@ Route::middleware(['auth'])->group(function () {
 });
 //Route::get('/q/{slug}',
 //    [QrCodeController::class, 'goTo']);
+
+Route::get('/on-map', \App\Livewire\CafesonMap::class);
