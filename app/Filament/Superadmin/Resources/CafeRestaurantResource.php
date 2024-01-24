@@ -80,7 +80,18 @@ class CafeRestaurantResource extends Resource
                     ->maxLength(65535)
                     ->columnSpanFull(),
                 Forms\Components\TextInput::make('domain_address')
-                ->nullable(),
+                    ->nullable(),
+
+                Forms\Components\TextInput::make('phone_number')
+                    ->label('شماره تماس')
+                    ->tel()
+                    ->numeric()
+                    ->maxLength(99),
+                Forms\Components\TextInput::make('email')
+                    ->label('ایمیل')
+                    ->maxLength(99)
+                    ->email(),
+
             ]);
     }
 
