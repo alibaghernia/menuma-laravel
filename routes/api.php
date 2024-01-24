@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\Business\CustomerClubController;
 use App\Http\Controllers\Api\Business\EventController;
+use App\Http\Controllers\Api\Business\DiscountController;
 use App\Http\Controllers\Api\Business\TableController;
 use App\Http\Controllers\Api\Business\WaiterPagerController;
 use App\Http\Controllers\Api\CafeRestaurant;
@@ -87,6 +88,13 @@ Route::prefix('/events')->group(function () {
         [EventController::class, 'index']);
     Route::get('/{id}',
         [EventController::class, 'show']);
+});
+// discounts
+Route::prefix('/discounts')->group(function () {
+    Route::get('/',
+        [DiscountController::class, 'index']);
+    Route::get('/{id}',
+        [DiscountController::class, 'show']);
 });
 
 

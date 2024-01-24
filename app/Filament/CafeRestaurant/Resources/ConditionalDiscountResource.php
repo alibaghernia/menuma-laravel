@@ -52,6 +52,10 @@ class ConditionalDiscountResource extends Resource
                     ->hint('اگر توضیحات بیشتری وجود دارد اینجا بنویسید')
                     ->maxLength(65535)
                     ->columnSpanFull(),
+                Forms\Components\Checkbox::make('is_pinned')
+                    ->label("پین شده")
+                    ->helperText('اگر این آیتم منتخب است این گزینه را انتخاب کنید')
+                    ->default(false),
             ]);
     }
 
