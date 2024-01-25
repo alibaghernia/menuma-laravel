@@ -81,6 +81,12 @@ class CafeRestaurantResource extends Resource
                     ->columnSpanFull(),
                 Forms\Components\TextInput::make('domain_address')
                 ->nullable(),
+                Forms\Components\Checkbox::make('has_customer_club')
+                ->default(false)
+                ->live(),
+                Forms\Components\Checkbox::make('enabled_customer_club')
+                    ->hidden(function($get) { return !$get('has_customer_club'); })
+                ->default(true),
             ]);
     }
 
