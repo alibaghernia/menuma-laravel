@@ -92,6 +92,13 @@ class CafeRestaurantResource extends Resource
                     ->maxLength(99)
                     ->email(),
 
+                Forms\Components\Checkbox::make('has_customer_club')
+                    ->default(false)
+                    ->live(),
+                Forms\Components\Checkbox::make('enabled_customer_club')
+                    ->hidden(function($get) { return !$get('has_customer_club'); })
+                    ->default(true),
+
             ]);
     }
 
