@@ -41,6 +41,12 @@
         var circle = L.circle([{{$cafe->location_lat}}, {{$cafe->location_long}}], {
             color: '#0015ff05',
             fillColor: 'blue',
+            fillOpacity: 0.09,
+            radius: 250
+        }).addTo(map);
+        var circle = L.circle([{{$cafe->location_lat}}, {{$cafe->location_long}}], {
+            color: '#0015ff05',
+            fillColor: 'blue',
             fillOpacity: 0.1,
             radius: 500
         }).addTo(map);
