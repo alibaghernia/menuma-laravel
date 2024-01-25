@@ -7,7 +7,9 @@ use App\Models\CafeRestaurant as CafeModel;
 use App\Models\Category;
 use App\Models\Item;
 use App\Models\SearchLog;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 
 class CafeRestaurant extends Controller
 {
@@ -42,11 +44,18 @@ class CafeRestaurant extends Controller
         return $cafe->conditionalDiscounts;
     }
 
-    public function events(string $slug)
+    public function events(Request $request)
     {
-        $cafe = $this->findBySlug($slug);
+        $cafe = $this->findBySlug($request->route()->parameters['slug']);
 //        dd($cafe);
-        return $cafe->events->load('cafeRestaurant');
+        return $cafe->events
+            ->when($request->has('from'), function ($q) use ($request) {
+                return $q->where('date', '>=', Carbon::parse($request->from));
+            })
+            ->when($request->has('to'), function ($q) use ($request) {
+                return $q->where('date', '<', Carbon::parse($request->to));
+            })
+            ->load('cafeRestaurant');
     }
 
     public function manifest(string $slug)
