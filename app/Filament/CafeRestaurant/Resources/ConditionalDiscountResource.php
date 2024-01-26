@@ -42,7 +42,7 @@ class ConditionalDiscountResource extends Resource
                     ->columnSpanFull(),
                 Forms\Components\TextInput::make('title')
                     ->label('عنوان')
-                    ->helperText('مثلا: 30 درصد تخفیف براش دانشجویان روزهای شنبه و یکشنبه')
+                    ->helperText('مثلا: 30 درصد تخفیف برای دانشجویان روزهای شنبه و یکشنبه')
                     ->hint('به طور کلی و کوتاه شرایط تخفیف را بنویسید')
                     ->required()
                     ->maxLength(191),
