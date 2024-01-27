@@ -98,7 +98,9 @@ class CafeRestaurantResource extends Resource
                     ->default(false)
                     ->live(),
                 Forms\Components\Checkbox::make('enabled_customer_club')
-                    ->hidden(function($get) { return !$get('has_customer_club'); })
+                    ->hidden(function ($get) {
+                        return !$get('has_customer_club');
+                    })
                     ->default(true),
 
             ]);
@@ -132,7 +134,10 @@ class CafeRestaurantResource extends Resource
             ])
             ->filters([
                 Filter::make('without_location')
-                    ->query(fn(Builder $query): Builder => $query->where('location_lat', null))
+                    ->query(fn(Builder $query): Builder => $query->where('location_lat', null)),
+
+                Filter::make('with_location')
+                    ->query(fn(Builder $query): Builder => $query->where('location_lat', '!=', null)),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
