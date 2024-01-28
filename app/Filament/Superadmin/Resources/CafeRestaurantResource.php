@@ -10,6 +10,8 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Filament\Tables\Filters\Filter;
+use Illuminate\Database\Eloquent\Builder;
 
 class CafeRestaurantResource extends Resource
 {
@@ -25,7 +27,7 @@ class CafeRestaurantResource extends Resource
                     ->required()
                     ->maxLength(191),
                 Forms\Components\FileUpload::make('logo_path')
-                    ->required()
+//                    ->required()
                     ->image()
                     ->imageEditor()
                     ->imageEditorAspectRatios([
@@ -79,6 +81,28 @@ class CafeRestaurantResource extends Resource
                 Forms\Components\Textarea::make('description')
                     ->maxLength(65535)
                     ->columnSpanFull(),
+                Forms\Components\TextInput::make('domain_address')
+                    ->nullable(),
+
+                Forms\Components\TextInput::make('phone_number')
+                    ->label('شماره تماس')
+                    ->tel()
+                    ->numeric()
+                    ->maxLength(99),
+                Forms\Components\TextInput::make('email')
+                    ->label('ایمیل')
+                    ->maxLength(99)
+                    ->email(),
+
+                Forms\Components\Checkbox::make('has_customer_club')
+                    ->default(false)
+                    ->live(),
+                Forms\Components\Checkbox::make('enabled_customer_club')
+                    ->hidden(function ($get) {
+                        return !$get('has_customer_club');
+                    })
+                    ->default(true),
+
             ]);
     }
 
@@ -109,7 +133,11 @@ class CafeRestaurantResource extends Resource
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                //
+                Filter::make('without_location')
+                    ->query(fn(Builder $query): Builder => $query->where('location_lat', null)),
+
+                Filter::make('with_location')
+                    ->query(fn(Builder $query): Builder => $query->where('location_lat', '!=', null)),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

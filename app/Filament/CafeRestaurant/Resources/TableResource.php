@@ -4,6 +4,7 @@ namespace App\Filament\CafeRestaurant\Resources;
 
 use App\Filament\CafeRestaurant\Resources\TableResource\Pages;
 use App\Filament\CafeRestaurant\Resources\TableResource\RelationManagers;
+use App\Models\Hall;
 use App\Models\Table as TableModel;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -18,7 +19,7 @@ class TableResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
-//    protected static ?string $navigationGroup = 'منو';
+    protected static ?string $navigationGroup = 'فضا ها';
 
     protected static ?string $label = 'میز';
     protected static ?string $pluralLabel = 'میز ها';
@@ -32,6 +33,33 @@ class TableResource extends Resource
                     ->label('کد')
                     ->hint('کد میز میتواند یک شماره یا یک نام باشد')
                     ->maxLength(191),
+                Forms\Components\Select::make('hall_id')
+                    ->label('سالن')
+                    ->searchable()
+                    ->options(
+                        Hall::where('cafe_restaurant_id', auth()->user()->cafe_restaurant_id)
+                            ->pluck('code', 'id')
+                    ),
+                Forms\Components\FileUpload::make('banner_image')
+                    ->label('عکس')
+                    ->maxSize(2024)
+                    ->image()
+                    ->imageEditor()
+                    ->columnSpanFull(),
+                Forms\Components\Section::make('ظرفیت')
+                    ->collapsible()
+                    ->columns(2)
+                    ->label('ظرفیت سالن')
+                    ->schema([
+                        Forms\Components\TextInput::make('normal_capacity')
+                            ->label('ظرفیت عادی')
+                            ->integer()
+                            ->minValue(1),
+                        Forms\Components\TextInput::make('max_capacity')
+                            ->label('حداکثر ظرفیت')
+                            ->integer()
+                            ->minValue(1),
+                    ]),
             ]);
     }
 
@@ -39,10 +67,25 @@ class TableResource extends Resource
     {
         return $table
             ->columns([
-
+                Tables\Columns\ImageColumn::make('banner_image')
+                    ->label('عکس')
+                    ->circular()
+                    ->toggleable(),
                 Tables\Columns\TextColumn::make('code')
                     ->label('کد')
                     ->searchable(),
+                Tables\Columns\TextColumn::make('normal_capacity')
+                    ->label('ظرفیت عادی')
+                    ->numeric()
+                    ->sortable()
+                    ->toggleable(),
+                Tables\Columns\TextColumn::make('max_capacity')
+                    ->label('حداکثر ظرفیت')
+                    ->numeric()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+
+
             ])
             ->filters([
                 //
@@ -72,6 +115,7 @@ class TableResource extends Resource
             'edit' => Pages\EditTable::route('/{record}/edit'),
         ];
     }
+
     public static function getEloquentQuery(): Builder
     {
 

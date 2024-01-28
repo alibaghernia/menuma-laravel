@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -14,12 +13,14 @@ return new class extends Migration
         Schema::create('cafe_restaurant_customers', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('name');
-            $table->string('family');
-            $table->string('mobile');
+            $table->string('name')->nullable();
+            $table->string('family')->nullable();
+            $table->string('mobile')->nullable();
             $table->date('birth_date')->nullable();
             $table->string('gender')->nullable();
             $table->text('description')->nullable();
+            $table->foreignId('cafe_restaurant_id')
+                ->comment('belong-to');
             $this->seed();
         });
     }

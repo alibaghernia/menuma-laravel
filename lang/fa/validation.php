@@ -31,6 +31,7 @@ return [
 
 
     'after_or_equal' => 'The :attribute field must be a date after or equal to :date.',
+    'after_or_equal' => 'فیلد :attribute باید بزرگتر یا برابر با :date باشد.',
     'ascii' => 'The :attribute field must only contain single-byte alphanumeric characters and symbols.',
     'before_or_equal' => 'The :attribute field must be a date before or equal to :date.',
     "boolean" => "The :attribute field must be true or false",
@@ -168,8 +169,9 @@ return [
     'required_if_accepted' => 'The :attribute field is required when :other is accepted.',
     'required_unless' => 'The :attribute field is required unless :other is in :values.',
 
-    'starts_with' => 'The :attribute field must start with one of the following: :values.',
-    'string' => 'The :attribute field must be a string.',
+//    'starts_with' => 'The :attribute field must start with one of the following: :values.',
+    'starts_with' => ' :attribute باید با  :values شروع شود',
+    'string' => ':attribute باید از نوع متن باشد.',
     'uploaded' => 'The :attribute failed to upload.',
     'uppercase' => 'The :attribute field must be uppercase.',
     'ulid' => 'The :attribute field must be a valid ULID.',
@@ -234,7 +236,8 @@ return [
         "date" => "تاریخ",
         "time" => "زمان",
         "available" => "موجود",
-        "size" => "اندازه"
+        "size" => "اندازه",
+        "birth_date" => "تاریخ تولد",
     ],
 
 ];

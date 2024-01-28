@@ -15,14 +15,7 @@ class EditTable extends EditRecord
 
     protected function getActions(): array
     {
-        return [
-
-//            Action::make('manage_qr_code')
-//                ->label('Manage QR code')
-//                ->url(fn($record): string => "route('units.qr-codes.show', $this->record->id)")
-//                ->openUrlInNewTab(),
-
-        ];
+        return [];
     }
 
     protected function getHeaderActions(): array

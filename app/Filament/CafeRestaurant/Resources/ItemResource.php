@@ -50,7 +50,7 @@ class ItemResource extends Resource
                     ])
                     ->maxSize(2024)
                     ->helperText('امکان آپلود عکس تا حجم 2 مگابایت وجود دارد ولی برای سریع تر بودن لود اطلاعات کافه عکس با حجم بیش از 500 کیلو بایت آپلود نکنید.')
-                    ->hint('برای نمایش بهتر، عکس با نسبت 1:1 بازگذاری کنید'),
+                    ->hint('برای نمایش بهتر، عکس با نسبت 1:1 بارگذاری کنید'),
                 Forms\Components\Textarea::make('description')
                     ->label('توضیحات')
                     ->maxLength(500)
@@ -106,6 +106,7 @@ class ItemResource extends Resource
                     ->toggleable()
                     ->circular(),
                 Tables\Columns\TextColumn::make('name')
+                    ->label('نام')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('category.name')
                     ->label('دسته بندی'),
@@ -147,7 +148,6 @@ class ItemResource extends Resource
 
     public static function getEloquentQuery(): Builder
     {
-
         return parent::getEloquentQuery()
             ->where('cafe_restaurant_id', auth()->user()->cafe_restaurant_id);
     }

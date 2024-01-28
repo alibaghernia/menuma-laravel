@@ -1,8 +1,12 @@
 <?php
 
+use App\Http\Controllers\Api\Business\CustomerClubController;
+use App\Http\Controllers\Api\Business\EventController;
+use App\Http\Controllers\Api\Business\DiscountController;
 use App\Http\Controllers\Api\Business\TableController;
 use App\Http\Controllers\Api\Business\WaiterPagerController;
 use App\Http\Controllers\Api\CafeRestaurant;
+use App\Http\Controllers\Api\CatalogController;
 use App\Http\Controllers\Api\QrCodeController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,9 +22,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 //Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//    return $request->user();
+//    return $request->user();qqq
 //});
+
 Route::prefix('/cafe-restaurants')->group(function () {
+    Route::get('/',
+        [CafeRestaurant::class, 'search']);
+
     Route::get('/{slug}',
         [CafeRestaurant::class, 'profile']);
     Route::get('/{slug}/menu',
@@ -33,6 +41,12 @@ Route::prefix('/cafe-restaurants')->group(function () {
         [CafeRestaurant::class, 'item']);
     Route::get('/{slug}/menu/day-offers',
         [CafeRestaurant::class, 'dayOffers']);
+    Route::get('/{slug}/discounts',
+        [CafeRestaurant::class, 'discounts']);
+    Route::get('/{slug}/events',
+        [CafeRestaurant::class, 'events']);
+    Route::get('/{slug}/manifest.json',
+        [CafeRestaurant::class, 'manifest']);
 //
     Route::get('/{slug}/tables',
         [TableController::class, 'index']);
@@ -45,6 +59,10 @@ Route::prefix('/cafe-restaurants')->group(function () {
         [WaiterPagerController::class, 'call']);
     Route::post('/{slug}/waiter_pager/{table_id}/cancel',
         [WaiterPagerController::class, 'cancel']);
+//
+
+    Route::post('/{slug}/customer-club/register',
+        [CustomerClubController::class, 'register']);
 
 });
 Route::post('/menu-request', [
@@ -52,5 +70,37 @@ Route::post('/menu-request', [
     'store',
 ]);
 
+// todo
+Route::get('/go/_A1', function () {
+    return [
+        'destination' => 'https://kamakancafe.ir/menu',
+    ];
+});
+
 Route::get('/go/{slug}',
     [QrCodeController::class, 'getDestination']);
+
+// events
+Route::prefix('/events')->group(function () {
+    Route::get('/',
+        [EventController::class, 'index']);
+    Route::get('/{id}',
+        [EventController::class, 'show']);
+});
+// discounts
+Route::prefix('/discounts')->group(function () {
+    Route::get('/',
+        [DiscountController::class, 'index']);
+    Route::get('/{id}',
+        [DiscountController::class, 'show']);
+});
+
+
+// catalogs
+Route::prefix('/catalogs')->group(function () {
+    Route::get('/',
+        [CatalogController::class, 'index']);
+    Route::get('/{id}',
+        [CatalogController::class, 'show']);
+});
+
