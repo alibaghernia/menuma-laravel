@@ -1,5 +1,7 @@
 FROM php:8.2-apache
 
+ENV COMPOSER_ALLOW_SUPERUSER=1
+
 # 1. Install development packages and clean up apt cache.
 RUN apt-get update && apt-get install -y \
     curl \
@@ -42,11 +44,11 @@ RUN npm install
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 COPY composer.* ./
-RUN composer install --no-ansi --no-dev --no-interaction --no-plugins --no-progress --no-scripts --optimize-autoloader
+RUN composer install --no-ansi --no-dev --no-interaction --no-plugins --no-progress --no-scripts --optimize-autoloader --ignore-platform-req=ext-zip
 
 COPY . /var/www/html
 
-RUN composer u
+RUN composer u --ignore-platform-req=ext-zip
 RUN npm run build
 
 RUN php artisan storage:link
