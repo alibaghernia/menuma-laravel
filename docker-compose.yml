@@ -1,62 +1,63 @@
 version: '3.4'
 services:
-  laravel-mysql-stage:
-    image: mysql:8.0
-    container_name: laravel-mysql-stage
-    restart: unless-stopped
-    environment:
-      MYSQL_DATABASE: 'menuma'
-      MYSQL_ROOT_PASSWORD: 'dont_expose_port'
-    volumes:
-      - my-db:/var/lib/mysql
-    network_mode: webproxy
-    logging:
-        options:
-          max-size: "4m"
-          max-file: "3"
-  phpmyadmin-stage:
-    image: phpmyadmin/phpmyadmin
-    container_name: laravel_phpmyadmin_stage
-    restart: always
-    network_mode: webproxy
-    environment:
-      PMA_HOST: laravel-mysql-stage
-    ports:
-      - 8085:80
+    laravel-mysql-stage:
+        image: mysql:8.0
+        container_name: laravel-mysql-stage
+        restart: unless-stopped
+        network_mode: bridge
+        environment:
+            MYSQL_DATABASE: 'menuma'
+            MYSQL_ROOT_PASSWORD: 'dont_expose_port'
+        volumes:
+            - my-db:/var/lib/mysql
+        logging:
+            options:
+                max-size: "4m"
+                max-file: "3"
 
-  menuma-laravel-back-stage:
-    container_name: menuma-laravel-back-stage
-    image: registry.menuma.online/menuma/backend-laravel-stage:latest
-    build: .
-    ports:
-        - "2001:80"
-    env_file: .env.stage
-    environment:
-        VIRTUAL_HOST: t1.menuma.online
-        VIRTUAL_PORT: 80
-        DB_CONNECTION: "mysql"
-        DB_HOST: "laravel-mysql-stage"
-        DB_PORT: 3306
-        DB_DATABASE: menuma
-        DB_USERNAME: root
-        DB_PASSWORD: dont_expose_port
-    volumes:
-      - my-storage:/app/storage
-    labels:
-      - "com.centurylinklabs.watchtower.enable=true"
-    network_mode: webproxy
-    restart: unless-stopped
-#    read_only: true
-    depends_on:
-      - laravel-mysql-stage
-    links:
-      - laravel-mysql-stage
-    logging:
-        options:
-          max-size: "4m"
-          max-file: "3"
+    phpmyadmin-stage:
+        image: phpmyadmin/phpmyadmin
+        container_name: laravel_phpmyadmin_stage
+        restart: always
+        network_mode: bridge
+        environment:
+            PMA_HOST: laravel-mysql-stage
+        ports:
+            - 8085:80
+
+    menuma-laravel-back-stage:
+        container_name: menuma-laravel-back-stage
+        image: registry.menuma.online/menuma/backend-laravel-stage:latest
+        build: .
+        network_mode: bridge
+        ports:
+            - "2001:80"
+        env_file: .env.stage
+        environment:
+            VIRTUAL_HOST: tl.menuma.online
+            VIRTUAL_PORT: 80
+            DB_CONNECTION: "mysql"
+            DB_HOST: "laravel-mysql-stage"
+            DB_PORT: 3306
+            DB_DATABASE: menuma
+            DB_USERNAME: root
+            DB_PASSWORD: dont_expose_port
+        volumes:
+            - my-storage:/app/storage
+        labels:
+            - "com.centurylinklabs.watchtower.enable=true"
+        restart: unless-stopped
+        #    read_only: true
+        depends_on:
+            - laravel-mysql-stage
+        links:
+            - laravel-mysql-stage
+        logging:
+            options:
+                max-size: "4m"
+                max-file: "3"
 
 volumes:
-  my-db:
-  my-storage:
+    my-db:
+    my-storage:
 
