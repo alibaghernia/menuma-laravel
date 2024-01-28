@@ -72,6 +72,20 @@
 
         map.on('locationerror', onLocationError);
 
+        function cb(id) {
+            // console.log(id)
+            // console.log(this)
+            let status = event.target.checked ? 1 : 0
+
+            console.log(id)
+            fetch('https://panel.menuma.online/api/' + id + '/' + status)
+            // fetch('http://127.0.0.1:8000/api/' + id + '/' + status)
+                .then(response => response)
+                .then(data => console.log(data))
+                .catch(error => alert(error.text()));
+
+        }
+
         @foreach($cafes as $cafe)
 
         L.marker([{{$cafe->location_lat}}, {{$cafe->location_long}}]).addTo(map)
@@ -79,6 +93,13 @@
                 <a href='http://menuma.online/{{$cafe->slug}}' target="_blank" >
                 {{$cafe->name}}
             </a>
+            <br>
+            <label  >
+            verified
+
+            </label>
+            <input type="checkbox" id="verified" onclick="cb({{$cafe->id}})" @if($cafe->is_verified) checked @endif>
+
         `);
 
         @if(request()->aria=='1')

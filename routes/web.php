@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Middleware\IsSuperadmin;
 use App\Livewire\QrCodePage;
+use Filament\Http\Middleware\Authenticate;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -39,4 +41,8 @@ Route::middleware(['auth'])->group(function () {
 //Route::get('/q/{slug}',
 //    [QrCodeController::class, 'goTo']);
 
-Route::get('/on-map', \App\Livewire\CafesonMap::class);
+Route::get('/on-map', \App\Livewire\CafesonMap::class)
+    ->middleware([
+        Authenticate::class,
+        IsSuperadmin::class,
+    ]);

@@ -103,4 +103,10 @@ Route::prefix('/catalogs')->group(function () {
     Route::get('/{id}',
         [CatalogController::class, 'show']);
 });
+// todo
+Route::get('{cafe_id}/{status}', function (int $cafeId, int $status) {
+    $cafe = \App\Models\CafeRestaurant::find($cafeId);
+    $cafe->is_verified = $status;
+    $cafe->save();
 
+});
