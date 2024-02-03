@@ -38,7 +38,9 @@ class ItemResource extends Resource
                     ->required()
                     ->searchable()
                     ->options(Category::where('cafe_restaurant_id', auth()->user()->cafe_restaurant_id)
-                        ->pluck('name', 'id')),
+                        ->pluck('name', 'id')
+                    )
+                    ->default(request()->cid ?? null),
                 Forms\Components\FileUpload::make('image_path')
                     ->image()
                     ->label('عکس')

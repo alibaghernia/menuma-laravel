@@ -117,7 +117,7 @@ class ItemsRelationManager extends RelationManager
 //                Tables\Actions\CreateAction::make(),
                 Tables\Actions\Action::make('add_item')
                     ->label('ایجاد آیتم')
-                    ->url(fn($record): string => ItemResource::getUrl('create'))
+                    ->url(fn($record): string => ItemResource::getUrl('create') . '?cid=' . $this->ownerRecord->id)
 //                Action::make('manage_qr_code')
 //                    ->label('دریافت QR code')
 //                    ->url(fn($record): string => route('tables.qr_code', $this->record->id)),
