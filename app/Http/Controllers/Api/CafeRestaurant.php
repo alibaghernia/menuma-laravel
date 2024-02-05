@@ -47,15 +47,17 @@ class CafeRestaurant extends Controller
     public function events(Request $request)
     {
         $cafe = $this->findBySlug($request->route()->parameters['slug']);
-//        dd($cafe);
-        return $cafe->events
+
+        return $cafe->events()
             ->when($request->has('from'), function ($q) use ($request) {
                 return $q->where('date', '>=', Carbon::parse($request->from));
             })
             ->when($request->has('to'), function ($q) use ($request) {
+//                todo: <=
                 return $q->where('date', '<', Carbon::parse($request->to));
             })
-            ->load('cafeRestaurant');
+            ->get();
+
     }
 
     public function manifest(string $slug)
