@@ -117,7 +117,9 @@ class ItemResource extends Resource
 //                    ->sortable(),
             ])
             ->filters([
-                //
+                Tables\Filters\Filter::make('is_sold_out')
+                    ->label('فقط تمام شده ها')
+                    ->query(fn(Builder $query): Builder => $query->whereJsonContains('tags', 'sold_out'))
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
