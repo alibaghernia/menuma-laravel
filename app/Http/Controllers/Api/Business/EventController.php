@@ -18,7 +18,7 @@ class EventController extends Controller
         $query = Event::query()
             ->with('cafeRestaurant')
             ->when($request->has('from'), function (Builder $q) use ($request) {
-                return $q->where('date', '>', Carbon::parse($request->from));
+                return $q->where('date', '>=', Carbon::parse($request->from));
             })
             ->when($request->has('to'), function (Builder $q) use ($request) {
                 return $q->where('date', '<', Carbon::parse($request->to));
