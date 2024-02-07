@@ -4,6 +4,7 @@ namespace App\Filament\Superadmin\Resources;
 
 use App\Filament\Superadmin\Resources\UserResource\Pages;
 use App\Filament\Superadmin\Resources\UserResource\RelationManagers;
+use App\Models\CafeRestaurant;
 use App\Models\User;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -34,8 +35,11 @@ class UserResource extends Resource
 //                    ->required()
 //                    ->maxLength(191),
                 Forms\Components\Select::make('cafe_restaurant_id')
+                    ->searchable()
 //                    ->searchable()
-                    ->relationship('cafeRestaurant', 'name'),
+//                    ->relationship('cafeRestaurant', 'name'),
+                    ->options(CafeRestaurant::all()->pluck('name', 'id'))
+                ,
                 Forms\Components\TextInput::make('password')
                     ->password(),
             ]);
