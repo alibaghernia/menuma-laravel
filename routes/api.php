@@ -64,6 +64,10 @@ Route::prefix('/cafe-restaurants')->group(function () {
     Route::post('/{slug}/customer-club/register',
         [CustomerClubController::class, 'register']);
 
+    Route::get('/{slug}/galleries', function () {
+        return \App\Models\CafeRestaurant::where('slug', request()->slug)->first()->galleries;
+    });
+
 });
 Route::post('/menu-request', [
     \App\Http\Controllers\Api\RequestForMenu::class,

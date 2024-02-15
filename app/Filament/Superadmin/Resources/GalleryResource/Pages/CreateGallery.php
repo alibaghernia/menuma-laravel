@@ -1,0 +1,12 @@
+<?php
+
+namespace App\Filament\Superadmin\Resources\GalleryResource\Pages;
+
+use App\Filament\Superadmin\Resources\GalleryResource;
+use Filament\Actions;
+use Filament\Resources\Pages\CreateRecord;
+
+class CreateGallery extends CreateRecord
+{
+    protected static string $resource = GalleryResource::class;
+}

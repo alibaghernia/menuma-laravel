@@ -46,3 +46,5 @@ Route::get('/on-map', \App\Livewire\CafesonMap::class)
         Authenticate::class,
         IsSuperadmin::class,
     ]);
+
+Route::get('x', \App\Livewire\SearchOnMap::class);

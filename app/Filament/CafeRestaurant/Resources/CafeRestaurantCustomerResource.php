@@ -108,6 +108,7 @@ class CafeRestaurantCustomerResource extends Resource
             'edit' => Pages\EditCafeRestaurantCustomer::route('/{record}/edit'),
         ];
     }
+
     public static function getEloquentQuery(): Builder
     {
         return parent::getEloquentQuery()
