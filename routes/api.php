@@ -80,6 +80,11 @@ Route::get('/go/_A1', function () {
         'destination' => 'https://kamakancafe.ir/menu',
     ];
 });
+Route::get('/go/_A2', function () {
+    return [
+        'destination' => 'https://cafeinjast.ir/menu',
+    ];
+});
 
 Route::get('/go/{slug}',
     [QrCodeController::class, 'getDestination']);
