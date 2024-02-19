@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\CafeRestaurant as CafeModel;
 use App\Models\Category;
+use App\Models\Event;
 use App\Models\Item;
 use App\Models\SearchLog;
 use Illuminate\Database\Eloquent\Builder;
@@ -48,7 +49,7 @@ class CafeRestaurant extends Controller
     {
         $cafe = $this->findBySlug($request->route()->parameters['slug']);
 
-        return $cafe->events()
+        return Event::where('cafe_restaurant_id', $cafe->id)
             ->when($request->has('from'), function ($q) use ($request) {
                 return $q->where('date', '>=', Carbon::parse($request->from));
             })
