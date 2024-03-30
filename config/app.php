@@ -188,4 +188,14 @@ return [
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 
+    'domains' => [
+        'production' => [
+            'panel' => env('DOMAIN_PRODUCTION_PANEL'),
+            'main' => env('DOMAIN_PRODUCTION_MAIN'),
+        ],
+        'local' => [
+            'panel' => env('DOMAIN_LOCAL_PANEL'),
+            'main' => env('DOMAIN_LOCAL_MAIN'),
+        ],
+    ],
 ];
