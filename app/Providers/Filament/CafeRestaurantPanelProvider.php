@@ -28,6 +28,13 @@ class CafeRestaurantPanelProvider extends PanelProvider
             ->path('/')
             ->login(Login::class)
             ->default()
+//            ->domain(config('app.domains.local.panel'))
+            ->domain((function () {
+                if (config('app.env') === 'local') {
+                    return config('app.domains.local.panel');
+                }
+                return config('app.domains.production.panel');
+            })())
             ->sidebarCollapsibleOnDesktop()
             ->databaseNotifications()
             ->databaseNotificationsPolling('5s')
