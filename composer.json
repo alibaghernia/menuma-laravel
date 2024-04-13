@@ -12,6 +12,7 @@
         "ariaieboy/filament-jalali-datetime": "^1.2",
         "ariaieboy/filament-jalali-datetimepicker": "^2.0",
         "filament/filament": "^3.2",
+        "filament/forms": "^3.2",
         "filament/notifications": "^3.2",
         "guzzlehttp/guzzle": "^7.2",
         "hekmatinasser/verta": "^8.4",
