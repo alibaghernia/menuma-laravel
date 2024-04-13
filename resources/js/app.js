@@ -1,4 +1,5 @@
 import Alpine from 'alpinejs'
+import focus from '@alpinejs/focus'
 
 window.Alpine = Alpine
 // import * from
@@ -32,6 +33,6 @@ window.Pagination = Pagination
 // L.tileLayer()
 // window.leaflet = leaflet;
 // console.log(leaflet)
-
+Alpine.plugin(focus)
 
 Alpine.start()
