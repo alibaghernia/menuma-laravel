@@ -1,5 +1,5 @@
 <div x-cloak>
-    @if(!$isRegistered)
+    @if($isRegistered)
         <div class="mx-auto w-full text-center">
             اطلاعات شما ثبت شد.
             <br>
