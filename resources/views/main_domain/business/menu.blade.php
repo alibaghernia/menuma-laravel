@@ -235,7 +235,11 @@
                                                                         <div class="">
                                                                             <a
                                                                                 class="flex-shrink-0 bg-white !w-[10rem] overflow-hidden rounded-[2.4rem] block border border-black/[.05] relative h-full"
-                                                                                href="/demo/menu/14/7">
+                                                                                href="{{domain_route('menu.item',[
+                                                                                                'slug'=>$business->slug,
+                                                                                                'categoryId'=>$dayOffer->category_id,
+                                                                                                'itemId'=>$dayOffer->id,
+                                                                                            ])}}">
                                                                                 <img alt="{{$dayOffer->name}}"
                                                                                      loading="lazy"
                                                                                      decoding="async"
@@ -264,7 +268,11 @@
                                                                                 <div class="">
                                                                                     <a
                                                                                         class="text-[1.2rem] font-[500] text-typography w-full"
-                                                                                        href="/demo/menu/14/7">
+                                                                                        href="{{domain_route('menu.item',[
+                                                                                                'slug'=>$business->slug,
+                                                                                                'categoryId'=>$dayOffer->category_id,
+                                                                                                'itemId'=>$dayOffer->id,
+                                                                                            ])}}">
                                                                                         {{$dayOffer->name}}
                                                                                     </a>
                                                                                 </div>
@@ -470,7 +478,11 @@
                                                     <div class="">
                                                         <a
                                                             class="flex-shrink-0 bg-white !w-[10rem] overflow-hidden rounded-[2.4rem] block border border-black/[.05] relative h-full"
-                                                            href="/demo/menu/9/8">
+                                                            href="{{domain_route('menu.item',[
+                                                                    'slug' => $business->slug,
+                                                                    'categoryId'=>$item->category_id,
+                                                                    'itemId'=>$item->id,
+                                                                ])}}">
                                                             <img alt="{{$item->name}}" loading="lazy"
                                                                  decoding="async" data-nimg="fill"
                                                                  @class([
@@ -490,7 +502,11 @@
                                                             gap="2" style="justify-content: normal;">
                                                             <div class=""><a
                                                                     class="text-[1.2rem] font-[500] text-typography w-full"
-                                                                    href="/demo/menu/9/8">
+                                                                    href="{{domain_route('menu.item',[
+                                                                            'slug'=>$business->slug,
+                                                                            'categoryId'=>$item->category_id,
+                                                                            'itemId'=>$item->id,
+                                                                        ])}}">
                                                                     {{$item->name}}
                                                                 </a></div>
                                                             <div class="">
