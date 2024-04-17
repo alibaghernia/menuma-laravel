@@ -23,6 +23,21 @@ Route::get('/catalog', function () {
 Route::get('/register-form', \App\Livewire\MainDomain\RegisterForm::class)
     ->name('register-form');
 
+//todo
+Route::get('/q/{slug}', function ($slug) {
+    if ($slug == '_A1') {
+        return redirect()->away('https://kamakancafe.ir/menu');
+    }
+    if ($slug == '_A2') {
+        return redirect()->away('https://cafeinjast.ir/menu');
+
+    }
+    if ($slug == '_A3') {
+        return redirect()->away('https://menuma.online/tourismcafe/menu');
+    }
+    abort(404);
+});
+
 
 //
 Route::name('business.')
