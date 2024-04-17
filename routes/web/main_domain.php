@@ -11,6 +11,17 @@ Route::get('/',
     [MainDomain\Tst::class, 'index'])
     ->name('home');
 
+// todo
+Route::get('/catalog', function () {
+    $catalogs = \App\Models\Catalog::all();
+    return view('main_domain.catalog.index', compact([
+        'catalogs',
+    ]));
+})
+    ->name('catalog');
+
+
+//
 Route::name('business.')
     ->prefix('/{slug}')
     ->group(function () {
