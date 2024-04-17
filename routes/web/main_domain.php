@@ -20,6 +20,9 @@ Route::get('/catalog', function () {
 })
     ->name('catalog');
 
+Route::get('/register-form', \App\Livewire\MainDomain\RegisterForm::class)
+    ->name('register-form');
+
 
 //
 Route::name('business.')
