@@ -30,3 +30,8 @@ Route::get('/events',
 Route::get('/customer_club/register',
     [BusinessDomain\BusinessController::class, 'registerInCustomerClub'])
     ->name('customer-club.register');
+
+Route::get('/panel', function () {
+    return redirect()->away('https://' . config('app.domains.panel'));
+})
+    ->name('panel');
