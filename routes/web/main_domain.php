@@ -37,4 +37,9 @@ Route::name('business.')
         Route::get('/events',
             [MainDomain\Tst::class, 'eventsList'])
             ->name('events');
+
+        Route::get('/panel', function () {
+            return redirect()->away('https://' . config('app.domains.panel'));
+        })
+            ->name('panel');
     });
