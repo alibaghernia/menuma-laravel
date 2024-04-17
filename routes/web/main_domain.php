@@ -38,7 +38,9 @@ Route::get('/q/{slug}', function ($slug) {
     abort(404);
 });
 
-
+//todo
+//Route::get('/search', function () {
+//});
 //
 Route::name('business.')
     ->prefix('/{slug}')
