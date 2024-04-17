@@ -262,7 +262,8 @@
                         </div>
                     </div>
                 @endif
-                {{--     cccccccccccc           --}}
+
+                @if(count($businessesEvents))
                 <div class="my-[2.12rem] w-screen md:max-w-[65rem]">
                     <div class="flex flex-col place-items-stretch items-stretch justify-normal" gap=".5rem"
                          style="gap: 0.5rem; justify-content: normal;">
@@ -436,7 +437,7 @@
                         @endforeach
                     </div>
                 </div>
-                {{--        cccccccccccc        --}}
+                @endif
             </div>
             <x-business.footer/>
             {{--<div class="mx-10 border-t p-5 border-[#e5e7eb]">
