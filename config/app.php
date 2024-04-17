@@ -190,7 +190,7 @@ return [
     ])->toArray(),
 
     'domains' => [
-            'panel' => env('DOMAIN_MAIN'),
-            'main' => env('DOMAIN_PANEL'),
+            'main' => env('DOMAIN_MAIN'),
+            'panel' => env('DOMAIN_PANEL'),
     ],
 ];
