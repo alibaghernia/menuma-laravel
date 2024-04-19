@@ -1,0 +1,17 @@
+- [ ] Update to laravel 11
+- [ ] Dockerize project
+- [ ] implement pages from old version
+    - [ ] search page
+    - [ ] Business's galley
+- [ ] Catalog's features
+    - [ ] Customer club
+        - [ ] Send SMS
+        - [ ] Customer login
+    - [ ] Reservation
+      - [ ] Table
+      - [ ] Hall
+    - [ ] Register for events
+    - [ ] Customer pager
+    - [ ] Garrison pager
+    - [ ] Multi language menu
+    - [ ] Pay bill
