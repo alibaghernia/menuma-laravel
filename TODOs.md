@@ -15,3 +15,4 @@
     - [ ] Garrison pager
     - [ ] Multi language menu
     - [ ] Pay bill
+- [ ] Fix profile page's sidebar 
