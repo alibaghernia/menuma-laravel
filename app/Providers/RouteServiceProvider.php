@@ -31,10 +31,42 @@ class RouteServiceProvider extends ServiceProvider
         $this->routes(function () {
             Route::middleware('api')
                 ->prefix('api')
-                ->group(base_path('routes/api.php'));
+                ->group([
+                    base_path('routes/api.php'),
+                    base_path('routes/api/api.php'),
+                ]);
 
-            Route::middleware('web')
-                ->group(base_path('routes/web.php'));
+//            Web
+//                todo
+            Route::middleware('web')->group(function () {
+
+                Route::domain('menuma.local')
+                    ->name('main-domain.')
+                    ->group(base_path('routes/web/main_domain.php'));
+
+                Route::domain('panel.menuma.local')
+                    ->name('panel-domain.')
+                    ->group(base_path('routes/web/panel_domain.php'));
+
+                Route::name('business-domain.')
+                    ->group(base_path('routes/web/business_domain.php'));
+            });
+
+
+//            Route::middleware('web')
+//                ->group([
+//                    base_path('routes/web/business_domain.php'),
+//                    base_path('routes/web/panel_domain.php'),
+//                    base_path('routes/web/main_domain.php'),
+////                    base_path('routes/web.php'),
+//                ]);
+
+
+//            Route::middleware('web')
+//                ->group(base_path('routes/web/panel_domain.php'));
+//            Route::middleware('web')
+//                ->group(base_path('routes/web.php'));
+
         });
     }
 }

@@ -12,8 +12,10 @@
         "ariaieboy/filament-jalali-datetime": "^1.2",
         "ariaieboy/filament-jalali-datetimepicker": "^2.0",
         "filament/filament": "^3.2",
+        "filament/forms": "^3.2",
         "filament/notifications": "^3.2",
         "guzzlehttp/guzzle": "^7.2",
+        "hekmatinasser/verta": "^8.4",
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8",
@@ -36,7 +38,10 @@
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
-        }
+        },
+        "files": [
+            "app/Helpers/functions.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {

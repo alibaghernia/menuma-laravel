@@ -1,3 +1,78 @@
+@import 'vazirmatn/misc/Farsi-Digits/Vazirmatn-FD-font-face.css';
+/*@import 'vazirmatn/Vazirmatn-font-face.css';*/
+/*@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap');*/
+
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/*@import 'swiper/css/bundle';*/
+/*@import 'swiper/swiper-bundle.min.css';*/
+html, body {
+    font-size: 16px;
+    /*font-family: 'Vazir FD' !important;*/
+}
+
+@media screen and (max-width: 768px) {
+    html, body {
+        font-size: 90%;
+    }
+}
+
+@layer base {
+    html {
+        scroll-behavior: smooth;
+        -webkit-tap-highlight-color: transparent;
+    }
+}
+
+.rdp__modal {
+    z-index: 100 !important;
+}
+
+input {
+    text-align: start !important;
+    unicode-bidi: plaintext !important;
+}
+
+/**/
+.swiper-pagination-bullet {
+    display: block !important;
+    width: 6px !important;
+    height: 6px !important;
+    border-radius: 50%;
+    margin-left: 0.25rem !important;
+    margin-right: 0.25rem !important;
+    background-color: theme('colors.typography') !important;
+    opacity: 0.5 !important;
+}
+
+.swiper-pagination-bullet-active {
+    display: block !important;
+    transform: scale(1.5) !important;
+    background-color: theme('colors.typography') !important;
+    opacity: 1 !important;
+}
+
+/**/
+
+
+.text-primary {
+    color: rgb(49 119 255/ 1) !important;
+}
+
+.text-secondary {
+    --tw-text-opacity: 1 !important;
+    color: rgb(238 179 63/ 1) !important;
+}
+
+/*@import "vazirmatn/Vazirmatn-font-face.css";*/
+
+[x-cloak] {
+    display: none !important;
+}
+
+.coffee-pattern-placeholder-image {
+    @apply bg-[url("/img/placeholder/coffee-pattern.jpg")];
+}

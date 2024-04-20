@@ -28,6 +28,7 @@ class CafeRestaurantPanelProvider extends PanelProvider
             ->path('/')
             ->login(Login::class)
             ->default()
+            ->domain(config('app.domains.panel'))
             ->sidebarCollapsibleOnDesktop()
             ->databaseNotifications()
             ->databaseNotificationsPolling('5s')

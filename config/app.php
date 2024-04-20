@@ -164,6 +164,7 @@ return [
          * Application Service Providers...
          */
         App\Providers\AppServiceProvider::class,
+        App\Providers\DIServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
@@ -188,4 +189,8 @@ return [
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 
+    'domains' => [
+            'main' => env('DOMAIN_MAIN'),
+            'panel' => env('DOMAIN_PANEL'),
+    ],
 ];

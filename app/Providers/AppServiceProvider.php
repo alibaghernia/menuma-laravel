@@ -33,8 +33,6 @@ class AppServiceProvider extends ServiceProvider
         Schema::defaultStringLength(191);
 //
 
-//        dump('app');
-
 //        Livewire::component('database-notifications', DatabaseNotifications::class);
 //        $this->app->bind(BaseDatabaseNotifications::class, DatabaseNotifications::class);
 //
