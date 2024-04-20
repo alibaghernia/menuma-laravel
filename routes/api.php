@@ -85,6 +85,11 @@ Route::get('/go/_A2', function () {
         'destination' => 'https://cafeinjast.ir/menu',
     ];
 });
+Route::get('/go/_A3', function () {
+    return [
+        'destination' => 'https://menuma.online/tourismcafe/menu',
+    ];
+});
 
 Route::get('/go/{slug}',
     [QrCodeController::class, 'getDestination']);
