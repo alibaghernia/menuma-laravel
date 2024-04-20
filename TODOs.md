@@ -6,6 +6,7 @@
 - [ ] Catalog's features
     - [ ] Customer club
         - [ ] Send SMS
+        - [ ] Send Telegram message
         - [ ] Customer login
     - [ ] Reservation
       - [ ] Table
