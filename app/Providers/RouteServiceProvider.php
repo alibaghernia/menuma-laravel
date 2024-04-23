@@ -40,11 +40,11 @@ class RouteServiceProvider extends ServiceProvider
 //                todo
             Route::middleware('web')->group(function () {
 
-                Route::domain('menuma.local')
+                Route::domain(config('app.domains.main'))
                     ->name('main-domain.')
                     ->group(base_path('routes/web/main_domain.php'));
 
-                Route::domain('panel.menuma.local')
+                Route::domain(config('app.domains.panel'))
                     ->name('panel-domain.')
                     ->group(base_path('routes/web/panel_domain.php'));
 
