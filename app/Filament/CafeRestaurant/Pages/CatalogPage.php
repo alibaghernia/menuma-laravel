@@ -16,6 +16,8 @@ class CatalogPage extends Page
 
     public function mount()
     {
-        $this->redirect('https://menuma.online/catalog');
+//        todo port for develop time.
+        $domain = config('app.domains.main');
+        $this->redirect('https://'.$domain.'/catalog');
     }
 }
