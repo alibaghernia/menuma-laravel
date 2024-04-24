@@ -32,8 +32,8 @@
     @vite('resources/css/app.css')
 </head>
 <body
-    x-data="{scrolled : false}"
-    class="min-h-screen bg-background">
+        x-data="{scrolled : false}"
+        class="min-h-screen bg-background">
 <div id="__next">
     <main class="z-10 ">
         <div class="bg-background min-h-screen">
@@ -46,12 +46,12 @@
                          style="justify-content: normal;">
                         <div class="">
                             <div
-                                class="flex flex-col place-items-stretch items-stretch justify-normal gap-2 pt-[4.5rem]"
-                                gap="2" style="justify-content: normal;">
+                                    class="flex flex-col place-items-stretch items-stretch justify-normal gap-2 pt-[4.5rem]"
+                                    gap="2" style="justify-content: normal;">
                                 <div class="px-2">
                                     <div
-                                        x-cloak
-                                        x-init="
+                                            x-cloak
+                                            x-init="
                                 new Swiper($el,{
                                     slidesPerView:'auto',
                                     spaceBetween:8,
@@ -73,39 +73,39 @@
                                    }
                                 })
                                 "
-                                        class="swiper swiper-initialized swiper-horizontal swiper-rtl swiper-backface-hidden">
+                                            class="swiper swiper-initialized swiper-horizontal swiper-rtl swiper-backface-hidden">
                                         <div class="swiper-wrapper"
                                              style="transition-duration: 0ms; transition-delay: 0ms; transform: translate3d(-33.4375px, 0px, 0px);">
 
                                             @foreach($menu->chunk(2) as $bothCategories)
 
                                                 <div
-                                                    class="swiper-slide !flex !flex-row !flex-nowrap !items-center
+                                                        class="swiper-slide !flex !flex-row !flex-nowrap !items-center
                                                          !gap-[.5rem] !w-fit"
-                                                    {{--                                                          todo--}}
-                                                    {{--                                                         swiper-slide-active"--}}
-                                                    {{--                                                    style="margin-left: 8px"--}}
+                                                        {{--                                                          todo--}}
+                                                        {{--                                                         swiper-slide-active"--}}
+                                                        {{--                                                    style="margin-left: 8px"--}}
                                                 >
                                                     @foreach($bothCategories as $category)
                                                         <div>
                                                             <div
-                                                                {{-- todo --}}
-                                                                {{--        class="relative block overflow-hidden cursor-pointer transition-all duration-[.2s] w-[6.7rem] h-[3.7rem] rounded-[1rem]"--}}
-                                                                class="ci-category relative block overflow-hidden cursor-pointer transition-all duration-[.2s] rounded-[1.625rem] w-[8.7rem] h-[8.7rem] "
-                                                                onclick="scrollIntoCategory({{$category->id}})"
+                                                                    {{-- todo --}}
+                                                                    {{--        class="relative block overflow-hidden cursor-pointer transition-all duration-[.2s] w-[6.7rem] h-[3.7rem] rounded-[1rem]"--}}
+                                                                    class="ci-category relative block overflow-hidden cursor-pointer transition-all duration-[.2s] rounded-[1.625rem] w-[8.7rem] h-[8.7rem] "
+                                                                    onclick="scrollIntoCategory({{$category->id}})"
                                                             >
                                                                 @if($category->background_path)
                                                                     {{--                                                                    @dd($category->background_path)--}}
                                                                     <img
-                                                                        alt="{{$category->name}}" loading="lazy"
-                                                                        decoding="async"
-                                                                        data-nimg="fill" class="z-0 object-cover"
-                                                                        sizes="100vw"
-                                                                        {{-- todo --}}
-                                                                        {{--srcset="/_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2F7Lj5XzBb3G6QE0Pm2Zeng93riZOpD0-metaZG93bmxvYWQuanBn-.jpg&amp;w=640&amp;q=75 640w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2F7Lj5XzBb3G6QE0Pm2Zeng93riZOpD0-metaZG93bmxvYWQuanBn-.jpg&amp;w=750&amp;q=75 750w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2F7Lj5XzBb3G6QE0Pm2Zeng93riZOpD0-metaZG93bmxvYWQuanBn-.jpg&amp;w=828&amp;q=75 828w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2F7Lj5XzBb3G6QE0Pm2Zeng93riZOpD0-metaZG93bmxvYWQuanBn-.jpg&amp;w=1080&amp;q=75 1080w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2F7Lj5XzBb3G6QE0Pm2Zeng93riZOpD0-metaZG93bmxvYWQuanBn-.jpg&amp;w=1200&amp;q=75 1200w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2F7Lj5XzBb3G6QE0Pm2Zeng93riZOpD0-metaZG93bmxvYWQuanBn-.jpg&amp;w=1920&amp;q=75 1920w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2F7Lj5XzBb3G6QE0Pm2Zeng93riZOpD0-metaZG93bmxvYWQuanBn-.jpg&amp;w=2048&amp;q=75 2048w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2F7Lj5XzBb3G6QE0Pm2Zeng93riZOpD0-metaZG93bmxvYWQuanBn-.jpg&amp;w=3840&amp;q=75 3840w"--}}
-                                                                        src="/storage/{{$category->background_path}}"
-                                                                        style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;"
-                                                                        onerror="this.remove()"
+                                                                            alt="{{$category->name}}" loading="lazy"
+                                                                            decoding="async"
+                                                                            data-nimg="fill" class="z-0 object-cover"
+                                                                            sizes="100vw"
+                                                                            {{-- todo --}}
+                                                                            {{--srcset="/_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2F7Lj5XzBb3G6QE0Pm2Zeng93riZOpD0-metaZG93bmxvYWQuanBn-.jpg&amp;w=640&amp;q=75 640w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2F7Lj5XzBb3G6QE0Pm2Zeng93riZOpD0-metaZG93bmxvYWQuanBn-.jpg&amp;w=750&amp;q=75 750w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2F7Lj5XzBb3G6QE0Pm2Zeng93riZOpD0-metaZG93bmxvYWQuanBn-.jpg&amp;w=828&amp;q=75 828w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2F7Lj5XzBb3G6QE0Pm2Zeng93riZOpD0-metaZG93bmxvYWQuanBn-.jpg&amp;w=1080&amp;q=75 1080w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2F7Lj5XzBb3G6QE0Pm2Zeng93riZOpD0-metaZG93bmxvYWQuanBn-.jpg&amp;w=1200&amp;q=75 1200w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2F7Lj5XzBb3G6QE0Pm2Zeng93riZOpD0-metaZG93bmxvYWQuanBn-.jpg&amp;w=1920&amp;q=75 1920w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2F7Lj5XzBb3G6QE0Pm2Zeng93riZOpD0-metaZG93bmxvYWQuanBn-.jpg&amp;w=2048&amp;q=75 2048w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2F7Lj5XzBb3G6QE0Pm2Zeng93riZOpD0-metaZG93bmxvYWQuanBn-.jpg&amp;w=3840&amp;q=75 3840w"--}}
+                                                                            src="/storage/{{$category->background_path}}"
+                                                                            style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;"
+                                                                            onerror="this.remove()"
                                                                     >
 
                                                                 @endif
@@ -117,7 +117,7 @@
                                                                         ])
                                                                     ></span>
                                                                 <div
-                                                                    class="ci-category-name text-white font-bold text-center absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] z-20
+                                                                        class="ci-category-name text-white font-bold text-center absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] z-20
                                                                     {{-- todo --}}
                                                                      text-[1.2rem]
 {{--                                                                     text-[.9rem]--}}
@@ -149,10 +149,10 @@
                         <div class="">
                             <div class="mt-4 md:max-w-md md:mx-auto mx-6">
                                 <div
-                                    class="flex flex-row place-items-center items-center border-[#e5e7eb] justify-normal gap-2 rounded-full p-[.3rem] bg-white overflow-hidden border"
-                                    gap="2" style="justify-content: normal;">
+                                        class="flex flex-row place-items-center items-center border-[#e5e7eb] justify-normal gap-2 rounded-full p-[.3rem] bg-white overflow-hidden border"
+                                        gap="2" style="justify-content: normal;">
                                     <div
-                                        class="p-[.4rem] px-2 bg-black/[15%] rounded-tr-2xl rounded-br-2xl rounded-tl-lg rounded-bl-lg cursor-pointer">
+                                            class="p-[.4rem] px-2 bg-black/[15%] rounded-tr-2xl rounded-br-2xl rounded-tl-lg rounded-bl-lg cursor-pointer">
                                         <svg width="18" height="18" viewBox="0 0 16 16" fill="none"
                                              xmlns="http://www.w3.org/2000/svg">
                                             <path opacity="0.8"
@@ -178,8 +178,8 @@
                              gap=".5rem" style="gap: 0.5rem; justify-content: normal;">
                             <div class="">
                                 <div
-                                    class="flex flex-row place-items-center items-center justify-between gap-2 px-[1.9rem]"
-                                    gap="2" style="justify-content: space-between;">
+                                        class="flex flex-row place-items-center items-center justify-between gap-2 px-[1.9rem]"
+                                        gap="2" style="justify-content: space-between;">
                                     <div class="grow-0 text-[1rem] text-typography w-fit whitespace-nowrap font-bold">
                                         پیشنهادات روز
                                     </div>
@@ -194,8 +194,8 @@
                                      style="justify-content: normal;">
                                     <div class="">
                                         <div
-                                            x-cloak
-                                            x-init="
+                                                x-cloak
+                                                x-init="
                                 new Swiper($el,{
                                     slidesPerView:'auto',
                                     spaceBetween:8,
@@ -217,25 +217,25 @@
                                             {{--                                    }--}}
                                                 })
 "
-                                            class="swiper swiper-initialized swiper-horizontal swiper-rtl swiper-backface-hidden">
+                                                class="swiper swiper-initialized swiper-horizontal swiper-rtl swiper-backface-hidden">
                                             <div class="swiper-wrapper"
                                                  style="transition-duration: 0ms; transition-delay: 0ms; transform: translate3d(0px, 0px, 0px);">
                                                 @foreach($dayOffers as $dayOffer)
                                                     <div
-                                                        class="swiper-slide !flex !flex-row !flex-nowrap !items-center !gap-[.5rem] w-full md:!w-fit swiper-slide-active"
-                                                        style="margin-left: 15px;">
+                                                            class="swiper-slide !flex !flex-row !flex-nowrap !items-center !gap-[.5rem] w-full md:!w-fit swiper-slide-active"
+                                                            style="margin-left: 15px;">
                                                         <div class="relative w-full w-full md:w-[30rem]">
                                                             <div
-                                                                class="flex flex-row place-items-stretch items-stretch justify-normal relative z-0 w-full"
-                                                                style="justify-content: normal;">
+                                                                    class="flex flex-row place-items-stretch items-stretch justify-normal relative z-0 w-full"
+                                                                    style="justify-content: normal;">
                                                                 <div class="w-full">
                                                                     <div
-                                                                        class="flex flex-row place-items-stretch items-stretch justify-normal bg-white h-[12.9rem] rounded-[2rem] border border-black/[.05] overflow-hidden w-full p-[1rem] gap-[1.4rem] z-10"
-                                                                        style="justify-content: normal;">
+                                                                            class="flex flex-row place-items-stretch items-stretch justify-normal bg-white h-[12.9rem] rounded-[2rem] border border-black/[.05] overflow-hidden w-full p-[1rem] gap-[1.4rem] z-10"
+                                                                            style="justify-content: normal;">
                                                                         <div class="">
                                                                             <a
-                                                                                class="flex-shrink-0 bg-white !w-[10rem] overflow-hidden rounded-[2.4rem] block border border-black/[.05] relative h-full"
-                                                                                href="{{domain_route('menu.item',[
+                                                                                    class="flex-shrink-0 bg-white !w-[10rem] overflow-hidden rounded-[2.4rem] block border border-black/[.05] relative h-full"
+                                                                                    href="{{domain_route('menu.item',[
                                                                                                 'slug'=>$business->slug,
                                                                                                 'categoryId'=>$dayOffer->category_id,
                                                                                                 'itemId'=>$dayOffer->id,
@@ -248,13 +248,17 @@
                                                                                      sizes="100vw"
                                                                                      {{-- srcset="/_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2FpFfZxSRt4VMzc7bqoVdoHPcxb9cUpu-metaVHlwZXMtb2YtdGVhLTItMTAyNHg1MTMuanBn-.jpg&amp;w=640&amp;q=75 640w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2FpFfZxSRt4VMzc7bqoVdoHPcxb9cUpu-metaVHlwZXMtb2YtdGVhLTItMTAyNHg1MTMuanBn-.jpg&amp;w=750&amp;q=75 750w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2FpFfZxSRt4VMzc7bqoVdoHPcxb9cUpu-metaVHlwZXMtb2YtdGVhLTItMTAyNHg1MTMuanBn-.jpg&amp;w=828&amp;q=75 828w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2FpFfZxSRt4VMzc7bqoVdoHPcxb9cUpu-metaVHlwZXMtb2YtdGVhLTItMTAyNHg1MTMuanBn-.jpg&amp;w=1080&amp;q=75 1080w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2FpFfZxSRt4VMzc7bqoVdoHPcxb9cUpu-metaVHlwZXMtb2YtdGVhLTItMTAyNHg1MTMuanBn-.jpg&amp;w=1200&amp;q=75 1200w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2FpFfZxSRt4VMzc7bqoVdoHPcxb9cUpu-metaVHlwZXMtb2YtdGVhLTItMTAyNHg1MTMuanBn-.jpg&amp;w=1920&amp;q=75 1920w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2FpFfZxSRt4VMzc7bqoVdoHPcxb9cUpu-metaVHlwZXMtb2YtdGVhLTItMTAyNHg1MTMuanBn-.jpg&amp;w=2048&amp;q=75 2048w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2FpFfZxSRt4VMzc7bqoVdoHPcxb9cUpu-metaVHlwZXMtb2YtdGVhLTItMTAyNHg1MTMuanBn-.jpg&amp;w=3840&amp;q=75 3840w"--}}
                                                                                      {{-- todo placeholder--}}
-                                                                                     src="/storage/{{$dayOffer->image_path}}"
+                                                                                     @if($dayOffer->image_path)
+                                                                                         src="/storage/{{$dayOffer->image_path}}"
+                                                                                     @else
+                                                                                         src="/img/placeholder/coffee-pattern.jpg"
+                                                                                     @endif
                                                                                      style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
                                                                                 <span
-                                                                                    class="z-10 absolute inset-0"
-                                                                                    style="background: linear-gradient(rgba(255, 255, 255, 0) 40%, rgba(224, 224, 224, 0.75) 100%);"></span>
+                                                                                        class="z-10 absolute inset-0"
+                                                                                        style="background: linear-gradient(rgba(255, 255, 255, 0) 40%, rgba(224, 224, 224, 0.75) 100%);"></span>
                                                                                 <div
-                                                                                    class="text-[1.2rem] text-typography absolute bottom-[.3rem] left-[50%] translate-x-[-50%] font-bold z-20">
+                                                                                        class="text-[1.2rem] text-typography absolute bottom-[.3rem] left-[50%] translate-x-[-50%] font-bold z-20">
                                                                                     {{-- todo --}}
                                                                                     {{number_format($dayOffer->prices[0]['price'])}}
                                                                                     ت
@@ -262,13 +266,13 @@
                                                                             </a></div>
                                                                         <div class="grow">
                                                                             <div
-                                                                                class="flex flex-col place-items-stretch items-stretch justify-normal gap-2 h-full"
-                                                                                gap="2"
-                                                                                style="justify-content: normal;">
+                                                                                    class="flex flex-col place-items-stretch items-stretch justify-normal gap-2 h-full"
+                                                                                    gap="2"
+                                                                                    style="justify-content: normal;">
                                                                                 <div class="">
                                                                                     <a
-                                                                                        class="text-[1.2rem] font-[500] text-typography w-full"
-                                                                                        href="{{domain_route('menu.item',[
+                                                                                            class="text-[1.2rem] font-[500] text-typography w-full"
+                                                                                            href="{{domain_route('menu.item',[
                                                                                                 'slug'=>$business->slug,
                                                                                                 'categoryId'=>$dayOffer->category_id,
                                                                                                 'itemId'=>$dayOffer->id,
@@ -278,20 +282,20 @@
                                                                                 </div>
                                                                                 <div class="">
                                                                                     <div
-                                                                                        class="flex flex-row place-items-stretch items-stretch justify-normal gap-2"
-                                                                                        gap="2"
-                                                                                        style="justify-content: normal;"></div>
+                                                                                            class="flex flex-row place-items-stretch items-stretch justify-normal gap-2"
+                                                                                            gap="2"
+                                                                                            style="justify-content: normal;"></div>
                                                                                 </div>
                                                                                 <div class="grow">
                                                                                     <div
-                                                                                        class="text-[0.8rem] font-[300] text-typography w-full line-clamp-[4]">
+                                                                                            class="text-[0.8rem] font-[300] text-typography w-full line-clamp-[4]">
                                                                                         {{$dayOffer->description}}
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="">
                                                                                     <a
-                                                                                        class="text-[.8rem] px-[.8rem] py-[.3rem] text-typography bg-typography/[.1] text-center rounded-[1rem] font-[600] cursor-pointer active:scale-[.8] transition-transform duration-[.3s] block w-full"
-                                                                                        href="{{domain_route('menu.item',[
+                                                                                            class="text-[.8rem] px-[.8rem] py-[.3rem] text-typography bg-typography/[.1] text-center rounded-[1rem] font-[600] cursor-pointer active:scale-[.8] transition-transform duration-[.3s] block w-full"
+                                                                                            href="{{domain_route('menu.item',[
                                                                                                 'slug'=>$business->slug,
                                                                                                 'categoryId'=>$dayOffer->category_id,
                                                                                                 'itemId'=>$dayOffer->id,
@@ -439,9 +443,9 @@
                                     <div id="swiper-pagination-offers"
                                          class="mx-auto mt-2 !flex !w-fit transition-all duration-[.3s] swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal">
                                         <span
-                                            class="menu_swiper-pagination-bullet__12QJH menu_swiper-pagination-bullet-active__Ki109"></span><span
-                                            class="menu_swiper-pagination-bullet__12QJH"></span><span
-                                            class="menu_swiper-pagination-bullet__12QJH"></span></div>
+                                                class="menu_swiper-pagination-bullet__12QJH menu_swiper-pagination-bullet-active__Ki109"></span><span
+                                                class="menu_swiper-pagination-bullet__12QJH"></span><span
+                                                class="menu_swiper-pagination-bullet__12QJH"></span></div>
                                 </div>
                             </div>
                         </div>
@@ -450,13 +454,13 @@
                 <div class="z-10 relative">
                     @foreach($menu as $category)
                         <div
-                            class="flex flex-col place-items-stretch items-stretch justify-normal mt-[1.125rem] pb-5 scroll-mt-[20rem]"
-                            gap=".5rem" id="category-{{$category->id}}"
-                            style="gap: 0.5rem; justify-content: normal;">
+                                class="flex flex-col place-items-stretch items-stretch justify-normal mt-[1.125rem] pb-5 scroll-mt-[20rem]"
+                                gap=".5rem" id="category-{{$category->id}}"
+                                style="gap: 0.5rem; justify-content: normal;">
                             <div class="">
                                 <div
-                                    class="flex flex-row place-items-center items-center justify-between gap-2 px-[1.9rem]"
-                                    gap="2" style="justify-content: space-between;">
+                                        class="flex flex-row place-items-center items-center justify-between gap-2 px-[1.9rem]"
+                                        gap="2" style="justify-content: space-between;">
                                     <div class="grow-0 text-[1rem] text-typography w-fit whitespace-nowrap font-bold">
                                         {{$category->name}}
                                     </div>
@@ -469,16 +473,16 @@
                                 @foreach($category->items as $item)
                                     <div class="relative w-full px-5 max-w-lg">
                                         <div
-                                            class="flex place-items-stretch items-stretch justify-normal relative z-0 w-full flex-col"
-                                            style="justify-content: normal;">
+                                                class="flex place-items-stretch items-stretch justify-normal relative z-0 w-full flex-col"
+                                                style="justify-content: normal;">
                                             <div class="w-full z-20">
                                                 <div
-                                                    class="flex flex-row place-items-stretch items-stretch justify-normal bg-white h-[12.9rem] rounded-[2rem] border border-black/[.05] overflow-hidden w-full p-[1rem] gap-[1.4rem] z-10"
-                                                    style="justify-content: normal;">
+                                                        class="flex flex-row place-items-stretch items-stretch justify-normal bg-white h-[12.9rem] rounded-[2rem] border border-black/[.05] overflow-hidden w-full p-[1rem] gap-[1.4rem] z-10"
+                                                        style="justify-content: normal;">
                                                     <div class="">
                                                         <a
-                                                            class="flex-shrink-0 bg-white !w-[10rem] overflow-hidden rounded-[2.4rem] block border border-black/[.05] relative h-full"
-                                                            href="{{domain_route('menu.item',[
+                                                                class="flex-shrink-0 bg-white !w-[10rem] overflow-hidden rounded-[2.4rem] block border border-black/[.05] relative h-full"
+                                                                href="{{domain_route('menu.item',[
                                                                     'slug' => $business->slug,
                                                                     'categoryId'=>$item->category_id,
                                                                     'itemId'=>$item->id,
@@ -492,17 +496,21 @@
                                                                  sizes="100vw"
                                                                  {{-- todo --}}
                                                                  {{-- srcset="/_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2FYwBmdz43wjYkancN0Fe8tNf1riG4oS-metaMTY4MzQ3Nzc5MTgwNC5qcGc%3D-.jpg&amp;w=640&amp;q=75 640w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2FYwBmdz43wjYkancN0Fe8tNf1riG4oS-metaMTY4MzQ3Nzc5MTgwNC5qcGc%3D-.jpg&amp;w=750&amp;q=75 750w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2FYwBmdz43wjYkancN0Fe8tNf1riG4oS-metaMTY4MzQ3Nzc5MTgwNC5qcGc%3D-.jpg&amp;w=828&amp;q=75 828w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2FYwBmdz43wjYkancN0Fe8tNf1riG4oS-metaMTY4MzQ3Nzc5MTgwNC5qcGc%3D-.jpg&amp;w=1080&amp;q=75 1080w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2FYwBmdz43wjYkancN0Fe8tNf1riG4oS-metaMTY4MzQ3Nzc5MTgwNC5qcGc%3D-.jpg&amp;w=1200&amp;q=75 1200w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2FYwBmdz43wjYkancN0Fe8tNf1riG4oS-metaMTY4MzQ3Nzc5MTgwNC5qcGc%3D-.jpg&amp;w=1920&amp;q=75 1920w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2FYwBmdz43wjYkancN0Fe8tNf1riG4oS-metaMTY4MzQ3Nzc5MTgwNC5qcGc%3D-.jpg&amp;w=2048&amp;q=75 2048w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2FYwBmdz43wjYkancN0Fe8tNf1riG4oS-metaMTY4MzQ3Nzc5MTgwNC5qcGc%3D-.jpg&amp;w=3840&amp;q=75 3840w"--}}
-                                                                 src="/storage/{{$item->image_path}}"
+                                                                 @if($item->image_path)
+                                                                     src="/storage/{{$item->image_path}}"
+                                                                 @else
+                                                                     src="/img/placeholder/coffee-pattern.jpg"
+                                                                 @endif
                                                                  style="position: absolute; height: 100%; width: 100%; inset: 0; color: transparent;">
                                                         </a>
                                                     </div>
                                                     <div class="grow">
                                                         <div
-                                                            class="flex flex-col place-items-stretch items-stretch justify-normal gap-2 h-full"
-                                                            gap="2" style="justify-content: normal;">
+                                                                class="flex flex-col place-items-stretch items-stretch justify-normal gap-2 h-full"
+                                                                gap="2" style="justify-content: normal;">
                                                             <div class=""><a
-                                                                    class="text-[1.2rem] font-[500] text-typography w-full"
-                                                                    href="{{domain_route('menu.item',[
+                                                                        class="text-[1.2rem] font-[500] text-typography w-full"
+                                                                        href="{{domain_route('menu.item',[
                                                                             'slug'=>$business->slug,
                                                                             'categoryId'=>$item->category_id,
                                                                             'itemId'=>$item->id,
@@ -511,20 +519,20 @@
                                                                 </a></div>
                                                             <div class="">
                                                                 <div
-                                                                    class="flex flex-row place-items-stretch items-stretch justify-normal gap-2"
-                                                                    gap="2" style="justify-content: normal;">
+                                                                        class="flex flex-row place-items-stretch items-stretch justify-normal gap-2"
+                                                                        gap="2" style="justify-content: normal;">
                                                                     @if(in_array('sold_out',$item->tags))
                                                                         <div
-                                                                            class=" text-xs font-medium px-2.5 py-0.5 rounded-full bg-gray-200/[.75] text-typography flex items-center"
-                                                                            {{-- todo use calss
-                                                                            note: var --gray-200not definded --}}
-                                                                            style="background-color: rgba(229, 231, 235, .75) !important;">
+                                                                                class=" text-xs font-medium px-2.5 py-0.5 rounded-full bg-gray-200/[.75] text-typography flex items-center"
+                                                                                {{-- todo use calss
+                                                                                note: var --gray-200not definded --}}
+                                                                                style="background-color: rgba(229, 231, 235, .75) !important;">
                                                                             تمام شده
                                                                         </div>
                                                                     @endif
                                                                     @if(in_array('new',$item->tags))
                                                                         <div
-                                                                            class=" text-xs font-medium px-2.5 py-0.5 rounded-full bg-green-100/[.75] text-green-900 flex items-center text-center">
+                                                                                class=" text-xs font-medium px-2.5 py-0.5 rounded-full bg-green-100/[.75] text-green-900 flex items-center text-center">
                                                                             <span class="mx-auto">جدید</span>
                                                                         </div>
                                                                     @endif
@@ -532,7 +540,7 @@
                                                             </div>
                                                             <div class="grow">
                                                                 <div
-                                                                    class="text-[0.8rem] font-[300] text-typography w-full line-clamp-[4]">
+                                                                        class="text-[0.8rem] font-[300] text-typography w-full line-clamp-[4]">
                                                                     {{$item->description}}
                                                                 </div>
                                                             </div>
@@ -542,35 +550,35 @@
                                                 </div>
                                             </div>
                                             <div
-                                                class="flex flex-col place-items-stretch items-stretch justify-normal shrink-0 w-full z-0"
-                                                style="justify-content: normal;">
+                                                    class="flex flex-col place-items-stretch items-stretch justify-normal shrink-0 w-full z-0"
+                                                    style="justify-content: normal;">
                                                 @php($zindex=0)
                                                 @foreach($item->prices as $price)
                                                     @php($zindex-=1)
                                                     <div
-                                                        class="w-full relative bg-white h-[5rem] mt-[-2rem] rounded-bl-[2rem] rounded-br-[2rem] overflow-hidden border border-white"
-                                                        style="z-index: {{$zindex}};"><span
-                                                            class="absolute inset-0 bg-typography/[.20] z-0 pointer-events-none"></span>
+                                                            class="w-full relative bg-white h-[5rem] mt-[-2rem] rounded-bl-[2rem] rounded-br-[2rem] overflow-hidden border border-white"
+                                                            style="z-index: {{$zindex}};"><span
+                                                                class="absolute inset-0 bg-typography/[.20] z-0 pointer-events-none"></span>
                                                         <div
-                                                            class="absolute bottom-0 left-0 right-0 py-[.5rem] px-[1.7rem] z-10">
+                                                                class="absolute bottom-0 left-0 right-0 py-[.5rem] px-[1.7rem] z-10">
                                                             <div
-                                                                class="flex flex-row place-items-center items-center justify-between"
-                                                                style="justify-content: space-between;">
+                                                                    class="flex flex-row place-items-center items-center justify-between"
+                                                                    style="justify-content: space-between;">
                                                                 <div class="">
                                                                     <div
-                                                                        class="flex flex-row place-items-center items-center justify-normal gap-2 px-[0.9rem]"
-                                                                        gap="2" style="justify-content: normal;">
+                                                                            class="flex flex-row place-items-center items-center justify-normal gap-2 px-[0.9rem]"
+                                                                            gap="2" style="justify-content: normal;">
                                                                         @if(count($item->prices)>1)
                                                                             <div class="">
                                                                                 <div
-                                                                                    class="text-typography text-[1rem] font-bold">
+                                                                                        class="text-typography text-[1rem] font-bold">
                                                                                     {{$zindex * -1}}-
                                                                                 </div>
                                                                             </div>
                                                                         @endif
                                                                         <div class="">
                                                                             <div
-                                                                                class="text-typography text-[1rem] font-bold">
+                                                                                    class="text-typography text-[1rem] font-bold">
                                                                                 {{$price['title']}}
                                                                             </div>
                                                                         </div>
@@ -578,11 +586,11 @@
                                                                 </div>
                                                                 <div class="">
                                                                     <div
-                                                                        class="flex flex-row place-items-center items-center justify-normal gap-2 px-[.8rem] py-[.2rem] bg-white/[.3] rounded-[1rem] false transition-all duration-[.3s]"
-                                                                        gap="2" style="justify-content: normal;">
+                                                                            class="flex flex-row place-items-center items-center justify-normal gap-2 px-[.8rem] py-[.2rem] bg-white/[.3] rounded-[1rem] false transition-all duration-[.3s]"
+                                                                            gap="2" style="justify-content: normal;">
                                                                         <div class="">
                                                                             <div
-                                                                                class="text-[1rem] font-[500] text-typography">
+                                                                                    class="text-[1rem] font-[500] text-typography">
                                                                                 {{number_format($price['price'])}}
                                                                                 ت
                                                                             </div>
@@ -645,7 +653,7 @@
             </div>
             {{--</div>--}}
             <div
-                class="fixed inset-0 bg-black/[.2] z-[51] transition-all duration-[.2s] opacity-0 pointer-events-none">
+                    class="fixed inset-0 bg-black/[.2] z-[51] transition-all duration-[.2s] opacity-0 pointer-events-none">
             </div>
             {{--            todo check--}}
         </div>
