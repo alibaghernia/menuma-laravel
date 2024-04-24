@@ -1,5 +1,5 @@
 # TODO
 npm i
-npm run bild
+npm run build
 composer install --no-dev
 php artisan migrate --force
