@@ -24,6 +24,7 @@
 </head>
 
 <body class="min-h-screen bg-background">
+<x-loading/>
 <div>
     <main class="z-10 __className_e3ed35">
         <div class="flex flex-col place-items-stretch items-stretch justify-between min-h-screen"
