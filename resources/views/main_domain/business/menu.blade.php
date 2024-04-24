@@ -34,6 +34,7 @@
 <body
         x-data="{scrolled : false}"
         class="min-h-screen bg-background">
+<x-loading/>
 <div id="__next">
     <main class="z-10 ">
         <div class="bg-background min-h-screen">
