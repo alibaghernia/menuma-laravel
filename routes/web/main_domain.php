@@ -37,7 +37,7 @@ Route::get('/q/{slug}', function ($slug) {
 
     }
     if ($slug == '_A3') {
-        return redirect()->away('https://menuma.online/tourismcafe/menu');
+        return redirect()->away('https://tourismcafe.ir/');
     }
     abort(404);
 });

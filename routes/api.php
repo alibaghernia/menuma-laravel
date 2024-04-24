@@ -87,7 +87,7 @@ Route::get('/go/_A2', function () {
 });
 Route::get('/go/_A3', function () {
     return [
-        'destination' => 'https://menuma.online/tourismcafe/menu',
+        'destination' => 'https://tourismcafe.ir/',
     ];
 });
 
