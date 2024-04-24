@@ -140,7 +140,11 @@
                                                         data-nimg="fill" class="z-0"
                                                         sizes="100vw"
                                                         {{-- srcset="menuma.online/_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2Fv7e4QpvAZhCbDjGa9yagNa9RYrXY8J-metaZTZiZDlmYjA3MzgxZTFlYjE2ZjJhNzIzN2EyM2ZiZjkgKDEpLmpwZw%3D%3D-.jpg&amp;w=640&amp;q=75 640w, https://menuma.online/_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2Fv7e4QpvAZhCbDjGa9yagNa9RYrXY8J-metaZTZiZDlmYjA3MzgxZTFlYjE2ZjJhNzIzN2EyM2ZiZjkgKDEpLmpwZw%3D%3D-.jpg&amp;w=750&amp;q=75 750w, https://menuma.online/_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2Fv7e4QpvAZhCbDjGa9yagNa9RYrXY8J-metaZTZiZDlmYjA3MzgxZTFlYjE2ZjJhNzIzN2EyM2ZiZjkgKDEpLmpwZw%3D%3D-.jpg&amp;w=828&amp;q=75 828w, https://menuma.online/_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2Fv7e4QpvAZhCbDjGa9yagNa9RYrXY8J-metaZTZiZDlmYjA3MzgxZTFlYjE2ZjJhNzIzN2EyM2ZiZjkgKDEpLmpwZw%3D%3D-.jpg&amp;w=1080&amp;q=75 1080w, https://menuma.online/_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2Fv7e4QpvAZhCbDjGa9yagNa9RYrXY8J-metaZTZiZDlmYjA3MzgxZTFlYjE2ZjJhNzIzN2EyM2ZiZjkgKDEpLmpwZw%3D%3D-.jpg&amp;w=1200&amp;q=75 1200w, https://menuma.online/_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2Fv7e4QpvAZhCbDjGa9yagNa9RYrXY8J-metaZTZiZDlmYjA3MzgxZTFlYjE2ZjJhNzIzN2EyM2ZiZjkgKDEpLmpwZw%3D%3D-.jpg&amp;w=1920&amp;q=75 1920w, https://menuma.online/_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2Fv7e4QpvAZhCbDjGa9yagNa9RYrXY8J-metaZTZiZDlmYjA3MzgxZTFlYjE2ZjJhNzIzN2EyM2ZiZjkgKDEpLmpwZw%3D%3D-.jpg&amp;w=2048&amp;q=75 2048w, https://menuma.online/_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2Fv7e4QpvAZhCbDjGa9yagNa9RYrXY8J-metaZTZiZDlmYjA3MzgxZTFlYjE2ZjJhNzIzN2EyM2ZiZjkgKDEpLmpwZw%3D%3D-.jpg&amp;w=3840&amp;q=75 3840w"--}}
-                                                        src="/storage/{{$business->logo_path}}"
+                                                        @if($business->logo_path)
+                                                            src="/storage/{{$business->logo_path}}"
+                                                        @else
+                                                            src="/img/placeholder/coffee-pattern.jpg"
+                                                        @endif
                                                         style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
                                                     <div
                                                         class="absolute inset-0 bg-black/[.6] flex items-center justify-center z-10 text-white text-[.75rem] font-bold">
@@ -264,179 +268,188 @@
                 @endif
 
                 @if(count($businessesEvents))
-                <div class="my-[2.12rem] w-screen md:max-w-[65rem]">
-                    <div class="flex flex-col place-items-stretch items-stretch justify-normal" gap=".5rem"
-                         style="gap: 0.5rem; justify-content: normal;">
-                        <div class="">
-                            <div class="flex flex-row place-items-center items-center justify-between gap-2 px-[1.9rem]"
-                                 gap="2" style="justify-content: space-between;">
-                                <div class="grow-0 text-[1rem] text-typography w-fit whitespace-nowrap font-bold">
-                                    دورهمی ها
-                                </div>
-                                <div class="grow">
-                                    <hr class="border-black/10 w-full">
+                    <div class="my-[2.12rem] w-screen md:max-w-[65rem]">
+                        <div class="flex flex-col place-items-stretch items-stretch justify-normal" gap=".5rem"
+                             style="gap: 0.5rem; justify-content: normal;">
+                            <div class="">
+                                <div
+                                    class="flex flex-row place-items-center items-center justify-between gap-2 px-[1.9rem]"
+                                    gap="2" style="justify-content: space-between;">
+                                    <div class="grow-0 text-[1rem] text-typography w-fit whitespace-nowrap font-bold">
+                                        دورهمی ها
+                                    </div>
+                                    <div class="grow">
+                                        <hr class="border-black/10 w-full">
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        @foreach($businessesEvents as $event)
-                            <div class="pt-[.5rem] px-5">
-                                <div class="flex flex-col place-items-stretch items-stretch justify-normal gap-2"
-                                     gap="2"
-                                     style="justify-content: normal;">
-                                    <div class="">
-                                        <div
-                                            class="flex flex-col place-items-stretch items-stretch justify-normal p-[1rem] bg-white gap-[.62rem] rounded-[1rem] shadow w-full sm:w-[30rem] mx-auto"
-                                            style="justify-content: normal;">
-                                            <div class="">
-                                                <div
-                                                    class="flex flex-row place-items-stretch items-stretch justify-normal gap-[.81rem]"
-                                                    style="justify-content: normal;">
+                            @foreach($businessesEvents as $event)
+                                <div class="pt-[.5rem] px-5">
+                                    <div class="flex flex-col place-items-stretch items-stretch justify-normal gap-2"
+                                         gap="2"
+                                         style="justify-content: normal;">
+                                        <div class="">
+                                            <div
+                                                class="flex flex-col place-items-stretch items-stretch justify-normal p-[1rem] bg-white gap-[.62rem] rounded-[1rem] shadow w-full sm:w-[30rem] mx-auto"
+                                                style="justify-content: normal;">
+                                                <div class="">
                                                     <div
-                                                        class="w-[7rem] h-[7rem] relative shrink-0 rounded-full overflow-hidden border-black/[.1] border">
-                                                        <img alt="{{$event->name}}" loading="lazy" decoding="async"
-                                                             data-nimg="fill"
-                                                             class="object-cover" sizes="100vw"
-                                                             {{-- srcset="/_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2F01HM8HM2AQY9P7J1XB84RWEM2K.jpg&amp;w=640&amp;q=75 640w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2F01HM8HM2AQY9P7J1XB84RWEM2K.jpg&amp;w=750&amp;q=75 750w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2F01HM8HM2AQY9P7J1XB84RWEM2K.jpg&amp;w=828&amp;q=75 828w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2F01HM8HM2AQY9P7J1XB84RWEM2K.jpg&amp;w=1080&amp;q=75 1080w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2F01HM8HM2AQY9P7J1XB84RWEM2K.jpg&amp;w=1200&amp;q=75 1200w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2F01HM8HM2AQY9P7J1XB84RWEM2K.jpg&amp;w=1920&amp;q=75 1920w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2F01HM8HM2AQY9P7J1XB84RWEM2K.jpg&amp;w=2048&amp;q=75 2048w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2F01HM8HM2AQY9P7J1XB84RWEM2K.jpg&amp;w=3840&amp;q=75 3840w"--}}
-                                                             {{--  TODO  --}}
-                                                             src="/storage/{{$event->cafeRestaurant->logo_path}}"
-                                                             style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
-                                                    </div>
-                                                    <div class="">
+                                                        class="flex flex-row place-items-stretch items-stretch justify-normal gap-[.81rem]"
+                                                        style="justify-content: normal;">
                                                         <div
-                                                            class="flex flex-col place-items-start items-start justify-normal gap-[.3rem]"
-                                                            style="justify-content: normal;">
-                                                            <div class="text-[1.2rem] text-typography font-semibold">
-                                                                {{$event->name}}
-                                                            </div>
+                                                            class="w-[7rem] h-[7rem] relative shrink-0 rounded-full overflow-hidden border-black/[.1] border">
+                                                            <img alt="{{$event->name}}" loading="lazy" decoding="async"
+                                                                 data-nimg="fill"
+                                                                 class="object-cover" sizes="100vw"
+                                                                 {{-- srcset="/_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2F01HM8HM2AQY9P7J1XB84RWEM2K.jpg&amp;w=640&amp;q=75 640w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2F01HM8HM2AQY9P7J1XB84RWEM2K.jpg&amp;w=750&amp;q=75 750w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2F01HM8HM2AQY9P7J1XB84RWEM2K.jpg&amp;w=828&amp;q=75 828w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2F01HM8HM2AQY9P7J1XB84RWEM2K.jpg&amp;w=1080&amp;q=75 1080w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2F01HM8HM2AQY9P7J1XB84RWEM2K.jpg&amp;w=1200&amp;q=75 1200w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2F01HM8HM2AQY9P7J1XB84RWEM2K.jpg&amp;w=1920&amp;q=75 1920w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2F01HM8HM2AQY9P7J1XB84RWEM2K.jpg&amp;w=2048&amp;q=75 2048w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2F01HM8HM2AQY9P7J1XB84RWEM2K.jpg&amp;w=3840&amp;q=75 3840w"--}}
+                                                                 {{--  TODO  --}}
+                                                                 src="/storage/{{$event->cafeRestaurant->logo_path}}"
+                                                                 style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
+                                                        </div>
+                                                        <div class="">
                                                             <div
-                                                                class="bg-typography/[.9] text-white text-[.689rem] px-[.5rem] py-[.2rem] rounded-[.3125rem] w-fit">
-                                                                {{$event->cafeRestaurant->name}}
-                                                            </div>
-                                                            <div class="text-typography text-[.862rem] line-clamp-[3]">
-                                                                {{$event->short_description}}
+                                                                class="flex flex-col place-items-start items-start justify-normal gap-[.3rem]"
+                                                                style="justify-content: normal;">
+                                                                <div
+                                                                    class="text-[1.2rem] text-typography font-semibold">
+                                                                    {{$event->name}}
+                                                                </div>
+                                                                <div
+                                                                    class="bg-typography/[.9] text-white text-[.689rem] px-[.5rem] py-[.2rem] rounded-[.3125rem] w-fit">
+                                                                    {{$event->cafeRestaurant->name}}
+                                                                </div>
+                                                                <div
+                                                                    class="text-typography text-[.862rem] line-clamp-[3]">
+                                                                    {{$event->short_description}}
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div>
-                                                <div
-                                                    class="flex flex-row place-items-center items-center justify-center gap-[.75rem]"
-                                                    style="justify-content: center;">
-                                                    <div class="">
-                                                        <div
-                                                            class="flex flex-row place-items-center items-center justify-normal gap-[.5rem]"
-                                                            style="justify-content: normal;">
-                                                            <div class="">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="20"
-                                                                     height="20" viewBox="0 0 20 20" fill="none">
-                                                                    <mask id="mask0_807_52" maskUnits="userSpaceOnUse"
-                                                                          x="1"
-                                                                          y="1" width="18" height="18"
-                                                                          style="mask-type: luminance;">
-                                                                        <path
-                                                                            d="M14.1667 2.5V5.83333M5.83337 2.5V5.83333"
-                                                                            stroke="white" stroke-width="1.5"
-                                                                            stroke-linecap="round"></path>
-                                                                        <path
-                                                                            d="M2.5 8.33333C2.5 6.76167 2.5 5.97667 2.98833 5.48833C3.47667 5 4.26167 5 5.83333 5H14.1667C15.7383 5 16.5233 5 17.0117 5.48833C17.5 5.97667 17.5 6.76167 17.5 8.33333V9.16667H2.5V8.33333Z"
-                                                                            stroke="white" stroke-width="1.5"></path>
-                                                                        <path
-                                                                            d="M15.8333 5H4.16667C3.24619 5 2.5 5.74619 2.5 6.66667V15.8333C2.5 16.7538 3.24619 17.5 4.16667 17.5H15.8333C16.7538 17.5 17.5 16.7538 17.5 15.8333V6.66667C17.5 5.74619 16.7538 5 15.8333 5Z"
-                                                                            stroke="white" stroke-width="1.5"></path>
-                                                                        <path
-                                                                            d="M5 12.5H8.33333M11.6667 12.5H15M5 15H8.33333M11.6667 15H15"
-                                                                            stroke="#434343" stroke-opacity="0.25"
-                                                                            stroke-width="1.5"
-                                                                            stroke-linecap="round"></path>
-                                                                    </mask>
-                                                                    <g mask="url(#mask0_807_52)">
-                                                                        <path d="M0 0H20V20H0V0Z" fill="#434343"></path>
-                                                                    </g>
-                                                                </svg>
-                                                            </div>
-                                                            <div class="text-typography text-[.862rem]">
-                                                                {{verta($event->date)->format('l j F')}}
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="">
-                                                        <div
-                                                            class="flex flex-row place-items-center items-center justify-normal gap-[.5rem]"
-                                                            style="justify-content: normal;">
-                                                            <div class="">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="20"
-                                                                     height="20" viewBox="0 0 16 16" fill="none">
-                                                                    <g clip-path="url(#clip0_808_81)">
-                                                                        <path
-                                                                            d="M8.00004 14.6667C11.682 14.6667 14.6667 11.682 14.6667 8C14.6667 4.318 11.682 1.33333 8.00004 1.33333C4.31804 1.33333 1.33337 4.318 1.33337 8C1.33337 11.682 4.31804 14.6667 8.00004 14.6667Z"
-                                                                            stroke="#434343" stroke-width="1.33333"
-                                                                            stroke-linejoin="round"></path>
-                                                                        <path d="M8.00269 4V8.00333L10.829 10.83"
-                                                                              stroke="#434343" stroke-width="1.33333"
-                                                                              stroke-linecap="round"
-                                                                              stroke-linejoin="round"></path>
-                                                                    </g>
-                                                                    <defs>
-                                                                        <clipPath id="clip0_808_81">
-                                                                            <rect width="16" height="16"
-                                                                                  fill="white"></rect>
-                                                                        </clipPath>
-                                                                    </defs>
-                                                                </svg>
-                                                            </div>
-                                                            <div class="text-typography text-[.862rem]">
-                                                                {{verta($event->from)->format('H:i')}}
-                                                                @if($event->to)
-                                                                    تا
-                                                                @endif
-                                                                @if($event->to)
-                                                                    {{verta($event->to)->format('H:i')}}
-                                                                @endif
-
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    @if($event->capacity)
+                                                <div>
+                                                    <div
+                                                        class="flex flex-row place-items-center items-center justify-center gap-[.75rem]"
+                                                        style="justify-content: center;">
                                                         <div class="">
                                                             <div
                                                                 class="flex flex-row place-items-center items-center justify-normal gap-[.5rem]"
                                                                 style="justify-content: normal;">
                                                                 <div class="">
                                                                     <svg xmlns="http://www.w3.org/2000/svg" width="20"
-                                                                         height="20" viewBox="0 0 15 16">
-                                                                        <path fill="#434343"
-                                                                              d="M7.5 7a2.5 2.5 0 0 1 0-5a2.5 2.5 0 0 1 0 5m0-4C6.67 3 6 3.67 6 4.5S6.67 6 7.5 6S9 5.33 9 4.5S8.33 3 7.5 3"></path>
-                                                                        <path fill="#434343"
-                                                                              d="M13.5 11c-.28 0-.5-.22-.5-.5s.22-.5.5-.5s.5-.22.5-.5A2.5 2.5 0 0 0 11.5 7h-1c-.28 0-.5-.22-.5-.5s.22-.5.5-.5c.83 0 1.5-.67 1.5-1.5S11.33 3 10.5 3c-.28 0-.5-.22-.5-.5s.22-.5.5-.5A2.5 2.5 0 0 1 13 4.5c0 .62-.22 1.18-.6 1.62c1.49.4 2.6 1.76 2.6 3.38c0 .83-.67 1.5-1.5 1.5m-12 0C.67 11 0 10.33 0 9.5c0-1.62 1.1-2.98 2.6-3.38c-.37-.44-.6-1-.6-1.62A2.5 2.5 0 0 1 4.5 2c.28 0 .5.22.5.5s-.22.5-.5.5C3.67 3 3 3.67 3 4.5S3.67 6 4.5 6c.28 0 .5.22.5.5s-.22.5-.5.5h-1A2.5 2.5 0 0 0 1 9.5c0 .28.22.5.5.5s.5.22.5.5s-.22.5-.5.5m9 3h-6c-.83 0-1.5-.67-1.5-1.5v-1C3 9.57 4.57 8 6.5 8h2c1.93 0 3.5 1.57 3.5 3.5v1c0 .83-.67 1.5-1.5 1.5m-4-5A2.5 2.5 0 0 0 4 11.5v1c0 .28.22.5.5.5h6c.28 0 .5-.22.5-.5v-1A2.5 2.5 0 0 0 8.5 9z"></path>
+                                                                         height="20" viewBox="0 0 20 20" fill="none">
+                                                                        <mask id="mask0_807_52"
+                                                                              maskUnits="userSpaceOnUse"
+                                                                              x="1"
+                                                                              y="1" width="18" height="18"
+                                                                              style="mask-type: luminance;">
+                                                                            <path
+                                                                                d="M14.1667 2.5V5.83333M5.83337 2.5V5.83333"
+                                                                                stroke="white" stroke-width="1.5"
+                                                                                stroke-linecap="round"></path>
+                                                                            <path
+                                                                                d="M2.5 8.33333C2.5 6.76167 2.5 5.97667 2.98833 5.48833C3.47667 5 4.26167 5 5.83333 5H14.1667C15.7383 5 16.5233 5 17.0117 5.48833C17.5 5.97667 17.5 6.76167 17.5 8.33333V9.16667H2.5V8.33333Z"
+                                                                                stroke="white"
+                                                                                stroke-width="1.5"></path>
+                                                                            <path
+                                                                                d="M15.8333 5H4.16667C3.24619 5 2.5 5.74619 2.5 6.66667V15.8333C2.5 16.7538 3.24619 17.5 4.16667 17.5H15.8333C16.7538 17.5 17.5 16.7538 17.5 15.8333V6.66667C17.5 5.74619 16.7538 5 15.8333 5Z"
+                                                                                stroke="white"
+                                                                                stroke-width="1.5"></path>
+                                                                            <path
+                                                                                d="M5 12.5H8.33333M11.6667 12.5H15M5 15H8.33333M11.6667 15H15"
+                                                                                stroke="#434343" stroke-opacity="0.25"
+                                                                                stroke-width="1.5"
+                                                                                stroke-linecap="round"></path>
+                                                                        </mask>
+                                                                        <g mask="url(#mask0_807_52)">
+                                                                            <path d="M0 0H20V20H0V0Z"
+                                                                                  fill="#434343"></path>
+                                                                        </g>
                                                                     </svg>
                                                                 </div>
-
                                                                 <div class="text-typography text-[.862rem]">
-                                                                    {{$event->capacity}}
-                                                                    نفر
+                                                                    {{verta($event->date)->format('l j F')}}
                                                                 </div>
-
                                                             </div>
                                                         </div>
-                                                    @endif
+                                                        <div class="">
+                                                            <div
+                                                                class="flex flex-row place-items-center items-center justify-normal gap-[.5rem]"
+                                                                style="justify-content: normal;">
+                                                                <div class="">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="20"
+                                                                         height="20" viewBox="0 0 16 16" fill="none">
+                                                                        <g clip-path="url(#clip0_808_81)">
+                                                                            <path
+                                                                                d="M8.00004 14.6667C11.682 14.6667 14.6667 11.682 14.6667 8C14.6667 4.318 11.682 1.33333 8.00004 1.33333C4.31804 1.33333 1.33337 4.318 1.33337 8C1.33337 11.682 4.31804 14.6667 8.00004 14.6667Z"
+                                                                                stroke="#434343" stroke-width="1.33333"
+                                                                                stroke-linejoin="round"></path>
+                                                                            <path d="M8.00269 4V8.00333L10.829 10.83"
+                                                                                  stroke="#434343"
+                                                                                  stroke-width="1.33333"
+                                                                                  stroke-linecap="round"
+                                                                                  stroke-linejoin="round"></path>
+                                                                        </g>
+                                                                        <defs>
+                                                                            <clipPath id="clip0_808_81">
+                                                                                <rect width="16" height="16"
+                                                                                      fill="white"></rect>
+                                                                            </clipPath>
+                                                                        </defs>
+                                                                    </svg>
+                                                                </div>
+                                                                <div class="text-typography text-[.862rem]">
+                                                                    {{verta($event->from)->format('H:i')}}
+                                                                    @if($event->to)
+                                                                        تا
+                                                                    @endif
+                                                                    @if($event->to)
+                                                                        {{verta($event->to)->format('H:i')}}
+                                                                    @endif
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        @if($event->capacity)
+                                                            <div class="">
+                                                                <div
+                                                                    class="flex flex-row place-items-center items-center justify-normal gap-[.5rem]"
+                                                                    style="justify-content: normal;">
+                                                                    <div class="">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                                                             width="20"
+                                                                             height="20" viewBox="0 0 15 16">
+                                                                            <path fill="#434343"
+                                                                                  d="M7.5 7a2.5 2.5 0 0 1 0-5a2.5 2.5 0 0 1 0 5m0-4C6.67 3 6 3.67 6 4.5S6.67 6 7.5 6S9 5.33 9 4.5S8.33 3 7.5 3"></path>
+                                                                            <path fill="#434343"
+                                                                                  d="M13.5 11c-.28 0-.5-.22-.5-.5s.22-.5.5-.5s.5-.22.5-.5A2.5 2.5 0 0 0 11.5 7h-1c-.28 0-.5-.22-.5-.5s.22-.5.5-.5c.83 0 1.5-.67 1.5-1.5S11.33 3 10.5 3c-.28 0-.5-.22-.5-.5s.22-.5.5-.5A2.5 2.5 0 0 1 13 4.5c0 .62-.22 1.18-.6 1.62c1.49.4 2.6 1.76 2.6 3.38c0 .83-.67 1.5-1.5 1.5m-12 0C.67 11 0 10.33 0 9.5c0-1.62 1.1-2.98 2.6-3.38c-.37-.44-.6-1-.6-1.62A2.5 2.5 0 0 1 4.5 2c.28 0 .5.22.5.5s-.22.5-.5.5C3.67 3 3 3.67 3 4.5S3.67 6 4.5 6c.28 0 .5.22.5.5s-.22.5-.5.5h-1A2.5 2.5 0 0 0 1 9.5c0 .28.22.5.5.5s.5.22.5.5s-.22.5-.5.5m9 3h-6c-.83 0-1.5-.67-1.5-1.5v-1C3 9.57 4.57 8 6.5 8h2c1.93 0 3.5 1.57 3.5 3.5v1c0 .83-.67 1.5-1.5 1.5m-4-5A2.5 2.5 0 0 0 4 11.5v1c0 .28.22.5.5.5h6c.28 0 .5-.22.5-.5v-1A2.5 2.5 0 0 0 8.5 9z"></path>
+                                                                        </svg>
+                                                                    </div>
+
+                                                                    <div class="text-typography text-[.862rem]">
+                                                                        {{$event->capacity}}
+                                                                        نفر
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                        @endif
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="mt-[.5rem]">
-                                                <div
-                                                    class="rounded-[.625rem] px-[.8rem] cursor-pointer whitespace-nowrap select-none w-full text-center text-[.862rem] py-[.5rem] bg-primary text-white">
-                                                    {{-- TODO domain--}}
-                                                    <a class="block"
-                                                       href="{{domain_route('events',['slug'=>$event->cafeRestaurant->slug])}}">مشاهده</a>
+                                                <div class="mt-[.5rem]">
+                                                    <div
+                                                        class="rounded-[.625rem] px-[.8rem] cursor-pointer whitespace-nowrap select-none w-full text-center text-[.862rem] py-[.5rem] bg-primary text-white">
+                                                        {{-- TODO domain--}}
+                                                        <a class="block"
+                                                           href="{{domain_route('events',['slug'=>$event->cafeRestaurant->slug])}}">مشاهده</a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        @endforeach
+                            @endforeach
+                        </div>
                     </div>
-                </div>
                 @endif
             </div>
             <x-business.footer/>
