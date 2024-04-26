@@ -90,15 +90,12 @@
                          return;
                         }
                         {{--           todo             --}}
-                        navigator.geolocation.getCurrentPosition((...position) => {
+                        navigator.geolocation.getCurrentPosition((position) => {
                         const lat = position.coords.latitude;
                         const long = position.coords.longitude;
-                        console.log(lat)
-                        console.log(long)
+                        window.location.href = `/search?lat=${lat}&long=${long}`
                         },
                         (error)=>{
-                        console.log(error.code)
-
                             if (error.code === 1){
                             $dispatch('open-modal', {
                                     title:'خطای دسترسی',
