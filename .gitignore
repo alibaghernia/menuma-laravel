@@ -32,3 +32,6 @@ _ide_helper_models.php
 error_log
 
 /tmp
+
+package-lock.json
+composer.lock
