@@ -1,9 +1,15 @@
 <?php
+$url = '';
+if (app()->runningInConsole()) {
+    $url = 'https://' . config('app.domains.main') . '/storage';
+} else {
+    $requestPort = request()->getPort();
+    $port = in_array($requestPort, [80, 443]) ? '' : ':' . $requestPort;
+    $protocol = request()->isSecure() ? 'https' : 'http';
+    $host = request()->host();
+    $url = "{$protocol}://{$host}{$port}/storage";
+}
 
-$requestPort = request()->getPort();
-$port = in_array($requestPort, [80, 443]) ? '' : ':' . $requestPort;
-$protocol = request()->isSecure() ? 'https' : 'http';
-$host = request()->host();
 return [
 
     /*
@@ -43,7 +49,7 @@ return [
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
-            'url' => env('APP_URL').'/storage',
+            'url' => env('APP_URL') . '/storage',
             'visibility' => 'public',
             'throw' => false,
         ],
@@ -51,7 +57,7 @@ return [
         'public_dynamic_domain' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
-            'url' => "{$protocol}://{$host}{$port}/storage",
+            'url' => $url,
             'visibility' => 'public',
             'throw' => false,
         ],
