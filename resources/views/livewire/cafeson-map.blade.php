@@ -29,7 +29,10 @@
             integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
     <div id="map"></div>
-
+    @php
+        $mainDomain = config('app.domains.main');
+        $panelDomain = config('app.domains.panel');
+    @endphp
     <script>
         var map = L.map('map').setView([31.867588336515183, 54.37847691719813], 12);
 
@@ -78,7 +81,7 @@
             let status = event.target.checked ? 1 : 0
 
             console.log(id)
-            fetch('https://panel.menuma.online/api/' + id + '/' + status)
+            fetch('https://{{$panelDomain}}/api/' + id + '/' + status)
             // fetch('http://127.0.0.1:8000/api/' + id + '/' + status)
                 .then(response => response)
                 .then(data => console.log(data))
@@ -89,8 +92,9 @@
         @foreach($cafes as $cafe)
 
         L.marker([{{$cafe->location_lat}}, {{$cafe->location_long}}]).addTo(map)
+            // todo test
             .bindPopup(`
-                <a href='http://menuma.online/{{$cafe->slug}}' target="_blank" >
+                <a href='http://{{$mainDomain}}/{{$cafe->slug}}' target="_blank" >
                 {{$cafe->name}}
             </a>
             <br>

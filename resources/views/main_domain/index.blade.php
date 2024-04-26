@@ -30,7 +30,7 @@
         <div class="flex flex-col place-items-stretch items-stretch justify-between min-h-screen"
              style="justify-content:space-between">
             <div class="mx-auto md:w-fit pt-[2.38rem] flex flex-col items-center"><a
-                    class="text-[2.5rem] flex items-center font-bold" href="https://menuma.online/">
+                    class="text-[2.5rem] flex items-center font-bold" href="https://{{config('app.domains.main')}}/">
                     <div class="text-primary">منو</div>
                     <div class="text-secondary">ما</div>
                 </a>

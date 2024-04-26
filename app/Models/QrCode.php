@@ -17,6 +17,7 @@ class QrCode extends Model
     public function getDestinationAttribute()
     {
         $qrCode = $this;
+        $domain = config('app.domains.main');
 
         $cafe = CafeModel::where('id', $qrCode->meta['business_id'])->first();
         abort_if(!$cafe, 404, 'the qr code does not exist.');
@@ -27,7 +28,7 @@ class QrCode extends Model
         if ($cafe->has_domain_address) {
             $destination = "https://{$cafe->domain_address}/menu?{$queryParams}";
         } else {
-            $destination = "https://menuma.online/{$cafe->slug}/menu?{$queryParams}";
+            $destination = "https://{$domain}/{$cafe->slug}/menu?{$queryParams}";
         }
 
         return $destination;

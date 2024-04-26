@@ -180,7 +180,7 @@
                             </div>--}}
                         </div>
                     </div>
-                    <div class="text-gray-300 font-bold w-full text-center py-3"><a href="https://menuma.online/"><span
+                    <div class="text-gray-300 font-bold w-full text-center py-3"><a href="https://{{config('app.domains.main')}}/"><span
                                 class="hover:underline">قدرت گرفته از <span
                                     class="text-blue-400">منوما</span></span></a></div>
                 </div>

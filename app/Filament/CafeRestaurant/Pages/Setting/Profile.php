@@ -52,9 +52,10 @@ class Profile extends Page
 //        return $data;
 
         $cafe = auth()->user()->cafeRestaurant;
+        $domain = config('app.domains.main');
         $this->form->fill(array_merge([
             'name' => $cafe->name,
-            'url' => 'menuma.online/' . $cafe->slug,
+            'url' => $domain . '/' . $cafe->slug,
             'logo_path' => $cafe->logo_path,
             'banner_path' => $cafe->banner_path,
             'address' => $cafe->address,
