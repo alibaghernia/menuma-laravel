@@ -1,5 +1,9 @@
 <?php
 
+$requestPort = request()->getPort();
+$port = in_array($requestPort, [80, 443]) ? '' : ':' . $requestPort;
+$protocol = request()->isSecure() ? 'https' : 'http';
+$host = request()->host();
 return [
 
     /*
@@ -40,6 +44,14 @@ return [
             'driver' => 'local',
             'root' => storage_path('app/public'),
             'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
+
+        'public_dynamic_domain' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public'),
+            'url' => "{$protocol}://{$host}{$port}/storage",
             'visibility' => 'public',
             'throw' => false,
         ],
