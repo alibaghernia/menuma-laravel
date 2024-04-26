@@ -78,9 +78,49 @@
                 </div>--}}
 
                 {{--        TODO         --}}
-                {{--<div class="mt-[2.12rem]">
-                    <div
-                        class="text-[1rem] text-center rounded-[.625rem] cursor-pointer whitespace-nowrap w-fit select-none py-[.5rem] px-[.8rem] flex items-center bg-secondary text-white">
+                <div class="mt-[2.12rem]">
+                    <div x-data
+                         @click="
+                         if (!('geolocation' in navigator)) {
+                             $dispatch('open-modal', {
+                                    title:'خطا',
+                                    description:'امکان دسترسی به موقعیت مکانی شما در این دستگاه وجود ندارد.',
+                                }
+                            )
+                         return;
+                        }
+                        {{--           todo             --}}
+                        navigator.geolocation.getCurrentPosition((...position) => {
+                        const lat = position.coords.latitude;
+                        const long = position.coords.longitude;
+                        console.log(lat)
+                        console.log(long)
+                        },
+                        (error)=>{
+                        console.log(error.code)
+
+                            if (error.code === 1){
+                            $dispatch('open-modal', {
+                                    title:'خطای دسترسی',
+                                    description:'دسترسی به خواندن موقعیت مکانی داده نشده است.',
+                                }
+                            )
+                            }else if (error.code === 2){
+                            $dispatch('open-modal', {
+                                    title:'خطا',
+                                    description:'امکان دریافت اطلاعات موقعیت مکانی از سرویس دهنده وجود ندارد.',
+                                }
+                            )
+                            }else {
+                            $dispatch('open-modal', {
+                                    title:'خطا',
+                                    description:'خطایی در دریافت اطلاعات موقعیت مکانی رخ داد.',
+                                }
+                            )
+                            }
+                        });
+                         "
+                         class="text-[1rem] text-center rounded-[.625rem] cursor-pointer whitespace-nowrap w-fit select-none py-[.5rem] px-[.8rem] flex items-center bg-secondary text-white">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 18 18"
                              fill="none">
                             <path fill-rule="evenodd" clip-rule="evenodd"
@@ -92,8 +132,52 @@
                         </svg>
                         پیدا کردن نزدیکترین کافه
                     </div>
-                </div>--}}
-
+                </div>
+                {{--                --}}
+                <div x-data="{show:false, title:'', description:''}"
+                     x-show="show"
+                     x-on:open-modal.window="
+                     title =$event?.detail.title ?? ''
+                     description =$event?.detail.description ?? ''
+                     show = true;
+                     "
+                     x-on:close-modal.window="show = false"
+                     @keydown.space.window="$dispatch('close-modal')"
+                >
+                    <div
+                        class="fixed left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] z-[52] p-4 max-w-xs w-full bg-white rounded-[2rem]">
+                        <div class="flex flex-col place-items-stretch items-stretch justify-normal gap-6"
+                             style="justify-content: normal;">
+                            <div
+                                x-text="title"
+                                class="grow-0 text-center font-bold text-[1.2rem]">
+                            </div>
+                            <div class="grow">
+                                <div
+                                    x-text="description"
+                                    class="text-[1rem] text-typography text-center">
+                                </div>
+                            </div>
+                            <div class="grow-0">
+                                <div
+                                    @click="$dispatch('close-modal')"
+                                    class="flex flex-row place-items-stretch items-stretch justify-normal gap-2"
+                                    gap="2"
+                                    style="justify-content: normal;">
+                                    <div
+                                        class="grow px-2 py-2 text-center rounded-[2rem] cursor-pointer bg-green-100 bg-primary/[.1] text-primary">
+                                        متوجه شدم
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{--                --}}
+                    <div
+                        @click="$dispatch('close-modal')"
+                        class="fixed inset-0 bg-black/[.2] z-[51] transition-all duration-[.2s]"></div>
+                </div>
+                {{----}}
                 @if($pinnedBusinesses->count())
                     <div class="mt-[2.12rem] w-screen md:max-w-[65rem]">
                         <div class="flex flex-col place-items-stretch items-stretch justify-normal" gap=".5rem"
@@ -140,7 +224,7 @@
                                                         decoding="async"
                                                         data-nimg="fill" class="z-0"
                                                         sizes="100vw"
-                                                        {{-- srcset="menuma.online/_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2Fv7e4QpvAZhCbDjGa9yagNa9RYrXY8J-metaZTZiZDlmYjA3MzgxZTFlYjE2ZjJhNzIzN2EyM2ZiZjkgKDEpLmpwZw%3D%3D-.jpg&amp;w=640&amp;q=75 640w, https://menuma.online/_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2Fv7e4QpvAZhCbDjGa9yagNa9RYrXY8J-metaZTZiZDlmYjA3MzgxZTFlYjE2ZjJhNzIzN2EyM2ZiZjkgKDEpLmpwZw%3D%3D-.jpg&amp;w=750&amp;q=75 750w, https://menuma.online/_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2Fv7e4QpvAZhCbDjGa9yagNa9RYrXY8J-metaZTZiZDlmYjA3MzgxZTFlYjE2ZjJhNzIzN2EyM2ZiZjkgKDEpLmpwZw%3D%3D-.jpg&amp;w=828&amp;q=75 828w, https://menuma.online/_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2Fv7e4QpvAZhCbDjGa9yagNa9RYrXY8J-metaZTZiZDlmYjA3MzgxZTFlYjE2ZjJhNzIzN2EyM2ZiZjkgKDEpLmpwZw%3D%3D-.jpg&amp;w=1080&amp;q=75 1080w, https://menuma.online/_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2Fv7e4QpvAZhCbDjGa9yagNa9RYrXY8J-metaZTZiZDlmYjA3MzgxZTFlYjE2ZjJhNzIzN2EyM2ZiZjkgKDEpLmpwZw%3D%3D-.jpg&amp;w=1200&amp;q=75 1200w, https://menuma.online/_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2Fv7e4QpvAZhCbDjGa9yagNa9RYrXY8J-metaZTZiZDlmYjA3MzgxZTFlYjE2ZjJhNzIzN2EyM2ZiZjkgKDEpLmpwZw%3D%3D-.jpg&amp;w=1920&amp;q=75 1920w, https://menuma.online/_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2Fv7e4QpvAZhCbDjGa9yagNa9RYrXY8J-metaZTZiZDlmYjA3MzgxZTFlYjE2ZjJhNzIzN2EyM2ZiZjkgKDEpLmpwZw%3D%3D-.jpg&amp;w=2048&amp;q=75 2048w, https://menuma.online/_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2Fv7e4QpvAZhCbDjGa9yagNa9RYrXY8J-metaZTZiZDlmYjA3MzgxZTFlYjE2ZjJhNzIzN2EyM2ZiZjkgKDEpLmpwZw%3D%3D-.jpg&amp;w=3840&amp;q=75 3840w"--}}
+                                                        {{-- srcset=""--}}
                                                         @if(!empty($business->logo_path))
                                                             src="/storage/{{$business->logo_path}}"
                                                         @else
@@ -215,7 +299,7 @@
                                                                 {{--         decoding="async"--}}
                                                                 {{--         data-nimg="fill" class="object-cover bg-gray-100"--}}
                                                                 {{--         sizes="100vw"--}}
-                                                                {{--                                                                          srcset="menuma.online/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fdiscount-placeholder.ae5a20da.png&amp;w=640&amp;q=75 640w, https://menuma.online/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fdiscount-placeholder.ae5a20da.png&amp;w=750&amp;q=75 750w, https://menuma.online/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fdiscount-placeholder.ae5a20da.png&amp;w=828&amp;q=75 828w, https://menuma.online/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fdiscount-placeholder.ae5a20da.png&amp;w=1080&amp;q=75 1080w, https://menuma.online/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fdiscount-placeholder.ae5a20da.png&amp;w=1200&amp;q=75 1200w, https://menuma.online/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fdiscount-placeholder.ae5a20da.png&amp;w=1920&amp;q=75 1920w, https://menuma.online/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fdiscount-placeholder.ae5a20da.png&amp;w=2048&amp;q=75 2048w, https://menuma.online/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fdiscount-placeholder.ae5a20da.png&amp;w=3840&amp;q=75 3840w"--}}
+                                                                {{--         srcset=""--}}
                                                                 {{--         src="/storage/{{$discount->cafeRestaurant->logo_path}}"--}}
                                                                 {{--         style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">--}}
                                                                 {{--</div>--}}
@@ -302,7 +386,7 @@
                                                             <img alt="{{$event->name}}" loading="lazy" decoding="async"
                                                                  data-nimg="fill"
                                                                  class="object-cover" sizes="100vw"
-                                                                 {{-- srcset="/_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2F01HM8HM2AQY9P7J1XB84RWEM2K.jpg&amp;w=640&amp;q=75 640w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2F01HM8HM2AQY9P7J1XB84RWEM2K.jpg&amp;w=750&amp;q=75 750w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2F01HM8HM2AQY9P7J1XB84RWEM2K.jpg&amp;w=828&amp;q=75 828w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2F01HM8HM2AQY9P7J1XB84RWEM2K.jpg&amp;w=1080&amp;q=75 1080w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2F01HM8HM2AQY9P7J1XB84RWEM2K.jpg&amp;w=1200&amp;q=75 1200w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2F01HM8HM2AQY9P7J1XB84RWEM2K.jpg&amp;w=1920&amp;q=75 1920w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2F01HM8HM2AQY9P7J1XB84RWEM2K.jpg&amp;w=2048&amp;q=75 2048w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2F01HM8HM2AQY9P7J1XB84RWEM2K.jpg&amp;w=3840&amp;q=75 3840w"--}}
+                                                                 {{-- srcset=""--}}
                                                                  {{--  TODO  --}}
                                                                  src="/storage/{{$event->cafeRestaurant->logo_path}}"
                                                                  style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
