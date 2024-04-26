@@ -43,8 +43,7 @@ Route::get('/q/{slug}', function ($slug) {
 });
 
 //todo
-//Route::get('/search', function () {
-//});
+Route::get('/search',[MainDomain\Tst::class,'search']);
 //
 Route::name('business.')
     ->prefix('/{slug}')

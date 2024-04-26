@@ -10,6 +10,7 @@ use App\Models\ConditionalDiscount;
 use App\Models\ConditionalDiscount as Discount;
 use App\Models\Event;
 use App\Models\Item;
+use App\Models\SearchLog;
 use App\Models\WorkingHour;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
@@ -131,6 +132,28 @@ class Tst extends Controller
         return view('main_domain.business.menu.item', compact([
             'business',
             'item',
+        ]));
+    }
+
+    public function search(Request $request)
+    {
+        SearchLog::create(['request' => $request->all()]);
+
+        $distance = intval($request->distance) ?: 3000;
+        $userLat = floatval($request->lat);
+        $userLong = floatval($request->long);
+
+        $businesses = CafeRestaurant::query()
+            ->selectRaw('*, (6371000 * ACOS(COS(RADIANS(?)) * COS(RADIANS(location_lat)) * COS(RADIANS(location_long - ?)) + SIN(RADIANS(?)) * SIN(RADIANS(location_lat)))) AS distance')
+            ->having('distance', '<', $distance)
+            ->addBinding($userLat, 'select')
+            ->addBinding($userLong, 'select')
+            ->addBinding($userLat, 'select')
+            ->orderBy('distance')
+            ->get();
+
+        return view('main_domain.search.index', compact([
+            'businesses'
         ]));
     }
 }
