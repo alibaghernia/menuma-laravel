@@ -368,12 +368,16 @@
                     </div>
                 </div>
                 <div class="mt-[4.3rem]">
-                    <div
-                        class="text-[1rem] text-center text-typography bg-white cursor-pointer whitespace-nowrap select-none py-[.8rem] px-[2.9rem] mx-auto w-fit shadow-[0_0_20px_5px_rgba(0,0,0,0.01)] font-bold border rounded-full border-[#e5e7eb]"
-                        style="background-color:#fff">
-                        {{-- todo dynamic routes --}}
-                        <a class="mx-auto" href="{{domain_route('menu',['slug'=>$business->slug])}}">مشاهده مـنـو</a>
-                    </div>
+                    <a class="mx-auto" href="{{domain_route('menu',['slug'=>$business->slug])}}">
+                        <div
+                            class="text-[1rem] text-center text-typography bg-white cursor-pointer whitespace-nowrap select-none py-[.8rem] px-[2.9rem] mx-auto w-fit shadow-[0_0_20px_5px_rgba(0,0,0,0.01)] font-bold border rounded-full border-[#e5e7eb]"
+                            style="background-color:#fff">
+                            {{-- todo dynamic routes --}}
+                            <span>
+                        مشاهده مـنـو
+                            </span>
+                        </div>
+                    </a>
                     @if($hasWorkingTime)
                         <div class="mt-[1rem]">
                             <div class="flex flex-col place-items-stretch items-stretch justify-normal" gap=".5rem"
