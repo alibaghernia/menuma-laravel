@@ -1,6 +1,9 @@
 @extends('layouts.base')
 
+@section('lang','fa')
+@section('dir','rtl')
 @section('body.class','min-h-screen bg-background')
+
 @section('body')
     <x-loading/>
     <div>
