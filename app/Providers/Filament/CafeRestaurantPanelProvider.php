@@ -63,6 +63,7 @@ class CafeRestaurantPanelProvider extends PanelProvider
                 Authenticate::class,
             ])
             ->plugin(SpatieLaravelTranslatablePlugin::make()
-                ->defaultLocales(['fa', 'en']));
+                ->defaultLocales(['fa', 'en'])
+            );
     }
 }
