@@ -5,6 +5,10 @@
 
 @section('head.title', $business->name . ' منو ')
 
+@section('head.start')
+    <link rel="canonical"
+          href="https://{{config('app.domains.main')}}/{{$business->slug}}/menu/{{$item->category_id}}/{{$item->id}}">
+@endsection
 
 @section('head.end')
     <style>
