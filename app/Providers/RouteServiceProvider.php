@@ -44,6 +44,9 @@ class RouteServiceProvider extends ServiceProvider
                 SetLocale::class,
             ])->group(function () {
 
+                Route::name('all-domain.')
+                    ->group(base_path('routes/web/all_domain.php'));
+
                 Route::domain(config('app.domains.main'))
                     ->name('main-domain.')
                     ->group(base_path('routes/web/main_domain.php'));
@@ -54,6 +57,7 @@ class RouteServiceProvider extends ServiceProvider
 
                 Route::name('business-domain.')
                     ->group(base_path('routes/web/business_domain.php'));
+
             });
 
 
