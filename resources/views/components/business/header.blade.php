@@ -4,7 +4,7 @@
 
     {{--<div class="fixed z-50 top-0 w-full bg-background">--}}
     <div
-        class="flex flex-row place-items-center items-center justify-between relative px-[1.6rem] z-20 left-0 right-0 py-[1rem] bg-background"
+        class="flex flex-row place-items-center items-center justify-between relative px-[1.6rem] z-20 end-0 start-0 py-[1rem] bg-background"
         style="justify-content: space-between;">
         <div class="">
             <div
@@ -12,8 +12,14 @@
                 class="flex flex-row place-items-center items-center justify-normal" gap=".5rem"
                 style="gap: 0.5rem; justify-content: normal;">
                 <div class="cursor-pointer">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
-                         fill="none">
+                    <svg
+                        x-data
+                        x-bind:class="document.dir ==='ltr'?'flip-horizontally':''"
+
+
+                        {{--                        style="transform: scale(-1,1)"--}}
+                        xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
+                        fill="none">
                         <path d="M7.28307 19L20 19M19.9996 12L4 12M20 5L12.9719 5" stroke="#434343"
                               stroke-width="1.5" stroke-linecap="round"></path>
                     </svg>
@@ -56,13 +62,20 @@
                         x-data
                         @click="history.back()"
                         class="cursor-pointer">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="33"
-                             viewBox="0 0 24 25"
-                             fill="none">
+                        <svg
+                            x-data
+                            x-bind:class="document.dir ==='ltr'?'flip-horizontally':''"
+                            xmlns="http://www.w3.org/2000/svg" width="32" height="33"
+                            viewBox="0 0 24 25"
+                            fill="none">
                             <path
                                 d="M17.5 12.2322L6.5 12.2322M6.5 12.2322L11.0882 16.2322M6.5 12.2322L11.0882 8.23218"
-                                stroke="#434343" stroke-width="1.5" stroke-linecap="round"
-                                stroke-linejoin="round"></path>
+                                stroke="#434343"
+                                stroke-width="1.5"
+                                stroke-linecap="round"
+                                stroke-linejoin="round">
+
+                            </path>
                         </svg>
                     </div>
                 </div>
@@ -75,9 +88,9 @@
         @click="isOpenSlider=false"
         x-bind:class=" isOpenSlider ? 'bg-black/[.3] pointer-events-auto' : 'pointer-events-none'"
         class="fixed inset-0 z-50 transition duration-[.2s] pointer-events-none"></div>
-    <div class="fixed transition-all top-0 bottom-0 duration-[.3s] z-50 max-w-xs w-full right-[-100%]">
+    <div class="fixed transition-all top-0 bottom-0 duration-[.3s] z-50 max-w-xs w-full start-[-100%]">
         <div
-            class="flex flex-col place-items-stretch items-stretch justify-between max-w-xs w-full h-full bg-white rounded-bl-[2rem] rounded-tl-[2rem]"
+            class=" bg-red-500 flex flex-col place-items-stretch items-stretch justify-between max-w-xs w-full h-full bg-whiteaa rtl:rounded-bl-[2rem] ltr:rounded-br-[2rem] rtl:rounded-tl-[2rem] ltr:rounded-tr-[2rem]"
             style="justify-content: space-between;">
             <div class="">
                 <div class="flex flex-col place-items-stretch items-stretch justify-normal"
@@ -105,7 +118,7 @@
                         <div class="flex flex-col place-items-stretch items-stretch justify-normal"
                              style="justify-content: normal;">
                             <div
-                                class="flex flex-row place-items-center items-center justify-normal gap-2 px-[1.5rem] py-[.8rem] border-black transition-[border] duration-[.1s] hover:border-r-[5px] border-b border-b-black/[.1] last:border-b-0 cursor-pointer"
+                                class="flex flex-row place-items-center items-center justify-normal gap-2 px-[1.5rem] py-[.8rem] border-black transition-[border] duration-[.1s] hover:border-s-[5px] border-b border-b-black/[.1] last:border-b-0 cursor-pointer"
                                 gap="2" style="justify-content: normal;">
                                 <div class="">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -118,7 +131,7 @@
                                 <div class="text-[1rem]">پروفایل</div>
                             </div>
                             <div
-                                class="flex flex-row place-items-center items-center justify-normal gap-2 px-[1.5rem] py-[.8rem] border-black transition-[border] duration-[.1s] hover:border-r-[5px] border-b border-b-black/[.1] last:border-b-0 cursor-pointer"
+                                class="flex flex-row place-items-center items-center justify-normal gap-2 px-[1.5rem] py-[.8rem] border-black transition-[border] duration-[.1s] hover:border-s-[5px] border-b border-b-black/[.1] last:border-b-0 cursor-pointer"
                                 gap="2" style="justify-content: normal;">
                                 <div class="">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -140,7 +153,7 @@
                                 <div class="text-[1rem]">منو</div>
                             </div>
                             <div
-                                class="flex flex-row place-items-center items-center justify-normal gap-2 px-[1.5rem] py-[.8rem] border-black transition-[border] duration-[.1s] hover:border-r-[5px] border-b border-b-black/[.1] last:border-b-0 cursor-pointer"
+                                class="flex flex-row place-items-center items-center justify-normal gap-2 px-[1.5rem] py-[.8rem] border-black transition-[border] duration-[.1s] hover:border-s-[5px] border-b border-b-black/[.1] last:border-b-0 cursor-pointer"
                                 gap="2" style="justify-content: normal;">
                                 <div class="">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -158,7 +171,7 @@
                                 <div class="text-[1rem]">تخفیف های ویژه</div>
                             </div>
                             <div
-                                class="flex flex-row place-items-center items-center justify-normal gap-2 px-[1.5rem] py-[.8rem] border-black transition-[border] duration-[.1s] hover:border-r-[5px] border-b border-b-black/[.1] last:border-b-0 cursor-pointer"
+                                class="flex flex-row place-items-center items-center justify-normal gap-2 px-[1.5rem] py-[.8rem] border-black transition-[border] duration-[.1s] hover:border-s-[5px] border-b border-b-black/[.1] last:border-b-0 cursor-pointer"
                                 gap="2" style="justify-content: normal;">
                                 <div class="">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -172,7 +185,7 @@
                                 <div class="text-[1rem]">دورهمی ها</div>
                             </div>
                             <div
-                                class="flex flex-row place-items-center items-center justify-normal gap-2 px-[1.5rem] py-[.8rem] border-black transition-[border] duration-[.1s] hover:border-r-[5px] border-b border-b-black/[.1] last:border-b-0 cursor-pointer"
+                                class="flex flex-row place-items-center items-center justify-normal gap-2 px-[1.5rem] py-[.8rem] border-black transition-[border] duration-[.1s] hover:border-s-[5px] border-b border-b-black/[.1] last:border-b-0 cursor-pointer"
                                 gap="2" style="justify-content: normal;">
                                 <div class="">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -185,7 +198,7 @@
                                 <div class="text-[1rem]">گالری</div>
                             </div>
                             <div
-                                class="flex flex-row place-items-center items-center justify-normal gap-2 px-[1.5rem] py-[.8rem] border-black transition-[border] duration-[.1s] hover:border-r-[5px] border-b border-b-black/[.1] last:border-b-0 cursor-pointer"
+                                class="flex flex-row place-items-center items-center justify-normal gap-2 px-[1.5rem] py-[.8rem] border-black transition-[border] duration-[.1s] hover:border-s-[5px] border-b border-b-black/[.1] last:border-b-0 cursor-pointer"
                                 gap="2" style="justify-content: normal;">
                                 <div class="">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -211,10 +224,11 @@
     </div>
     <div
         x-cloak
-        x-bind:class="isOpenSlider ? ' right-0 ' : ' right-[-100%] ' "
+        x-bind:class="isOpenSlider ? ' start-0 ' : ' start-[-100%] ' "
         class="fixed transition-all top-0 bottom-0 duration-[.3s] z-50 max-w-xs w-full">
         <div
-            class="flex flex-col place-items-stretch items-stretch justify-between max-w-xs w-full h-full bg-white rounded-bl-[2rem] rounded-tl-[2rem]"
+            class="flex flex-col place-items-stretch items-stretch justify-between max-w-xs w-full h-full bg-white
+             rtl:rounded-bl-[2rem] ltr:rounded-br-[2rem]  rtl:rounded-tl-[2rem] ltr:rounded-tr-[2rem]"
             style="justify-content:space-between">
             <div class="">
                 <div class="flex flex-col place-items-stretch items-stretch justify-normal"
@@ -249,7 +263,7 @@
                                 {{-- todo fix address--}}
                                 {{--                                href="/{{$business->slug}}"--}}
                                 href="{{domain_route('profile',['slug'=>$business->slug])}}"
-                                class="flex flex-row place-items-center items-center justify-normal gap-2 px-[1.5rem] py-[.8rem] border-black transition-[border] duration-[.1s] hover:border-r-[5px] border-b border-b-black/[.1] last:border-b-0 cursor-pointer"
+                                class="flex flex-row place-items-center items-center justify-normal gap-2 px-[1.5rem] py-[.8rem] border-black transition-[border] duration-[.1s] hover:border-s-[5px] border-b border-b-black/[.1] last:border-b-0 cursor-pointer"
                                 style="justify-content:normal" gap="2">
                                 <div class="">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -259,7 +273,9 @@
                                             fill="#434343"></path>
                                     </svg>
                                 </div>
-                                <div class="text-[1rem]">پروفایل</div>
+                                <div class="text-[1rem]">
+                                    {{__('components/business-header.profile')}}
+                                </div>
                             </a>
                             {{--                                    </a>--}}
 
@@ -267,7 +283,7 @@
                                 {{--                                href="/{{$business->slug}}/menu"--}}
                                 href="{{domain_route('menu',['slug'=>$business->slug])}}"
 
-                                class="flex flex-row place-items-center items-center justify-normal gap-2 px-[1.5rem] py-[.8rem] border-black transition-[border] duration-[.1s] hover:border-r-[5px] border-b border-b-black/[.1] last:border-b-0 cursor-pointer"
+                                class="flex flex-row place-items-center items-center justify-normal gap-2 px-[1.5rem] py-[.8rem] border-black transition-[border] duration-[.1s] hover:border-s-[5px] border-b border-b-black/[.1] last:border-b-0 cursor-pointer"
                                 style="justify-content:normal" gap="2">
                                 <div class="">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -286,13 +302,15 @@
                                             stroke="#434343" stroke-width="1.5"></path>
                                     </svg>
                                 </div>
-                                <div class="text-[1rem]">منو</div>
+                                <div class="text-[1rem]">
+                                    {{__('components/business-header.menu')}}
+                                </div>
                             </a>
                             @if($countOfConditionalDiscounts)
                                 <a
                                     {{--                                    href="/{{$business->slug}}/discounts"--}}
                                     href="{{domain_route('conditional-discounts',['slug'=>$business->slug])}}"
-                                    class="flex flex-row place-items-center items-center justify-normal gap-2 px-[1.5rem] py-[.8rem] border-black transition-[border] duration-[.1s] hover:border-r-[5px] border-b border-b-black/[.1] last:border-b-0 cursor-pointer"
+                                    class="flex flex-row place-items-center items-center justify-normal gap-2 px-[1.5rem] py-[.8rem] border-black transition-[border] duration-[.1s] hover:border-s-[5px] border-b border-b-black/[.1] last:border-b-0 cursor-pointer"
                                     style="justify-content:normal" gap="2">
                                     <div class="">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -307,14 +325,17 @@
                                             </g>
                                         </svg>
                                     </div>
-                                    <div class="text-[1rem]">تخفیف های ویژه</div>
+                                    <div class="text-[1rem]">
+
+                                        {{__('components/business-header.conditional_discounts')}}
+                                    </div>
                                 </a>
                             @endif
                             @if($countOfevents)
                                 <a
                                     {{--                                    href="/{{$business->slug}}/events"--}}
                                     href="{{domain_route('events',['slug'=>$business->slug])}}"
-                                    class="flex flex-row place-items-center items-center justify-normal gap-2 px-[1.5rem] py-[.8rem] border-black transition-[border] duration-[.1s] hover:border-r-[5px] border-b border-b-black/[.1] last:border-b-0 cursor-pointer"
+                                    class="flex flex-row place-items-center items-center justify-normal gap-2 px-[1.5rem] py-[.8rem] border-black transition-[border] duration-[.1s] hover:border-s-[5px] border-b border-b-black/[.1] last:border-b-0 cursor-pointer"
                                     style="justify-content:normal" gap="2">
                                     <div class="">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -325,7 +346,9 @@
                                                   d="M13.5 11c-.28 0-.5-.22-.5-.5s.22-.5.5-.5s.5-.22.5-.5A2.5 2.5 0 0 0 11.5 7h-1c-.28 0-.5-.22-.5-.5s.22-.5.5-.5c.83 0 1.5-.67 1.5-1.5S11.33 3 10.5 3c-.28 0-.5-.22-.5-.5s.22-.5.5-.5A2.5 2.5 0 0 1 13 4.5c0 .62-.22 1.18-.6 1.62c1.49.4 2.6 1.76 2.6 3.38c0 .83-.67 1.5-1.5 1.5m-12 0C.67 11 0 10.33 0 9.5c0-1.62 1.1-2.98 2.6-3.38c-.37-.44-.6-1-.6-1.62A2.5 2.5 0 0 1 4.5 2c.28 0 .5.22.5.5s-.22.5-.5.5C3.67 3 3 3.67 3 4.5S3.67 6 4.5 6c.28 0 .5.22.5.5s-.22.5-.5.5h-1A2.5 2.5 0 0 0 1 9.5c0 .28.22.5.5.5s.5.22.5.5s-.22.5-.5.5m9 3h-6c-.83 0-1.5-.67-1.5-1.5v-1C3 9.57 4.57 8 6.5 8h2c1.93 0 3.5 1.57 3.5 3.5v1c0 .83-.67 1.5-1.5 1.5m-4-5A2.5 2.5 0 0 0 4 11.5v1c0 .28.22.5.5.5h6c.28 0 .5-.22.5-.5v-1A2.5 2.5 0 0 0 8.5 9z"></path>
                                         </svg>
                                     </div>
-                                    <div class="text-[1rem]">دورهمی ها</div>
+                                    <div class="text-[1rem]">
+                                        {{__('components/business-header.events')}}
+                                    </div>
                                 </a>
                             @endif
                             {{--<div
@@ -345,7 +368,7 @@
                                 {{--                                href="/{{$business->slug}}/customer_club/register"--}}
                                 href="{{domain_route('customer-club.register',['slug'=>$business->slug])}}"
 
-                                class="flex flex-row place-items-center items-center justify-normal gap-2 px-[1.5rem] py-[.8rem] border-black transition-[border] duration-[.1s] hover:border-r-[5px] border-b border-b-black/[.1] last:border-b-0 cursor-pointer"
+                                class="flex flex-row place-items-center items-center justify-normal gap-2 px-[1.5rem] py-[.8rem] border-black transition-[border] duration-[.1s] hover:border-s-[5px] border-b border-b-black/[.1] last:border-b-0 cursor-pointer"
                                 style="justify-content:normal" gap="2">
                                 <div class="">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -358,7 +381,9 @@
                                         </g>
                                     </svg>
                                 </div>
-                                <div class="text-[1rem]">باشگاه مشتریان</div>
+                                <div class="text-[1rem]">
+                                    {{__('components/business-header.customer_club')}}
+                                </div>
                             </a>
                         </div>
                     </div>
@@ -367,7 +392,7 @@
             <div class="text-gray-300 font-bold w-full text-center py-3">
                 <a href="https://menuma.ir">
                             <span class="hover:underline text-[#999999]">
-                                قدرت گرفته از
+                                {{__('components/business-header.powered_by')}}
 {{--                                &nbsp;--}}
                                 <span class="text-blue-400">
 
