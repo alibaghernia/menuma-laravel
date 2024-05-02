@@ -76,3 +76,7 @@ input {
 .coffee-pattern-placeholder-image {
     @apply bg-[url("/img/placeholder/coffee-pattern.jpg")];
 }
+
+.flip-horizontally {
+    transform: scale(-1, 1);
+}
