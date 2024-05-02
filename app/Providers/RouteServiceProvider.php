@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Http\Middleware\SetLocale;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Http\Request;
@@ -38,7 +39,10 @@ class RouteServiceProvider extends ServiceProvider
 
 //            Web
 //                todo
-            Route::middleware('web')->group(function () {
+            Route::middleware([
+                'web',
+                SetLocale::class,
+            ])->group(function () {
 
                 Route::domain(config('app.domains.main'))
                     ->name('main-domain.')
