@@ -5,6 +5,9 @@
 @endsection
 
 {{--  todo  --}}
+@section('head.start')
+    <link rel="canonical" href="https://{{config('app.domains.main')}}/{{$business->slug}}/menu">
+@endsection
 @section('head.end')
     <style>
         .swiper-pagination-bullet {
@@ -182,7 +185,7 @@
                                         gap="2" style="justify-content: space-between;">
                                         <div
                                             class="grow-0 text-[1rem] text-typography w-fit whitespace-nowrap font-bold">
-{{--                                            پیشنهادات روز--}}
+                                            {{--                                            پیشنهادات روز--}}
                                             {{__('pages/menu.offers_of_the_day')}}
                                         </div>
                                         <div class="grow">

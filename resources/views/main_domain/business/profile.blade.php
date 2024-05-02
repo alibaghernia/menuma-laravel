@@ -5,6 +5,7 @@
     منوما
 @endsection
 @section('head.start')
+    <link rel="canonical" href="https://{{config('app.domains.main')}}/{{$business->slug}}">
     <meta name="description" content="{{$business->description}}. {{$business->address}}"/>
     {{--  todo manifest  --}}
     {{--    <link rel="manifest" href="https://panel.menuma.online/api/cafe-restaurants/demo/manifest.json">--}}

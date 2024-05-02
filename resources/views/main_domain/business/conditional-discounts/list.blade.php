@@ -5,6 +5,11 @@
 
 @section('head.title',$business->name.' تخفیف ها ')
 
+@section('head.start')
+    <link rel="canonical"
+          href="https://{{config('app.domains.main')}}/{{$business->slug}}/discounts">
+@endsection
+
 @section('body.class','min-h-screen bg-background')
 @section('body')
     <div>

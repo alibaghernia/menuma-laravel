@@ -4,6 +4,12 @@
 @section('dir','rtl')
 
 @section('head.title',$business->name.' تخفیف ها ')
+
+@section('head.start')
+    <link rel="canonical"
+          href="https://{{config('app.domains.main')}}/{{$business->slug}}/customer_club/register">
+@endsection
+
 @section('head.end')
     @filamentStyles
 @endsection

@@ -5,6 +5,11 @@
 
 @section('head.title',$business->name.' دورهمی ها ')
 
+@section('head.start')
+    <link rel="canonical"
+          href="https://{{config('app.domains.main')}}/{{$business->slug}}/menu/events">
+@endsection
+
 @section('body.class','min-h-screen bg-background')
 
 @section('body')
