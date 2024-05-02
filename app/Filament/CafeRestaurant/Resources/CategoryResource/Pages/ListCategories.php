@@ -10,12 +10,15 @@ use Illuminate\Database\Eloquent\Builder;
 
 class ListCategories extends ListRecords
 {
+    use ListRecords\Concerns\Translatable;
+
     protected static string $resource = CategoryResource::class;
 
     protected function getHeaderActions(): array
     {
         return [
             Actions\CreateAction::make(),
+            Actions\LocaleSwitcher::make(),
         ];
     }
 

@@ -6,9 +6,12 @@ use App\Filament\CafeRestaurant\Resources\CategoryResource;
 use Filament\Facades\Filament;
 use Filament\Resources\Pages\CreateRecord;
 use Illuminate\Database\Eloquent\Model;
+use Filament\Actions;
 
 class CreateCategory extends CreateRecord
 {
+    use CreateRecord\Concerns\Translatable;
+
     protected static string $resource = CategoryResource::class;
 
     protected function handleRecordCreation(array $data): Model
@@ -24,5 +27,13 @@ class CreateCategory extends CreateRecord
         $record->save();
 
         return $record;
+    }
+
+    protected function getHeaderActions(): array
+    {
+        return [
+            Actions\LocaleSwitcher::make(),
+
+        ];
     }
 }
