@@ -1,8 +1,5 @@
 @extends('layouts.base')
 
-@section('lang','fa')
-@section('dir','rtl')
-
 @section('head.title','کاتالوگ خدمات منوما')
 
 @section('body.class','min-h-screen bg-background')

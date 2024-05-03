@@ -1,5 +1,5 @@
 @extends('layouts.base')
-{{--@section('dir','ltr')--}}
+
 @section('head.title')
     {{$business->name . '  - منو - منوما '}}
 @endsection

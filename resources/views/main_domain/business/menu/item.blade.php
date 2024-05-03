@@ -1,8 +1,5 @@
 @extends('layouts.base')
 
-@section('lang','fa')
-@section('dir','rtl')
-
 @section('head.title', $business->name . ' منو ')
 
 @section('head.start')
