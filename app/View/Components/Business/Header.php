@@ -11,8 +11,6 @@ use Illuminate\View\Component;
 
 class Header extends Component
 {
-    public int $countOfConditionalDiscounts;
-    public int $countOfevents;
 
     /**
      * Create a new component instance.
@@ -23,11 +21,6 @@ class Header extends Component
     )
     {
 
-        $this->countOfConditionalDiscounts = ConditionalDiscount::where('cafe_restaurant_id', $business->id)
-            ->count();
-
-        $this->countOfevents = Event::where('cafe_restaurant_id', $business->id)
-            ->count();
     }
 
     /**
@@ -39,7 +32,6 @@ class Header extends Component
         return view('components.business.header', [
             'business' => $this->business,
             'position' => $this->position,
-            'countOfConditionalDiscounts' => $this->countOfConditionalDiscounts,
         ]);
     }
 }
