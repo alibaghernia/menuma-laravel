@@ -535,13 +535,15 @@
                                                                                 {{-- todo use calss
                                                                                 note: var --gray-200not definded --}}
                                                                                 style="background-color: rgba(229, 231, 235, .75) !important;">
-                                                                                تمام شده
+                                                                                {{__('pages/menu.sold_out')}}
                                                                             </div>
                                                                         @endif
                                                                         @if(in_array('new',$item->tags))
                                                                             <div
                                                                                 class=" text-xs font-medium px-2.5 py-0.5 rounded-full bg-green-100/[.75] text-green-900 flex items-center text-center">
-                                                                                <span class="mx-auto">جدید</span>
+                                                                                <span class="mx-auto">
+                                                                                    {{__('pages/menu.new')}}
+                                                                                </span>
                                                                             </div>
                                                                         @endif
                                                                     </div>
