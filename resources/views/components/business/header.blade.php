@@ -3,7 +3,7 @@
     class="{{$position}} z-50 top-0 w-full bg-background">
 
     {{--<div class="fixed z-50 top-0 w-full bg-background">--}}
-    <div
+    <header
         class="flex flex-row place-items-center items-center justify-between relative px-[1.6rem] z-20 end-0 start-0 py-[1rem] bg-background"
         style="justify-content: space-between;">
         <div class="">
@@ -24,9 +24,9 @@
                               stroke-width="1.5" stroke-linecap="round"></path>
                     </svg>
                 </div>
-                <div class="text-typography text-[1.3rem] whitespace-nowrap">
+                <h1 class="text-typography text-[1.3rem] whitespace-nowrap">
                     {{$business->name}}
-                </div>
+                </h1>
             </div>
         </div>
         <div class="">
@@ -81,7 +81,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </header>
     {{--                <div class="fixed inset-0 z-50 transition duration-[.2s] pointer-events-none"></div>--}}
     <div
         x-cloak
@@ -222,7 +222,7 @@
                             class="text-blue-400">منوما</span></span></a></div>
         </div>
     </div>
-    <div
+    <nav
         x-cloak
         x-bind:class="isOpenSlider ? ' start-0 ' : ' start-[-100%] ' "
         class="fixed transition-all top-0 bottom-0 duration-[.3s] z-50 max-w-xs w-full">
@@ -237,7 +237,7 @@
                         <div
                             class="flex flex-row place-items-center items-center justify-between mt-[2rem] px-[1.5rem]"
                             style="justify-content:space-between">
-                            <div class="text-typography text-[1.5rem]">{{$business->name}}</div>
+                            <h1 class="text-typography text-[1.5rem]">{{$business->name}}</h1>
                             <div
                                 @click="isOpenSlider = false"
                                 class="cursor-pointer">
@@ -273,9 +273,9 @@
                                             fill="#434343"></path>
                                     </svg>
                                 </div>
-                                <div class="text-[1rem]">
+                                <h2 class="text-[1rem]">
                                     {{__('components/business-header.profile')}}
-                                </div>
+                                </h2>
                             </a>
                             {{--                                    </a>--}}
 
@@ -302,9 +302,9 @@
                                             stroke="#434343" stroke-width="1.5"></path>
                                     </svg>
                                 </div>
-                                <div class="text-[1rem]">
+                                <h2 class="text-[1rem]">
                                     {{__('components/business-header.menu')}}
-                                </div>
+                                </h2>
                             </a>
                             @if($countOfConditionalDiscounts)
                                 <a
@@ -325,10 +325,10 @@
                                             </g>
                                         </svg>
                                     </div>
-                                    <div class="text-[1rem]">
+                                    <h2 class="text-[1rem]">
 
                                         {{__('components/business-header.conditional_discounts')}}
-                                    </div>
+                                    </h2>
                                 </a>
                             @endif
                             @if($countOfevents)
@@ -346,9 +346,9 @@
                                                   d="M13.5 11c-.28 0-.5-.22-.5-.5s.22-.5.5-.5s.5-.22.5-.5A2.5 2.5 0 0 0 11.5 7h-1c-.28 0-.5-.22-.5-.5s.22-.5.5-.5c.83 0 1.5-.67 1.5-1.5S11.33 3 10.5 3c-.28 0-.5-.22-.5-.5s.22-.5.5-.5A2.5 2.5 0 0 1 13 4.5c0 .62-.22 1.18-.6 1.62c1.49.4 2.6 1.76 2.6 3.38c0 .83-.67 1.5-1.5 1.5m-12 0C.67 11 0 10.33 0 9.5c0-1.62 1.1-2.98 2.6-3.38c-.37-.44-.6-1-.6-1.62A2.5 2.5 0 0 1 4.5 2c.28 0 .5.22.5.5s-.22.5-.5.5C3.67 3 3 3.67 3 4.5S3.67 6 4.5 6c.28 0 .5.22.5.5s-.22.5-.5.5h-1A2.5 2.5 0 0 0 1 9.5c0 .28.22.5.5.5s.5.22.5.5s-.22.5-.5.5m9 3h-6c-.83 0-1.5-.67-1.5-1.5v-1C3 9.57 4.57 8 6.5 8h2c1.93 0 3.5 1.57 3.5 3.5v1c0 .83-.67 1.5-1.5 1.5m-4-5A2.5 2.5 0 0 0 4 11.5v1c0 .28.22.5.5.5h6c.28 0 .5-.22.5-.5v-1A2.5 2.5 0 0 0 8.5 9z"></path>
                                         </svg>
                                     </div>
-                                    <div class="text-[1rem]">
+                                    <h2 class="text-[1rem]">
                                         {{__('components/business-header.events')}}
-                                    </div>
+                                    </h2>
                                 </a>
                             @endif
                             {{--<div
@@ -381,15 +381,15 @@
                                         </g>
                                     </svg>
                                 </div>
-                                <div class="text-[1rem]">
+                                <h2 class="text-[1rem]">
                                     {{__('components/business-header.customer_club')}}
-                                </div>
+                                </h2>
                             </a>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="text-gray-300 font-bold w-full text-center py-3">
+            <h3 class="text-gray-300 font-bold w-full text-center py-3">
                 <a href="https://menuma.ir">
                             <span class="hover:underline text-[#999999]">
                                 {{__('components/business-header.powered_by')}}
@@ -403,7 +403,7 @@
                                 </span>
                             </span>
                 </a>
-            </div>
+            </h3>
         </div>
-    </div>
+    </nav>
 </div>
