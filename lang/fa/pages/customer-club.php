@@ -16,9 +16,9 @@ return [
                 ],
                 'mobile_number' => 'شماره موبایل',
             ],
-        ],
-        'actions' => [
-            'register' => 'ثبت نام'
+            'actions' => [
+                'register' => 'ثبت نام'
+            ],
         ],
     ],
 ];
