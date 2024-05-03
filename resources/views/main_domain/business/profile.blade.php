@@ -35,7 +35,10 @@
                             class="flex flex-row place-items-center items-center justify-normal"
                             style="gap:.5rem;justify-content:normal" gap=".5rem">
                             <div class="cursor-pointer py-[.2rem] px-[.4rem] bg-typography/[.3] rounded-[.5rem]">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
+                                <svg
+                                    x-data
+                                    x-bind:class="document.dir ==='ltr'?'flip-horizontally':''"
+                                    xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
                                      fill="none">
                                     <path d="M7.28307 19L20 19M19.9996 12L4 12M20 5L12.9719 5" stroke="white"
                                           stroke-width="1.5" stroke-linecap="round"></path>
