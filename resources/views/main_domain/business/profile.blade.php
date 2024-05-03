@@ -413,7 +413,9 @@
                                                                 {{verta($workingHour->from)->format('H:i')}}
                                                             </div>
                                                         </td>
-                                                        <td class="px-2 pb-2">تا</td>
+                                                        <td class="px-2 pb-2">
+                                                            {{__('pages/profile.to')}}
+                                                        </td>
                                                         <td class="pb-2">
                                                             <div
                                                                 class="bg-white/[.5] px-4 py-1 rounded-full border border-[#e5e7eb]">
