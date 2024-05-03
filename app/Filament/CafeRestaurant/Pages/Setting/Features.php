@@ -34,7 +34,12 @@ class Features extends Page
 
     public function mount(): void
     {
-        $this->form->fill([]);
+        $business = auth()->user()->cafeRestaurant;
+        $this->form->fill([
+            'enabled_multi_lang' => $business->enabled_multi_lang,
+            'has_customer_club' => $business->has_customer_club,
+            'has_domain_address' => $business->has_domain_address,
+        ]);
     }
 
     public function form(Form $form): Form
@@ -62,7 +67,7 @@ class Features extends Page
                                     ->label('با داشتن وبسایت اختصاصی سرعت بهتری را تجربه خواهید کرد و دسترسسی به خدمات بیشتری خواهید داشت')
 //                                    ->content('پس از فعال سازی در فرم ها یک منو کشویی اضافه میشود که میتوانید زیان مورد نظر را انتخاب کنید و اطلاعات را وارد کنید.')
                                     ->columnSpan(2),
-                                Components\Toggle::make('asd')
+                                Components\Toggle::make('has_domain_address')
                                     ->disabled()
                                     ->label('وضعیت')
                                     ->hint((new HtmlString(' <a class="underline" href="tel:09920560841"> 09920560841 </a>')))
@@ -75,7 +80,7 @@ class Features extends Page
                                     ->label('با فعال سازی باشگاه مشتریان، مشتریان میتواند به صورت انلاین در ان ثبت نام کنند.')
 //                                    ->content('پس از فعال سازی در فرم ها یک منو کشویی اضافه میشود که میتوانید زیان مورد نظر را انتخاب کنید و اطلاعات را وارد کنید.')
                                     ->columnSpan(2),
-                                Components\Toggle::make('asd')
+                                Components\Toggle::make('has_customer_club')
                                     ->label('وضعیت'),
                             ]),
 
@@ -88,7 +93,15 @@ class Features extends Page
 
     public function save(): void
     {
-        dd('fasd');
+        $data = $this->form->getState();
+
+        $business = auth()->user()->cafeRestaurant;
+
+        $business->enabled_multi_lang = $data['enabled_multi_lang'];
+        $business->has_customer_club = $data['has_customer_club'];
+//        $business->has_domain_address = $data['has_domain_address'];
+
+        $business->save();
     }
 
     public function getTitle(): string|Htmlable
