@@ -240,7 +240,7 @@
                         class="flex flex-col place-items-stretch items-stretch justify-normal max-w-lg mx-auto mt-2 gap-[1rem]"
                         style="justify-content: normal;">
                         <div class="grow text-typography text-center text-[1.2rem] font-bold">
-                            ثبت نام در باشگاه مشتریان
+                            {{__('pages/customer-club.register.title')}}
                         </div>
                         <div class="">
                             @livewire('components\customer-club\register-form',['business'=>$business])
