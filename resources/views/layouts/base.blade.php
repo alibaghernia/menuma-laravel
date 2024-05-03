@@ -1,6 +1,9 @@
 <!doctype html>
 {{--todo--}}
-<html lang="@yield('lang', app()->getLocale())" dir="@yield('dir', app()->getLocale() === 'en' ? 'ltr' : 'rtl')">
+<html
+    lang="@yield('lang', app()->getLocale())"
+    dir="@yield('dir', app()->getLocale() === 'en' ? 'ltr' : 'rtl')"
+>
 <head>
     @yield('head.start')
     <meta charset="UTF-8">
