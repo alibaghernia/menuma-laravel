@@ -14,7 +14,7 @@
             {{ $this->form }}
             <button type="submit"
                     class="w-full mt-[1.5rem] bg-blue-600 hover:bg-blue-500 py-1.5 rounded-lg text-white">
-                ثبت نام
+                {{__('pages/customer-club.register.form.actions.register')}}
             </button>
         </form>
 
