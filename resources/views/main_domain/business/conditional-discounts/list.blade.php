@@ -1,8 +1,5 @@
 @extends('layouts.base')
 
-@section('lang','fa')
-@section('dir','rtl')
-
 @section('head.title',$business->name.' تخفیف ها ')
 
 @section('head.start')
@@ -265,7 +262,8 @@
                                         </div>
                                         <div
                                             class="grow-0 text-[1rem] text-typography w-fit whitespace-nowrap font-bold">
-                                            تخفیف های ویژه
+                                            {{__('pages/conditional-discounts.list.title')}}
+
                                         </div>
                                         <div class="grow">
                                             <hr class="border-black/10 w-full">

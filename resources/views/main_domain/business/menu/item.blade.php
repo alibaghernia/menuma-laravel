@@ -1,8 +1,5 @@
 @extends('layouts.base')
 
-@section('lang','fa')
-@section('dir','rtl')
-
 @section('head.title', $business->name . ' منو ')
 
 @section('head.start')
@@ -84,14 +81,20 @@
                                         <div
                                             class="flex flex-col place-items-stretch items-stretch justify-normal gap-2"
                                             style="justify-content:normal" gap="2">
-                                            <div class="text-[.9rem] text-typography">قیمت ها</div>
+                                            <div class="text-[.9rem] text-typography">
+                                                @if(count($item->prices) === 1)
+                                                    {{__('pages/menu.single_page.price')}}
+                                                @else
+                                                    {{__('pages/menu.single_page.prices')}}
+                                                @endif
+                                            </div>
                                             <div
                                                 {{--                                            grayscale--}}
                                                 {{--                                            class="flex flex-col place-items-stretch items-stretch justify-normal gap-2"--}}
                                                 @class([
                                                     'flex flex-col place-items-stretch items-stretch justify-normal gap-2',
                                                     'grayscale' => in_array('sold_out', $item->tags),
-    ])
+                                                    ])
                                                 style="justify-content:normal" gap="2">
                                                 @foreach($item->prices as $price)
                                                     <div class="">
