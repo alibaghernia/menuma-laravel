@@ -94,7 +94,7 @@
                                                 @class([
                                                     'flex flex-col place-items-stretch items-stretch justify-normal gap-2',
                                                     'grayscale' => in_array('sold_out', $item->tags),
-    ])
+                                                    ])
                                                 style="justify-content:normal" gap="2">
                                                 @foreach($item->prices as $price)
                                                     <div class="">
