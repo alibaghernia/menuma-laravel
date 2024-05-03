@@ -69,11 +69,11 @@ class RegisterForm extends Component implements HasForms
             ->schema([
                 TextInput::make('name')
                     ->required()
-                    ->label('نام'),
+                    ->label(__('pages/customer-club.register.form.fields.name')),
 
                 TextInput::make('family')
                     ->required()
-                    ->label('نام خانوادگی'),
+                    ->label(__('pages/customer-club.register.form.fields.family')),
 
 //                Forms\Components\DatePicker::make('birth_date')
 //                    ->label('تاریخ تولد')
@@ -84,32 +84,32 @@ class RegisterForm extends Component implements HasForms
 //                ,
                 Select::make('gender')
                     ->required()
-                    ->label('جنسیت')
+                    ->label(__('pages/customer-club.register.form.fields.gender'))
                     ->options([
                         'man' => 'مرد',
                         'woman' => 'زن'
                     ]),
                 Forms\Components\Section::make()
-                    ->heading('تاریخ تولد')
+                    ->heading(__('pages/customer-club.register.form.fields.birthday.title'))
                     ->columns(3)
                     ->schema([
                         Select::make('day')
                             ->required()
-                            ->label('روز')
+                            ->label(__('pages/customer-club.register.form.fields.birthday.day'))
                             ->options($days),
                         Select::make('mount')
                             ->required()
-                            ->label('ماه')
+                            ->label(__('pages/customer-club.register.form.fields.birthday.month'))
                             ->options($mounts),
                         Select::make('year')
                             ->required()
-                            ->label('سال')
+                            ->label(__('pages/customer-club.register.form.fields.birthday.year'))
                             ->options($years),
                     ]),
 
 
                 TextInput::make('mobile')
-                    ->label('شماره موبایل')
+                    ->label(__('pages/customer-club.register.form.fields.mobile_number'))
                     ->required()
                     ->maxLength(11)
                     ->minLength(11)
