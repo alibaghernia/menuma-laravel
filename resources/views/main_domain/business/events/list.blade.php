@@ -264,10 +264,10 @@
                                         <div class="grow">
                                             <hr class="border-black/10 w-full">
                                         </div>
-                                        <div
+                                        <h2
                                             class="grow-0 text-[1rem] text-typography w-fit whitespace-nowrap font-bold">
                                             دورهمی های آینده
-                                        </div>
+                                        </h2>
                                         <div class="grow">
                                             <hr class="border-black/10 w-full">
                                         </div>
