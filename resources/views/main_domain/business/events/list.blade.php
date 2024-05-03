@@ -263,7 +263,7 @@
                                         </div>
                                         <h2
                                             class="grow-0 text-[1rem] text-typography w-fit whitespace-nowrap font-bold">
-                                            دورهمی های آینده
+                                            {{__('pages/events.list.future_events')}}
                                         </h2>
                                         <div class="grow">
                                             <hr class="border-black/10 w-full">
