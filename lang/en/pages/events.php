@@ -1,5 +1,7 @@
 <?php
 
 return [
-    'future_events' => 'Future events',
+    'list' => [
+        'future_events' => 'Future events',
+    ],
 ];
