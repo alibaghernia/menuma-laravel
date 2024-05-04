@@ -5,6 +5,7 @@ return [
     'events' => 'دورهمی ها',
     'customer_club' => 'باشگاه مشتریان',
     'conditional_discounts' => 'تخفیف های ویژه',
-    'powered_by' => 'قدرت گرفته از'
+    'powered_by' => 'قدرت گرفته از',
+    'change_language' => 'Change language',
 
 ];

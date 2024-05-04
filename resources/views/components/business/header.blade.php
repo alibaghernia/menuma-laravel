@@ -31,6 +31,27 @@
         <div class="">
             <div class="flex flex-row place-items-center items-center justify-normal" gap=".5rem"
                  style="gap: 0.5rem; justify-content: normal;">
+                @if(
+                    request()->host() !== config('app.domains.main') &&
+                    $business->enabled_multi_lang
+                    )
+
+                    <div
+
+                        class="
+                            px-[1rem] py-[.2rem] text-[.9rem] w-full text-center active:scale-[.99]
+                            transition-colors duration-[.1s] select-none border  rounded-[1rem] font-bold
+                            whitespace-nowrap text-typography active:text-more border-more bg-more/[.1]
+                            active:bg-more/[.2]">
+                        <a href="/switch-lang/{{app()->getLocale() === 'en' ? 'fa' : 'en'}}">
+                            <span>
+                                {{__('components/business-header.change_language')}}
+                            </span>
+                        </a>
+
+                    </div>
+
+                @endif
                 {{--<div class="">
                     <div
                         class="px-[1rem] py-[.2rem] text-[.9rem] w-full text-center active:scale-[.99]  transition-colors duration-[.1s] select-none border  rounded-[1rem] font-bold whitespace-nowrap text-typography active:text-more border-more bg-more/[.1] active:bg-more/[.2]">
