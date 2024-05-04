@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\CafeRestaurant;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,11 +16,13 @@ class SetLocale
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (
-            request()->host() !== config('app.domains.main') &&
-            session()->get('lang') === 'en'
-        ) {
-            app()->setLocale('en');
+        if (session()->get('lang') === 'en') {
+            $business = CafeRestaurant::where('domain_address', request()->host())
+                ->first();
+            if ($business?->enabled_multi_lang) {
+                app()->setLocale('en');
+            }
+
         }
         return $next($request);
     }

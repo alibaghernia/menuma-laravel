@@ -41,7 +41,6 @@ class RouteServiceProvider extends ServiceProvider
 //                todo
             Route::middleware([
                 'web',
-                SetLocale::class,
             ])->group(function () {
 
                 Route::name('all-domain.')
@@ -56,6 +55,9 @@ class RouteServiceProvider extends ServiceProvider
                     ->group(base_path('routes/web/panel_domain.php'));
 
                 Route::name('business-domain.')
+                    ->middleware([
+                        SetLocale::class,
+                    ])
                     ->group(base_path('routes/web/business_domain.php'));
 
             });
