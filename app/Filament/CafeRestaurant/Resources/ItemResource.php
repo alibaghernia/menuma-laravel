@@ -88,7 +88,8 @@ class ItemResource extends Resource
                             ])->columns(3)
                             ->columnSpan('full'),
                     ]),
-
+                Forms\Components\Toggle::make('is_hidden')
+                    ->label('مخفی کردن'),
 
 //                Forms\Components\TextInput::make('cafe_restaurant_id')
 //                    ->required()
