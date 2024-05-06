@@ -16,20 +16,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
-// todo middleware and group route, ...
-Route::get('/superadmin/login-as/{user}', function (\App\Models\User $user) {
-
-    if (!auth()->user()->hasRole(\App\Models\Role::SUPERADMIN)) {
-        abort(403);
-    }
-    auth()->logout();
-    session()->regenerate();
-    auth()->loginUsingId($user->id);
-    session()->regenerate();
-    return redirect()->to('/');
-
-});
 Route::get('/l', function () {
     return redirect()->to('/login');
 })->name('login');
