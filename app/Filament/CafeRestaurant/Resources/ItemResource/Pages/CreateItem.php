@@ -5,9 +5,12 @@ namespace App\Filament\CafeRestaurant\Resources\ItemResource\Pages;
 use App\Filament\CafeRestaurant\Resources\ItemResource;
 use Filament\Resources\Pages\CreateRecord;
 use Illuminate\Database\Eloquent\Model;
+use Filament\Actions;
 
 class CreateItem extends CreateRecord
 {
+    use CreateRecord\Concerns\Translatable;
+
     protected static string $resource = ItemResource::class;
 
     protected function handleRecordCreation(array $data): Model
@@ -44,7 +47,13 @@ class CreateItem extends CreateRecord
         $data['cafe_restaurant_id'] = auth()->user()->cafe_restaurant_id;
 
 
-
         return parent::handleRecordCreation($data);
+    }
+
+    protected function getHeaderActions(): array
+    {
+        return [
+            Actions\LocaleSwitcher::make(),
+        ];
     }
 }
