@@ -53,7 +53,7 @@ class BusinessController extends Controller
     public function menu()
     {
         $business = $this->business;
-        $menu = $this->business->categories->load('items');
+        $menu = $this->business->categories->load('visibleItems');
         $dayOffers = $this->businessService->getDayOffers($this->business);
 
         return view('main_domain.business.menu', compact([

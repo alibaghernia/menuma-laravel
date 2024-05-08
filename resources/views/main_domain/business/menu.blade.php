@@ -478,7 +478,7 @@
                                     </div>
                                 </div>
                                 <div class="flex flex-col gap-[1rem] items-center">
-                                    @foreach($category->items as $item)
+                                    @foreach($category->visibleItems as $item)
                                         <div class="relative w-full px-5 max-w-lg">
                                             <div
                                                 class="flex place-items-stretch items-stretch justify-normal relative z-0 w-full flex-col"

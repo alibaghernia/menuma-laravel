@@ -31,4 +31,11 @@ class Category extends Model
         return $this->hasMany(Item::class)
             ->orderBy('order_column');
     }
+
+    public function visibleItems(): HasMany
+    {
+        return $this->hasMany(Item::class)
+            ->orderBy('order_column')
+            ->where('is_hidden', false);
+    }
 }

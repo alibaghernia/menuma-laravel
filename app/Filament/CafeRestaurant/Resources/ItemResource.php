@@ -91,7 +91,8 @@ class ItemResource extends Resource
                             ])->columns(3)
                             ->columnSpan('full'),
                     ]),
-
+                Forms\Components\Toggle::make('is_hidden')
+                    ->label('مخفی کردن'),
 
 //                Forms\Components\TextInput::make('cafe_restaurant_id')
 //                    ->required()
@@ -122,7 +123,11 @@ class ItemResource extends Resource
             ->filters([
                 Tables\Filters\Filter::make('is_sold_out')
                     ->label('فقط تمام شده ها')
-                    ->query(fn(Builder $query): Builder => $query->whereJsonContains('tags', 'sold_out'))
+                    ->query(fn(Builder $query): Builder => $query->whereJsonContains('tags', 'sold_out')),
+
+                Tables\Filters\Filter::make('is_hidden')
+                    ->label('فقط مخفی ها')
+                    ->query(fn(Builder $query): Builder => $query->where('is_hidden', true)),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
