@@ -33,6 +33,7 @@ class CategoryResource extends Resource
                     ->label('نام')
                     ->required()
                     ->maxLength(191),
+
                 Forms\Components\FileUpload::make('background_path')
                     ->label('عکس')
                     ->image()
@@ -42,11 +43,13 @@ class CategoryResource extends Resource
                         '1:1',
                     ])
                     ->maxSize(2024)
-                    ->helperText('امکان آپلود عکس تا حجم 2 مگابایت وجود دارد ولی برای سریع تر بودن لود اطلاعات کافه عکس با حجم بیش از 500 کیلو بایت آپلود نکنید.')
-                    ->columnSpanFull(),
-//                Forms\Components\Select::make('cafe_restaurant_id')
-//                    ->relationship('cafeRestaurant', 'name')
-//                    ->required(),
+                    ->helperText('امکان آپلود عکس تا حجم 2 مگابایت وجود دارد ولی برای سریع تر بودن لود اطلاعات کافه عکس با حجم بیش از 500 کیلو بایت آپلود نکنید.'),
+
+                Forms\Components\Toggle::make('is_hidden')
+                    ->label('مخفی کردن')
+                    ->helperText('با فعال کردن این گزینه این دسته بندی و آیتم های درونش در منو نمایش داده نخواهد شد.'),
+
+
             ]);
     }
 
@@ -63,7 +66,9 @@ class CategoryResource extends Resource
             ])
             ->reorderable('order_column')
             ->filters([
-                //
+                Tables\Filters\Filter::make('is_hidden')
+                    ->label('فقط مخفی ها')
+                    ->query(fn(Builder $query): Builder => $query->where('is_hidden', true)),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

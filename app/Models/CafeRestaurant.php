@@ -25,6 +25,12 @@ class CafeRestaurant extends Model
         return $this->hasMany(Category::class);
     }
 
+    public function visibleCategories(): HasMany
+    {
+        return $this->categories()
+            ->where('is_hidden', false);
+    }
+
     public function items(): HasManyThrough
     {
         return $this->hasManyThrough(Item::class, Category::class);
