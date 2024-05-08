@@ -76,7 +76,6 @@
                                                                     <img alt="{{$catalog->title}}" loading="lazy"
                                                                          decoding="async"
                                                                          data-nimg="fill" sizes="100vw"
-                                                                         {{--                                                                     srcset=""--}}
                                                                          src="/storage/{{$catalog->image}}"
                                                                          style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
                                                                 </div>
@@ -187,19 +186,6 @@
                         </div>
                     </div>
                 </div>
-                {{--<div class="">
-                    <div class="mx-10 border-t p-5">
-                        <div class="flex flex-row place-items-center items-center justify-center gap-2"
-                             style="justify-content:center" gap="2">
-                            <div class="text-typography/[.8]">میزبانی شده توسط</div>
-                            <div class="">
-                                <a target="_blank" class="font-bold text-typography" href="https://mtserver.ir">
-                                    MT Server
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>--}}
             </div>
         </main>
     </div>
