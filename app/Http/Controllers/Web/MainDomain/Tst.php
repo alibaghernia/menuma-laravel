@@ -80,7 +80,7 @@ class Tst extends Controller
     public function menu(string $slug)
     {
         $business = CafeModel::query()->where('slug', $slug)->firstOrFail();
-        $menu = $business->categories->load('visibleItems');
+        $menu = $business->visibleCategories->load('visibleItems');
         $dayOffers = Item::where('cafe_restaurant_id', $business->id)
             ->whereJsonContains('tags', 'day_offer')
             ->get();
