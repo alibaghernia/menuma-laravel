@@ -52,7 +52,6 @@
                                         ])
                                      style="position:absolute;height:100%;width:100%;left:0;top:0;right:0;bottom:0;color:transparent"
                                      sizes="100vw"
-                                     {{-- srcset=""--}}
                                      src="/storage/{{$item->image_path}}"
                                      onerror="this.src='/img/placeholder/coffee-pattern.jpg'">
                             </div>
@@ -89,8 +88,6 @@
                                                 @endif
                                             </div>
                                             <div
-                                                {{--                                            grayscale--}}
-                                                {{--                                            class="flex flex-col place-items-stretch items-stretch justify-normal gap-2"--}}
                                                 @class([
                                                     'flex flex-col place-items-stretch items-stretch justify-normal gap-2',
                                                     'grayscale' => in_array('sold_out', $item->tags),
