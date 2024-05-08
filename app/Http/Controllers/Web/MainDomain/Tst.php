@@ -65,8 +65,8 @@ class Tst extends Controller
     public function menu(string $slug)
     {
         $business = $this->getBusinessBySlug($slug);
-        $menu = $this->business->visibleCategories->load('visibleItems');
-        $dayOffers = $this->businessService->getDayOffers($this->business);
+        $menu = $business->visibleCategories->load('visibleItems');
+        $dayOffers = $this->businessService->getDayOffers($business);
 
         return view('main_domain.business.menu', compact([
             'business',
@@ -87,7 +87,7 @@ class Tst extends Controller
     public function conditionalDiscountsList(string $slug)
     {
         $business = $this->getBusinessBySlug($slug);
-        $conditionalDiscounts = $this->businessService->getConditionalDiscounts($this->business);
+        $conditionalDiscounts = $this->businessService->getConditionalDiscounts($business);
         return view('main_domain.business.conditional-discounts.list', compact([
             'business',
             'conditionalDiscounts',
