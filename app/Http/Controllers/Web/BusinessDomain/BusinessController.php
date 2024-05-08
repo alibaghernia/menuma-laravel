@@ -37,15 +37,11 @@ class BusinessController extends Controller
 //        TODO optimize
         $workingHours = $this->businessService->getTodayWorkingHours($business);
         $hasWorkingTime = $this->businessService->hasAnyWorkingTime($business);
-//  todo
-        $countOfConditionalDiscounts = $this->businessService->countOfConditionalDiscounts($business);
-        $countOfEvents = $this->businessService->countOfEvents($business);
+
         return view('main_domain.business.profile', compact([
                 'business',
                 'workingHours',
                 'hasWorkingTime',
-                'countOfConditionalDiscounts',
-                'countOfEvents',
             ])
         );
     }

@@ -7,17 +7,9 @@
 @section('head.start')
     <link rel="canonical" href="https://{{config('app.domains.main')}}/{{$business->slug}}">
     <meta name="description" content="{{$business->description}}. {{$business->address}}"/>
-    {{--  todo manifest  --}}
-    {{--    <link rel="manifest" href="https://panel.menuma.online/api/cafe-restaurants/demo/manifest.json">--}}
     <meta property="og:title" content="{{$business->name}} - منوما">
     <meta property="og:description" content="{{$business->description}}">
-    {{--  todo add image for og  --}}
-    {{--    <meta property="og:image"--}}
-    {{--          content="https://panel.menuma.online/storage/jKL32G6YpOTravreh47gyNMDh2shuC-metaRmtKUWltVlJueERZc0NyQ1N0WHEzS2JMcDlvRGVtLW1ldGFVMk55WldWdWMyaHZkQ0F5TURJekxURXlMVEF6SURFNU16VXlPUzV3Ym1jPS0ucG5n-.png">--}}
 
-    {{--    <link rel="preload" as="image"--}}
-    {{--          imagesrcset="/_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2F6FtzPBQr082fa9gw2Lj7pwaJwrzyiHsv2s5QIhxV.jpg&amp;w=640&amp;q=75 640w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2F6FtzPBQr082fa9gw2Lj7pwaJwrzyiHsv2s5QIhxV.jpg&amp;w=750&amp;q=75 750w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2F6FtzPBQr082fa9gw2Lj7pwaJwrzyiHsv2s5QIhxV.jpg&amp;w=828&amp;q=75 828w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2F6FtzPBQr082fa9gw2Lj7pwaJwrzyiHsv2s5QIhxV.jpg&amp;w=1080&amp;q=75 1080w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2F6FtzPBQr082fa9gw2Lj7pwaJwrzyiHsv2s5QIhxV.jpg&amp;w=1200&amp;q=75 1200w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2F6FtzPBQr082fa9gw2Lj7pwaJwrzyiHsv2s5QIhxV.jpg&amp;w=1920&amp;q=75 1920w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2F6FtzPBQr082fa9gw2Lj7pwaJwrzyiHsv2s5QIhxV.jpg&amp;w=2048&amp;q=75 2048w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2F6FtzPBQr082fa9gw2Lj7pwaJwrzyiHsv2s5QIhxV.jpg&amp;w=3840&amp;q=75 3840w"--}}
-    {{--          imagesizes="100vw" fetchpriority="high">--}}
 @endsection
 
 @section('body.class','min-h-screen bg-background')
@@ -86,7 +78,6 @@
                                      {{-- todo make placholder class --}}
                                      style="position:absolute;height:100%;width:100%;left:0;top:0;right:0;bottom:0;color:transparent;"
                                      sizes="100vw"
-                                     {{-- srcset="/_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2F6FtzPBQr082fa9gw2Lj7pwaJwrzyiHsv2s5QIhxV.jpg&amp;w=640&amp;q=75 640w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2F6FtzPBQr082fa9gw2Lj7pwaJwrzyiHsv2s5QIhxV.jpg&amp;w=750&amp;q=75 750w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2F6FtzPBQr082fa9gw2Lj7pwaJwrzyiHsv2s5QIhxV.jpg&amp;w=828&amp;q=75 828w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2F6FtzPBQr082fa9gw2Lj7pwaJwrzyiHsv2s5QIhxV.jpg&amp;w=1080&amp;q=75 1080w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2F6FtzPBQr082fa9gw2Lj7pwaJwrzyiHsv2s5QIhxV.jpg&amp;w=1200&amp;q=75 1200w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2F6FtzPBQr082fa9gw2Lj7pwaJwrzyiHsv2s5QIhxV.jpg&amp;w=1920&amp;q=75 1920w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2F6FtzPBQr082fa9gw2Lj7pwaJwrzyiHsv2s5QIhxV.jpg&amp;w=2048&amp;q=75 2048w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2F6FtzPBQr082fa9gw2Lj7pwaJwrzyiHsv2s5QIhxV.jpg&amp;w=3840&amp;q=75 3840w"--}}
                                      @if($business->banner_path)
                                          src="/storage/{{$business->banner_path}}"
                                      @else
@@ -173,7 +164,6 @@
                                      class="object-cover coffee-pattern-placeholder-image bg-cover"
                                      style="position:absolute;height:100%;width:100%;left:0;top:0;right:0;bottom:0;color:transparent"
                                      sizes="100vw"
-                                     {{-- srcset="/_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2FjKL32G6YpOTravreh47gyNMDh2shuC-metaRmtKUWltVlJueERZc0NyQ1N0WHEzS2JMcDlvRGVtLW1ldGFVMk55WldWdWMyaHZkQ0F5TURJekxURXlMVEF6SURFNU16VXlPUzV3Ym1jPS0ucG5n-.png&amp;w=640&amp;q=75 640w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2FjKL32G6YpOTravreh47gyNMDh2shuC-metaRmtKUWltVlJueERZc0NyQ1N0WHEzS2JMcDlvRGVtLW1ldGFVMk55WldWdWMyaHZkQ0F5TURJekxURXlMVEF6SURFNU16VXlPUzV3Ym1jPS0ucG5n-.png&amp;w=750&amp;q=75 750w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2FjKL32G6YpOTravreh47gyNMDh2shuC-metaRmtKUWltVlJueERZc0NyQ1N0WHEzS2JMcDlvRGVtLW1ldGFVMk55WldWdWMyaHZkQ0F5TURJekxURXlMVEF6SURFNU16VXlPUzV3Ym1jPS0ucG5n-.png&amp;w=828&amp;q=75 828w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2FjKL32G6YpOTravreh47gyNMDh2shuC-metaRmtKUWltVlJueERZc0NyQ1N0WHEzS2JMcDlvRGVtLW1ldGFVMk55WldWdWMyaHZkQ0F5TURJekxURXlMVEF6SURFNU16VXlPUzV3Ym1jPS0ucG5n-.png&amp;w=1080&amp;q=75 1080w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2FjKL32G6YpOTravreh47gyNMDh2shuC-metaRmtKUWltVlJueERZc0NyQ1N0WHEzS2JMcDlvRGVtLW1ldGFVMk55WldWdWMyaHZkQ0F5TURJekxURXlMVEF6SURFNU16VXlPUzV3Ym1jPS0ucG5n-.png&amp;w=1200&amp;q=75 1200w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2FjKL32G6YpOTravreh47gyNMDh2shuC-metaRmtKUWltVlJueERZc0NyQ1N0WHEzS2JMcDlvRGVtLW1ldGFVMk55WldWdWMyaHZkQ0F5TURJekxURXlMVEF6SURFNU16VXlPUzV3Ym1jPS0ucG5n-.png&amp;w=1920&amp;q=75 1920w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2FjKL32G6YpOTravreh47gyNMDh2shuC-metaRmtKUWltVlJueERZc0NyQ1N0WHEzS2JMcDlvRGVtLW1ldGFVMk55WldWdWMyaHZkQ0F5TURJekxURXlMVEF6SURFNU16VXlPUzV3Ym1jPS0ucG5n-.png&amp;w=2048&amp;q=75 2048w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2FjKL32G6YpOTravreh47gyNMDh2shuC-metaRmtKUWltVlJueERZc0NyQ1N0WHEzS2JMcDlvRGVtLW1ldGFVMk55WldWdWMyaHZkQ0F5TURJekxURXlMVEF6SURFNU16VXlPUzV3Ym1jPS0ucG5n-.png&amp;w=3840&amp;q=75 3840w"--}}
                                      {{--  TODO  --}}
                                      @if($business->logo_path)
                                          src="/storage/{{$business->logo_path}}"

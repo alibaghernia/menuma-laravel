@@ -102,8 +102,6 @@
                                                                             decoding="async"
                                                                             data-nimg="fill" class="z-0 object-cover"
                                                                             sizes="100vw"
-                                                                            {{-- todo --}}
-                                                                            {{--srcset="/_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2F7Lj5XzBb3G6QE0Pm2Zeng93riZOpD0-metaZG93bmxvYWQuanBn-.jpg&amp;w=640&amp;q=75 640w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2F7Lj5XzBb3G6QE0Pm2Zeng93riZOpD0-metaZG93bmxvYWQuanBn-.jpg&amp;w=750&amp;q=75 750w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2F7Lj5XzBb3G6QE0Pm2Zeng93riZOpD0-metaZG93bmxvYWQuanBn-.jpg&amp;w=828&amp;q=75 828w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2F7Lj5XzBb3G6QE0Pm2Zeng93riZOpD0-metaZG93bmxvYWQuanBn-.jpg&amp;w=1080&amp;q=75 1080w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2F7Lj5XzBb3G6QE0Pm2Zeng93riZOpD0-metaZG93bmxvYWQuanBn-.jpg&amp;w=1200&amp;q=75 1200w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2F7Lj5XzBb3G6QE0Pm2Zeng93riZOpD0-metaZG93bmxvYWQuanBn-.jpg&amp;w=1920&amp;q=75 1920w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2F7Lj5XzBb3G6QE0Pm2Zeng93riZOpD0-metaZG93bmxvYWQuanBn-.jpg&amp;w=2048&amp;q=75 2048w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2F7Lj5XzBb3G6QE0Pm2Zeng93riZOpD0-metaZG93bmxvYWQuanBn-.jpg&amp;w=3840&amp;q=75 3840w"--}}
                                                                             src="/storage/{{$category->background_path}}"
                                                                             style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;"
                                                                             onerror="this.remove()"
@@ -138,12 +136,8 @@
                                     </div>
                                     <div id="swiper-pagination"
                                          class="mx-auto mt-2 !w-fit transition-all duration-[.3s] flex ">
-                                        {{--                                    ssssssssssssssssss--}}
                                         {{--todo--}}
                                         {{-- !hidden--}}
-
-                                        {{-- <div--}}
-                                        {{-- class="menu_swiper-pagination-bullet__12QJH menu_swiper-pagination-bullet-active__Ki109"></div>--}}
                                     </div>
                                 </div>
                             </div>
@@ -185,7 +179,6 @@
                                         gap="2" style="justify-content: space-between;">
                                         <div
                                             class="grow-0 text-[1rem] text-typography w-fit whitespace-nowrap font-bold">
-                                            {{--                                            پیشنهادات روز--}}
                                             {{__('pages/menu.offers_of_the_day')}}
                                         </div>
                                         <div class="grow">
@@ -212,15 +205,7 @@
                                         centerInsufficientSlides: true,
                                        },
                                    },
-
-{{--                                    pagination:{--}}
-                                            {{--                                        clickable:true,--}}
-                                            {{--                                        el: '#swiper-pagination',--}}
-                                            {{--                                        bulletElement: 'div',--}}
-                                            {{--                                        bulletClass:'swiper-pagination-bullet',--}}
-                                            {{--                                        bulletActiveClass: 'swiper-pagination-bullet-active',--}}
-                                            {{--                                    }--}}
-                                                })
+                                 })
 "
                                                 class="swiper swiper-initialized swiper-horizontal swiper-rtl swiper-backface-hidden">
                                                 <div class="swiper-wrapper"
@@ -251,7 +236,6 @@
                                                                                          data-nimg="fill"
                                                                                          class="z-0 object-cover relative"
                                                                                          sizes="100vw"
-                                                                                         {{-- srcset="/_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2FpFfZxSRt4VMzc7bqoVdoHPcxb9cUpu-metaVHlwZXMtb2YtdGVhLTItMTAyNHg1MTMuanBn-.jpg&amp;w=640&amp;q=75 640w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2FpFfZxSRt4VMzc7bqoVdoHPcxb9cUpu-metaVHlwZXMtb2YtdGVhLTItMTAyNHg1MTMuanBn-.jpg&amp;w=750&amp;q=75 750w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2FpFfZxSRt4VMzc7bqoVdoHPcxb9cUpu-metaVHlwZXMtb2YtdGVhLTItMTAyNHg1MTMuanBn-.jpg&amp;w=828&amp;q=75 828w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2FpFfZxSRt4VMzc7bqoVdoHPcxb9cUpu-metaVHlwZXMtb2YtdGVhLTItMTAyNHg1MTMuanBn-.jpg&amp;w=1080&amp;q=75 1080w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2FpFfZxSRt4VMzc7bqoVdoHPcxb9cUpu-metaVHlwZXMtb2YtdGVhLTItMTAyNHg1MTMuanBn-.jpg&amp;w=1200&amp;q=75 1200w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2FpFfZxSRt4VMzc7bqoVdoHPcxb9cUpu-metaVHlwZXMtb2YtdGVhLTItMTAyNHg1MTMuanBn-.jpg&amp;w=1920&amp;q=75 1920w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2FpFfZxSRt4VMzc7bqoVdoHPcxb9cUpu-metaVHlwZXMtb2YtdGVhLTItMTAyNHg1MTMuanBn-.jpg&amp;w=2048&amp;q=75 2048w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2FpFfZxSRt4VMzc7bqoVdoHPcxb9cUpu-metaVHlwZXMtb2YtdGVhLTItMTAyNHg1MTMuanBn-.jpg&amp;w=3840&amp;q=75 3840w"--}}
                                                                                          {{-- todo placeholder--}}
                                                                                          @if($dayOffer->image_path)
                                                                                              src="/storage/{{$dayOffer->image_path}}"
@@ -502,8 +486,6 @@
                                                                         'grayscale'=>in_array('sold_out',$item->tags)
                                                                      ])
                                                                      sizes="100vw"
-                                                                     {{-- todo --}}
-                                                                     {{-- srcset="/_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2FYwBmdz43wjYkancN0Fe8tNf1riG4oS-metaMTY4MzQ3Nzc5MTgwNC5qcGc%3D-.jpg&amp;w=640&amp;q=75 640w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2FYwBmdz43wjYkancN0Fe8tNf1riG4oS-metaMTY4MzQ3Nzc5MTgwNC5qcGc%3D-.jpg&amp;w=750&amp;q=75 750w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2FYwBmdz43wjYkancN0Fe8tNf1riG4oS-metaMTY4MzQ3Nzc5MTgwNC5qcGc%3D-.jpg&amp;w=828&amp;q=75 828w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2FYwBmdz43wjYkancN0Fe8tNf1riG4oS-metaMTY4MzQ3Nzc5MTgwNC5qcGc%3D-.jpg&amp;w=1080&amp;q=75 1080w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2FYwBmdz43wjYkancN0Fe8tNf1riG4oS-metaMTY4MzQ3Nzc5MTgwNC5qcGc%3D-.jpg&amp;w=1200&amp;q=75 1200w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2FYwBmdz43wjYkancN0Fe8tNf1riG4oS-metaMTY4MzQ3Nzc5MTgwNC5qcGc%3D-.jpg&amp;w=1920&amp;q=75 1920w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2FYwBmdz43wjYkancN0Fe8tNf1riG4oS-metaMTY4MzQ3Nzc5MTgwNC5qcGc%3D-.jpg&amp;w=2048&amp;q=75 2048w, /_next/image?url=https%3A%2F%2Fpanel.menuma.online%2Fstorage%2FYwBmdz43wjYkancN0Fe8tNf1riG4oS-metaMTY4MzQ3Nzc5MTgwNC5qcGc%3D-.jpg&amp;w=3840&amp;q=75 3840w"--}}
                                                                      @if($item->image_path)
                                                                          src="/storage/{{$item->image_path}}"
                                                                      @else
@@ -661,7 +643,6 @@
                     </div>
 
                 </div>
-                {{--</div>--}}
                 <div
                     class="fixed inset-0 bg-black/[.2] z-[51] transition-all duration-[.2s] opacity-0 pointer-events-none">
                 </div>
@@ -682,10 +663,6 @@
                 });
         }
 
-        {{--let menu = @json($business->categories->load('items'));--}}
-            window.onload = function () {
-            // console.log('ajdkasdkjsa')
-        }
         let scrolled = false;
         const categoryBar = window.document.getElementById('category-bar');
         let categoryItems = window.document.getElementsByClassName('ci-category');
@@ -694,12 +671,9 @@
 
         window.addEventListener('scroll', function () {
             const scroll = window.scrollY;
-            // console.log(scroll)
             if (scrolled && scroll == 0) {
                 scrolled = false;
-                // categoryItems.map()
                 swiperPagination.classList.remove('!hidden')
-                // console.log(' iffffffffffffffffff')
                 Array.from(categoryNames).forEach((el) => {
                     el.classList.remove('text-[.9rem]')
                     el.classList.add('text-[1.2rem]')
@@ -710,19 +684,16 @@
                     el.classList.remove('h-[3.7rem]')
                     el.classList.remove('rounded-[1rem]')
                     el.classList.remove('pb-[1rem]')
-                    //
+
                     el.classList.add('rounded-[1.625rem]')
                     el.classList.add('h-[8.7rem]')
                     el.classList.add('w-[8.7rem]')
                     el.classList.add('pb-[1.125rem]')
-                    // 'pb-[1.125rem]': !scrolled,
-                    //     'pb-[1rem]': scrolled,
                 })
 
 
             } else if (scroll > (categoryBar?.clientHeight || 100) / 2.8) {
                 scrolled = true;
-                // console.log('from else')
                 swiperPagination.classList.add('!hidden')
                 Array.from(categoryNames).forEach((el) => {
 
@@ -736,7 +707,7 @@
                     el.classList.remove('h-[8.7rem]')
                     el.classList.remove('w-[8.7rem]')
                     el.classList.remove('pb-[1.125rem]')
-                    //
+
                     el.classList.add('w-[6.7rem]')
                     el.classList.add('h-[3.7rem]')
                     el.classList.add('rounded-[1rem]')
@@ -746,15 +717,5 @@
 
             }
         });
-        // window.addEventListener('scroll', _.throttle(handler, 50));
-        // window.removeEventListener('scroll', _.throttle(handler, 50));
-        document.addEventListener('alpine:init', () => {
-            // console.log(window.Alpine.)
-            // console.log(Alpine.$data('scrolled'))
-            // console.log(scrolled)
-
-
-        })
-
     </script>
 @endsection
