@@ -12,6 +12,7 @@ use App\Models\Event;
 use App\Models\Item;
 use App\Models\SearchLog;
 use App\Models\WorkingHour;
+use App\Services\Business\BusinessServiceInterface;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -19,71 +20,54 @@ use Illuminate\Support\Carbon;
 // todo refactor
 class Tst extends Controller
 {
-    public function index()
+    public function __construct(
+        private readonly BusinessServiceInterface $businessService,
+//todo
+//        private CafeRestaurant|null               $business,
+//        Request                                   $request,
+
+    )
     {
-        $pinnedBusinesses = CafeRestaurant::where('is_pinned', '1')->get();
+//        todo
 
-        $businessesDiscounts = Discount::query()
-            ->with(['cafeRestaurant' => function ($query) {
-                return $query->select(['id', 'logo_path', 'slug', 'name']);
-            }])
-//            ->where('is_pinned', '1')
-            ->get();
+//        $this->business = $this->businessService->findByDomain($request->host());
+//        if (!$this->business) {
+//            todo redirect to main domain
+//            abort(404);
+//        }
+    }
 
-        $businessesEvents = Event::with('cafeRestaurant')
-//            todo
-            ->where('date', '>=', now()->subDay())
-//            ->where('is_pinned', '1')
-            ->orderBy('date')
-            ->get();
-
-        return view('main_domain.index', compact([
-                'pinnedBusinesses',
-                'businessesDiscounts',
-                'businessesEvents',
-            ])
-        );
+    private function getBusinessBySlug(string $slug)
+    {
+        $business = $this->businessService->findBySlug($slug);
+        if (!$business) {
+            abort(404);
+        }
+        return $business;
     }
 
     public function profile(string $slug)
     {
-        $business = CafeModel::query()->where('slug', $slug)->firstOrFail();
-//        $cafe = $this->findBySlug($slug);
+        $business = $this->getBusinessBySlug($slug);
         $business->load('workingHours');
-//        dd($business->workingHours);
 //        TODO optimize
-        $todayName = strtolower(now()->format('l'));
-        $workingHours = WorkingHour::where('cafe_restaurant_id', $business->id)
-            ->where('weekday', $todayName)
-            ->orderBy('from')
-            ->get();
-        $hasWorkingTime = boolval(WorkingHour::where('cafe_restaurant_id', $business->id)
-            ->count());
-
-//        $business->loadExists(['conditionalDiscounts', 'events']);
-//  todo
-        $countOfConditionalDiscounts = ConditionalDiscount::where('cafe_restaurant_id', $business->id)
-            ->count();
-
-        $countOfEvents = Event::where('cafe_restaurant_id', $business->id)
-            ->count();
+        $workingHours = $this->businessService->getTodayWorkingHours($business);
+        $hasWorkingTime = $this->businessService->hasAnyWorkingTime($business);
         return view('main_domain.business.profile', compact([
                 'business',
                 'workingHours',
                 'hasWorkingTime',
-                'countOfConditionalDiscounts',
-                'countOfEvents',
+
             ])
         );
     }
 
     public function menu(string $slug)
     {
-        $business = CafeModel::query()->where('slug', $slug)->firstOrFail();
+        $business = $this->getBusinessBySlug($slug);
         $menu = $business->visibleCategories->load('visibleItems');
-        $dayOffers = Item::where('cafe_restaurant_id', $business->id)
-            ->whereJsonContains('tags', 'day_offer')
-            ->get();
+        $dayOffers = $this->businessService->getDayOffers($business);
+
         return view('main_domain.business.menu', compact([
             'business',
             'menu',
@@ -93,7 +77,7 @@ class Tst extends Controller
 
     public function registerInCustomerClub(string $slug)
     {
-        $business = CafeModel::query()->where('slug', $slug)->firstOrFail();
+        $business = $this->getBusinessBySlug($slug);
         return view('main_domain.business.customer-club.register', compact([
             'business'
         ]));
@@ -102,8 +86,8 @@ class Tst extends Controller
 
     public function conditionalDiscountsList(string $slug)
     {
-        $business = CafeModel::query()->where('slug', $slug)->firstOrFail();
-        $conditionalDiscounts = ConditionalDiscount::where('cafe_restaurant_id', $business->id)->get();
+        $business = $this->getBusinessBySlug($slug);
+        $conditionalDiscounts = $this->businessService->getConditionalDiscounts($business);
         return view('main_domain.business.conditional-discounts.list', compact([
             'business',
             'conditionalDiscounts',
@@ -112,11 +96,8 @@ class Tst extends Controller
 
     public function eventsList(string $slug)
     {
-        $business = CafeModel::query()->where('slug', $slug)->firstOrFail();
-        $events = Event::where('cafe_restaurant_id', $business->id)
-//            todo
-            ->where('date', '>=', now()->subDay())
-            ->get();
+        $business = $this->getBusinessBySlug($slug);
+        $events = $this->businessService->getFutureEvents($business);
         return view('main_domain.business.events.list', compact([
             'business',
             'events',
@@ -125,9 +106,8 @@ class Tst extends Controller
 
     public function showItem(string $slug, int $categoryId, int $itemId)
     {
-        $business = CafeModel::query()->where('slug', $slug)->firstOrFail();
-        $item = Item::where('id', $itemId)
-            ->first();
+        $business = $this->getBusinessBySlug($slug);
+        $item = $this->businessService->getMenuItemById($itemId);
         abort_if(!$item, 404);
         return view('main_domain.business.menu.item', compact([
             'business',
@@ -135,25 +115,5 @@ class Tst extends Controller
         ]));
     }
 
-    public function search(Request $request)
-    {
-        SearchLog::create(['request' => $request->all()]);
 
-        $distance = intval($request->distance) ?: 3000;
-        $userLat = floatval($request->lat);
-        $userLong = floatval($request->long);
-
-        $businesses = CafeRestaurant::query()
-            ->selectRaw('*, (6371000 * ACOS(COS(RADIANS(?)) * COS(RADIANS(location_lat)) * COS(RADIANS(location_long - ?)) + SIN(RADIANS(?)) * SIN(RADIANS(location_lat)))) AS distance')
-            ->having('distance', '<', $distance)
-            ->addBinding($userLat, 'select')
-            ->addBinding($userLong, 'select')
-            ->addBinding($userLat, 'select')
-            ->orderBy('distance')
-            ->get();
-
-        return view('main_domain.search.index', compact([
-            'businesses'
-        ]));
-    }
 }

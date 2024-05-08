@@ -61,10 +61,8 @@ class BusinessController extends Controller
 
     public function showItem(int $categoryId, int $itemId)
     {
-//        dd('jknkjn');
         $business = $this->business;
-        $item = Item::where('id', $itemId)
-            ->first();
+        $item = $this->businessService->getMenuItemById($itemId);
         abort_if(!$item, 404);
         return view('main_domain.business.menu.item', compact([
             'business',
@@ -85,10 +83,7 @@ class BusinessController extends Controller
     public function eventsList()
     {
         $business = $this->business;
-        $events = Event::where('cafe_restaurant_id', $business->id)
-//            todo
-            ->where('date', '>=', now()->subDay())
-            ->get();
+        $events = $this->businessService->getFutureEvents($business);
         return view('main_domain.business.events.list', compact([
             'business',
             'events',

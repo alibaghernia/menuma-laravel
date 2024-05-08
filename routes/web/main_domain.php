@@ -8,42 +8,26 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/',
-    [MainDomain\Tst::class, 'index'])
+    [MainDomain\MenumaController::class, 'index'])
     ->name('home');
 
-// todo
-Route::get('/catalog', function () {
-    $catalogs = \App\Models\Catalog::all();
-    return view('main_domain.catalog.index', compact([
-        'catalogs',
-    ]));
-})
+Route::get('/catalog',
+    [MainDomain\MenumaController::class, 'catalogPage'])
     ->name('catalog');
 
 // todo
 //Route::get('/catalog/{catalogId}', function ($catalogId) {
 //});
 
-Route::get('/register-form', \App\Livewire\MainDomain\RegisterForm::class)
+Route::get('/register-form',
+    \App\Livewire\MainDomain\RegisterForm::class)
     ->name('register-form');
 
-//todo
-Route::get('/q/{slug}', function ($slug) {
-    if ($slug == '_A1') {
-        return redirect()->away('https://kamakancafe.ir/menu');
-    }
-    if ($slug == '_A2') {
-        return redirect()->away('https://cafeinjast.ir/menu');
+Route::get('/q/{slug}',
+    [MainDomain\MenumaController::class, 'qrCodeRedirector']);
 
-    }
-    if ($slug == '_A3') {
-        return redirect()->away('https://tourismcafe.ir/');
-    }
-    abort(404);
-});
-
-//todo
-Route::get('/search',[MainDomain\Tst::class,'search']);
+Route::get('/search',
+    [MainDomain\MenumaController::class, 'search']);
 //
 Route::name('business.')
     ->prefix('/{slug}')

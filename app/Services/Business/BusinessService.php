@@ -60,4 +60,18 @@ class BusinessService implements BusinessServiceInterface
         return ConditionalDiscount::where('cafe_restaurant_id', $business->id)->get();
     }
 
+    public function getFutureEvents(CafeModel $business)
+    {
+        return Event::where('cafe_restaurant_id', $business->id)
+//            todo
+            ->where('date', '>=', now()->subDay())
+            ->get();
+    }
+
+    public function getMenuItemById(int $id)
+    {
+        return Item::where('id', $id)
+            ->first();
+    }
+
 }
