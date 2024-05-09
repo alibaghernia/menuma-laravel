@@ -8,12 +8,25 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Notifications\Notifiable;
+use Spatie\Translatable\HasTranslations;
 
 class CafeRestaurant extends Model
 {
     use HasFactory,
-        Notifiable;
+        Notifiable,
+        HasTranslations;
 
+    public array $translatable = [
+        'name',
+        'description',
+        'address',
+    ];
+
+    protected $casts = [
+        'name' => 'array',
+        'description' => 'array',
+        'address' => 'array',
+    ];
 
     public function manager(): HasOne
     {
