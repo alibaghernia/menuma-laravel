@@ -13,3 +13,8 @@ function domain_route($name, $parameters = [], $absolute = false,): string
     }
     return route('business-domain.' . $name, $parameters, $absolute);
 }
+
+function is_main_domain(): bool
+{
+    return request()->host() === config('app.domains.main');
+}
