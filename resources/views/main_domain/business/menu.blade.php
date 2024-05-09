@@ -92,7 +92,9 @@
                                                                 <div
                                                                     {{-- todo --}}
                                                                     {{--        class="relative block overflow-hidden cursor-pointer transition-all duration-[.2s] w-[6.7rem] h-[3.7rem] rounded-[1rem]"--}}
-                                                                    class="ci-category relative block overflow-hidden cursor-pointer transition-all duration-[.2s] rounded-[1.625rem] w-[8.7rem] h-[8.7rem] "
+                                                                    class="ci-category relative block overflow-hidden
+                                                                     cursor-pointer transition-all duration-[.2s]
+                                                                     rounded-[1.625rem] w-[8.7rem] h-[8.7rem] "
                                                                     onclick="scrollIntoCategory({{$category->id}})"
                                                                 >
                                                                     @if($category->background_path)
@@ -100,19 +102,27 @@
                                                                         <img
                                                                             alt="{{$category->name}}" loading="lazy"
                                                                             decoding="async"
-                                                                            data-nimg="fill" class="z-0 object-cover"
+                                                                            data-nimg="fill"
+                                                                            class="z-0 object-cover"
                                                                             sizes="100vw"
                                                                             src="/storage/{{$category->background_path}}"
                                                                             style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;"
                                                                             onerror="this.remove()"
                                                                         >
-
+                                                                    @elseif($category->bg_color)
+                                                                        @if(!is_main_domain())
+                                                                            <div
+                                                                                class="absolute h-full text-transparent w-full inset-0"
+                                                                                style="background-color: {{$category->bg_color}};"
+                                                                            >
+                                                                            </div>
+                                                                        @endif
                                                                     @endif
                                                                     <span
                                                                     @class([
                                                                         'absolute inset-0 z-0',
-                                                                        'bg-black/[.4]' => $category->background_path,
-                                                                        'bg-black/[.7]' => !$category->background_path
+                                                                        'bg-black/[.4]' => (!is_main_domain() && ($category->background_path || $category->bg_color)) || $category->background_path,
+                                                                        'bg-black/[.7]' => (is_main_domain() && !$category->background_path) || (!$category->bg_color),
                                                                         ])
                                                                     ></span>
                                                                     <div
