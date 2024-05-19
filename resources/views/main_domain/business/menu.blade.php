@@ -119,10 +119,13 @@
                                                                         @endif
                                                                     @endif
                                                                     <span
+                                                                    @php
+                                                                        $show4 = $category->background_path || (!is_main_domain() && $category->bg_color);
+                                                                    @endphp
                                                                     @class([
                                                                         'absolute inset-0 z-0',
-                                                                        'bg-black/[.4]' => (!is_main_domain() && ($category->background_path || $category->bg_color)) || $category->background_path,
-                                                                        'bg-black/[.7]' => (is_main_domain() && !$category->background_path) || (!$category->bg_color),
+                                                                        'bg-black/[.4]' => $show4,
+                                                                        'bg-black/[.7]' => !$show4 ,
                                                                         ])
                                                                     ></span>
                                                                     <div
