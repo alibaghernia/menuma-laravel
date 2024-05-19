@@ -17,6 +17,7 @@ use Filament\Pages\Concerns\InteractsWithFormActions;
 use Filament\Pages\Page;
 use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Validation\ValidationException;
+use Filament\Notifications\Notification;
 
 class Profile extends Page
 {
@@ -145,6 +146,12 @@ class Profile extends Page
             }
         }
         WorkingHour::insert($times);
+
+        Notification::make()
+            ->title('تغییرات ذخیره شد.')
+            ->success()
+            ->send();
+
         $this->redirect('/profile');
     }
 
