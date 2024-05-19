@@ -52,7 +52,7 @@ class CategoryResource extends Resource
                 Forms\Components\ColorPicker::make('bg_color')
                     ->label('رنگ پس زمینه')
                     ->helperText('درصورتی که عکسی برای دسته بندی نگذاشته باشید با این رنگ پس زمینه نمایش داده خواهد شد.')
-                    ->rgb(),
+                    ->hex(),
 
             ]);
     }
