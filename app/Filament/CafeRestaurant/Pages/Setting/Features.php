@@ -70,7 +70,7 @@ class Features extends Page
                                 Components\Toggle::make('has_domain_address')
                                     ->disabled()
                                     ->label('وضعیت')
-                                    ->hint((new HtmlString(' <a class="underline" href="tel:09920560841"> 09920560841 </a>')))
+                                    ->hint((new HtmlString(' <a class="underline" href="tel:09999924319"> 09999924319 </a>')))
                                     ->helperText('برای تغییر وضعیت با پشتیبانی تماس بگیرید'),
                             ]),
                         Components\Section::make('باشگاه مشتریان')
