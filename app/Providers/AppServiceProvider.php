@@ -12,6 +12,7 @@ use Filament\Notifications\Notification as BaseNotification;
 use Filament\Notifications\Livewire\Notifications as BaseNotifications;
 use Livewire\Livewire;
 use Filament\Notifications\Livewire\DatabaseNotifications as BaseDatabaseNotifications;
+use Illuminate\Support\Facades\Blade;
 
 
 class AppServiceProvider extends ServiceProvider
@@ -40,5 +41,13 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(BaseNotifications::class, Notifications::class);
         Livewire::component('notifications', Notifications::class);
 //        dd(DatabaseNotifications::databaseNotifications());
+
+        Blade::if('maindomain', function () {
+            return is_main_domain();
+        });
+
+        Blade::if('notmaindomain', function () {
+            return !is_main_domain();
+        });
     }
 }
