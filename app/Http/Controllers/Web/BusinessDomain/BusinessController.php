@@ -8,6 +8,7 @@ use App\Models\CafeRestaurant as CafeModel;
 use App\Models\ConditionalDiscount;
 use App\Models\Event;
 use App\Models\Item;
+use App\Models\Table;
 use App\Models\WorkingHour;
 use App\Services\Business\BusinessServiceInterface;
 use Illuminate\Http\Request;
@@ -51,11 +52,16 @@ class BusinessController extends Controller
         $business = $this->business;
         $menu = $this->business->visibleCategories->load('visibleItems');
         $dayOffers = $this->businessService->getDayOffers($this->business);
+//        todo move to service
+        $tables = Table::select(['id', 'code'])
+            ->where('cafe_restaurant_id', $business->id)
+            ->get();
 
         return view('main_domain.business.menu', compact([
             'business',
             'menu',
-            'dayOffers'
+            'dayOffers',
+            'tables',
         ]));
     }
 
