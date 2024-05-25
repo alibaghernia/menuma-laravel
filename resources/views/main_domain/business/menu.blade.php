@@ -35,6 +35,159 @@
 @section('body')
 
     <x-loading/>
+    <div
+        x-data="{show: false}"
+        x-show="show"
+        @open-select-table.window="show=true"
+        @close-select-table.window="show=false"
+        @keydown.esc.window="$dispatch('close-select-table')"
+        class="z-[110] bg-black/[.3] duration-[.2s] transition fixed inset-0
+        select-none"
+    >
+        <div
+            @click.outside="$dispatch('close-select-table')"
+            class="h-2/3 bg-white bottom-0 fixed w-full max-w-xl right-0 left-0 mx-auto
+        rounded-t-2xl shadow-lg p-2">
+            <div class="flex flex-col gap-2 mx-4">
+                <div class="mx-auto text-center">
+                    لطفا میز خود را انتخاب کنید
+                </div>
+                <template
+                    x-for="table in $store.table.list">
+                    <div
+                        @click="
+                        $store.table.moveTo(table.id)
+                        $dispatch('close-select-table')
+                        "
+                        x-text="table.code"
+                        class="bg-[#f9f3e7] p-2 rounded-lg text-center shadow hover:shadow-lg cursor-pointer">
+
+                    </div>
+                </template>
+            </div>
+        </div>
+    </div>
+    @notmaindomain
+    <span
+        x-data="{show:false}"
+        x-show="show">
+    <div
+
+        {{--        x-show="show"--}}
+        @click="$dispatch('close-pager')"
+        @open-pager.window="show = true"
+        @close-pager.window="show = false"
+        @keydown.esc.window="$dispatch('close-pager')"
+        class="z-[99] bg-black/[.3] duration-[.2s] transition fixed inset-0
+        select-none">
+
+    </div>
+    <div
+        {{--        x-show="show"--}}
+        {{--            @click.outside="$dispatch('close-pager')"--}}
+        class="h-2/3 bg-white bottom-0 fixed w-full max-w-xl right-0 left-0 mx-auto
+        rounded-t-2xl shadow-lg p-2
+        z-[100]">
+        <div class="flex flex-col gap-2 mx-4">
+            <div class="mx-auto text-center">با زدن دکمه زیر سالن دار را صدا کنید</div>
+            <div
+                @click="
+                    if (!$store.table.hasTable){
+                    $dispatch('open-select-table')
+                    return;
+                    }
+                    $dispatch('close-pager');
+                    $dispatch('lock-pager');
+{{--                    todo--}}
+                    const response = await fetch(`/api/pager-requests/${$store.table.currentTableId}`);
+                    if (!response.ok){
+                        alert('هنگام درخواست گارسون خطایی پیش امده دوباره امتحان کنید')
+                    }
+
+                        "
+                class="bg-[#f9f3e7] p-2 rounded-lg text-center shadow hover:shadow-lg cursor-pointer">
+                درخواست سالن دار
+            </div>
+            <div
+                @click="$dispatch('open-select-table')"
+                x-text="$store.table.hasTable ? 'جابجایی میز' : 'انتخاب میز'"
+                class="bg-[#f9f3e7] p-2 rounded-lg text-center shadow hover:shadow-lg cursor-pointer">
+            </div>
+            <div class="text-center"
+                 x-data=""
+
+                 x-text="$store.table.hasTable ?
+
+                     'میز شما: ' +
+                     $store.table.getCurrentTable().code
+
+
+
+                      :
+                       'برای صدا زدن سالن دار ابتدا میز خود را مشخص کنید'"
+            >
+
+
+            </div>
+            <div
+                x-data
+                x-text="$store.table.hasTable">
+                $store.darkMode
+            </div>
+            <div class="grow-1">
+                <div
+                    @click="$dispatch('close-pager')"
+                    class="bg-[#f9f3e7] p-2 rounded-lg text-center shadow hover:shadow-lg cursor-pointer
+                        ">
+                    انصراف
+                </div>
+            </div>
+        </div>
+    </div>
+        </span>
+
+    <div
+        x-data="{time:-1}"
+        x-bind:class="time > 0 ? 'grayscale' : ''"
+        @click="if (time <= 0) $dispatch('open-pager')"
+        class="fixed bottom-2 right-[1.6rem] p-4 z-[40] bg-[#f9f3e7] rounded-full border border-[#eeb33f]
+        cursor-pointer select-none"
+        @lock-pager.window="
+        localStorage.setItem('lockPagerUntil', (Math.floor(Date.now() / 1000) + 60).toString())
+
+        const checkPagerLockTime = setInterval(() => {
+            const lockPagerTimeStamp = parseInt(localStorage.getItem('lockPagerUntil'))
+            time = lockPagerTimeStamp - Math.floor(Date.now() / 1000)
+                if (time <= 0) {
+                    clearInterval(checkPagerLockTime);
+                }
+        }, 1000);
+    "
+
+    >
+        <button class="bg-gray-800 text-white rounded-full w-7 h-7 flex items-center justify-center">
+            <span
+                x-show="time > 0"
+                x-text="time"
+                class="text-black"></span>
+
+            <svg
+                x-show="time <= 0"
+                class="w-6 h-6 "
+                {{--style="enable-background:new 0 0 512 512;"--}}
+                viewBox="0 0 512 512"
+                fill="#eeb33f"
+                xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink">
+                <g>
+                    <path
+                        d="M381.7,225.9c0-97.6-52.5-130.8-101.6-138.2c0-0.5,0.1-1,0.1-1.6c0-12.3-10.9-22.1-24.2-22.1c-13.3,0-23.8,9.8-23.8,22.1   c0,0.6,0,1.1,0.1,1.6c-49.2,7.5-102,40.8-102,138.4c0,113.8-28.3,126-66.3,158h384C410.2,352,381.7,339.7,381.7,225.9z"/>
+                    <path d="M256.2,448c26.8,0,48.8-19.9,51.7-43H204.5C207.3,428.1,229.4,448,256.2,448z"/>
+                </g>
+            </svg>
+        </button>
+    </div>
+    @endnotmaindomain
     <div x-data="{scrolled : false}">
         <main class="z-10 ">
             <div class="bg-background min-h-screen">
@@ -122,11 +275,11 @@
                                                                     @php
                                                                         $show4 = $category->background_path || (!is_main_domain() && $category->bg_color);
                                                                     @endphp
-                                                                    @class([
-                                                                        'absolute inset-0 z-0',
-                                                                        'bg-black/[.4]' => $show4,
-                                                                        'bg-black/[.7]' => !$show4 ,
-                                                                        ])
+                                                                        @class([
+                                                                            'absolute inset-0 z-0',
+                                                                            'bg-black/[.4]' => $show4,
+                                                                            'bg-black/[.7]' => !$show4 ,
+                                                                            ])
                                                                     ></span>
                                                                     <div
                                                                         class="ci-category-name text-white font-bold text-center absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] z-20
@@ -667,6 +820,7 @@
 
 @endsection
 @section('body.end')
+    <div class="h-12"></div>
     <script>
         function scrollIntoCategory(categoryId) {
             window.document
@@ -730,5 +884,94 @@
 
             }
         });
+
+        // window.addEventListener('lock-pager', function (e) {
+        //     localStorage.setItem("lockPagerUntil", (Math.floor(Date.now() / 1000) + 60).toString())
+        //
+        //
+        //     const checkPagerLockTime = setInterval(() => {
+        //         const lockPagerTimeStamp = parseInt(localStorage.getItem('lockPagerUntil'))
+        //         console.log(lockPagerTimeStamp - Math.floor(Date.now() / 1000))
+        //         if (lockPagerTimeStamp - Math.floor(Date.now() / 1000) <= 0) {
+        //             clearInterval(checkPagerLockTime);
+        //         }
+        //     }, 1000);
+        //
+        // })
     </script>
+    @notmaindomain
+    <script>
+        {{-- todo ref --}}
+        const tables = @js($tables)
+
+        document.addEventListener('alpine:init', () => {
+
+            Alpine.store('table', {
+                hasTable: false,
+                currentTableId: null,
+                list: tables,
+
+                init() {
+                    const tableUpdateAt = parseInt(localStorage.getItem('table_update_at'));
+                    const nowTimeStamp = Math.floor(Date.now() / 1000)
+                    const oneHour = 3600
+                    if (!Number.isInteger(tableUpdateAt) || (nowTimeStamp - tableUpdateAt) > oneHour) {
+                        localStorage.removeItem('table_update_at')
+                        localStorage.removeItem('table_id')
+                    }
+
+                    const tableId = localStorage.getItem('table_id');
+
+                    let hasTable = !!tableId
+
+                    if (!hasTable) {
+                        return;
+                    }
+
+                    tables.forEach((item) => {
+                        if (item.id === parseInt(tableId)) {
+                            this.hasTable = true;
+                            this.currentTableId = item.id
+                            {{-- todo check can use break --}}
+                                return;
+                        }
+                    });
+                    // tables.map((item) => {
+                    //     if (item.id === parseInt(tableId) && item.code === tableCode) {
+                    //         break;
+                    //     }
+                    // })
+
+                },
+
+                moveTo(tableId) {
+                    this.currentTableId = parseInt(tableId)
+                    this.hasTable = true
+                    localStorage.setItem('table_id', tableId + '')
+                    localStorage.setItem('table_update_at', Math.floor(Date.now() / 1000) + '')
+
+                },
+                // getCodeById(tableId) {
+                //     let r = false
+                //     tables.forEach((item) => {
+                //         if (item.id === parseInt(tableId)) {
+                //             r = item;
+                //         }
+                //     });
+                //     return r;
+                // },
+                getCurrentTable() {
+                    let r = false;
+                    tables.forEach((item) => {
+                        if (item.id === parseInt(this.currentTableId)) {
+                            r = item
+                        }
+                    });
+                    return r;
+                }
+
+            })
+        })
+    </script>
+    @endnotmaindomain
 @endsection
