@@ -129,11 +129,7 @@
 
 
             </div>
-            <div
-                x-data
-                x-text="$store.table.hasTable">
-                $store.darkMode
-            </div>
+
             <div class="grow-1">
                 <div
                     @click="$dispatch('close-pager')"
