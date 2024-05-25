@@ -21,9 +21,10 @@ class EditTable extends EditRecord
     protected function getHeaderActions(): array
     {
         return [
-            Action::make('manage_qr_code')
-                ->label('دریافت QR code')
-                ->url(fn($record): string => route('tables.qr_code', $this->record->id)),
+//            todo:h implement again
+//            Action::make('manage_qr_code')
+//                ->label('دریافت QR code')
+//                ->url(fn($record): string => route('tables.qr_code', $this->record->id)),
 //                ->openUrlInNewTab(),
             Actions\ActionGroup::make([
                 Actions\DeleteAction::make(),
